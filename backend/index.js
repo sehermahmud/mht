@@ -2,6 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
 const Grade = require('./routes/grade');
 const Subject = require('./routes/subject');
@@ -14,6 +15,7 @@ const TeacherBatch = require('./modals/teacherBatch');
 
 app = express();
 app.use(bodyParser.json());
+dotenv.config();
 
 /* ------ Mht backend Routes ------ */
 
@@ -52,6 +54,8 @@ app.get('/api/AllSchool', School.getSchool);
 app.delete('/api/deleteSchool/:id', School.deleteSchool);
 
 app.patch('/api/editSchool/:id', School.editSchool);
+
+/* ------ Teacher Section ------ */
 
 /* ------ Teacher Backend ------ */
 app.post('/teacher/CreateTeacher', async (req, res) => {
@@ -185,20 +189,19 @@ app.delete('/student/deleteStudent/:id', Student.deleteStudent);
 
 /* ------ Mht backend Mongodb database connection and Server Setup ------ */
 
+var url = process.env.MONGODB_URI;
+
 mongoose
-  .connect(
-    `mongodb+srv://seher:seher123@cluster0.3lcq5.gcp.mongodb.net/mht?retryWrites=true&w=majority`,
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
-    }
-  )
+  .connect(url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
   .then(() => {
     app.listen(3001);
     console.log('listening at port 3001');
-    console.log('Mongobd is connected');
+    console.log('Mongodb is connected');
   })
   .catch((err) => {
     console.log(err);
