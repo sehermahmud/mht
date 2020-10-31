@@ -12,7 +12,6 @@ const styles = (theme) => ({
   container: {
     height: '240px',
     width: '260px',
-    backgroundColor: 'rgba(255, 255, 255, 0.5)',
   },
   imgHolder: {
     width: '150px',
@@ -22,14 +21,14 @@ const styles = (theme) => ({
   imageUpload: {
     margin: 'auto',
     color: 'white',
-    width: '200px',
+    width: '215px',
     textAlign: 'center',
     cursor: 'pointer',
     alignItems: 'center',
     backgroundColor: '#2196f3',
   },
   margin: {
-    margin: theme.spacing(1),
+    margin: '1em',
   },
 });
 
@@ -52,8 +51,6 @@ class TeacherPhoto extends Component {
     };
     if (e.target.files[0]) {
       reader.readAsDataURL(e.target.files[0]);
-    } else {
-      profile;
     }
   };
   render() {
