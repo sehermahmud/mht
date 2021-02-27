@@ -31,46 +31,86 @@ import BatchPayments from './components/students/payment/batchPayments';
 
 function App() {
   return (
-    <div>
-      <Switch>
-        <br />
-        <Route path="/" component={Dashboard} />
-        <Route path="/grade" component={CreateGrade} />
-        <Route path="/edit/:id" component={EditGrade} />
-        <Route path="/subject" component={CreateSubject} />
-        <Route path="/editSubject/:id" component={EditSubject} />
-        <Route path="/sllabys" component={CreateSllabys} />
-        <Route path="/editSllabys/:id" component={EditSllabys} />
-        <Route path="/school" component={CreateSchool} />
-        <Route path="/editSchool/:id" component={EditSchool} />
-        <Route path="/teacher" component={CreateTeacher} />
-        <Route path="/editTeacher/:id" component={EditTeacher} />
-        <Route path="/teacherdetails/:id" component={TeacherDetails} />
-        <Route path="/editTeacherBatch/:id" component={EditTeacherBatch} />
-        <Route path="/students/allStudents" component={AddStudents} />
-        <Route path="/students/addStudent" component={AllStudents} />
-        <Route path="/students/ActiveStudents" component={ActiveStudents} />
-        <Route path="/students/StudentDetails/:id" component={StudentDetails} />
-        <Route path="/editStudent/:id" component={EditStudent} />
-        <Route path="/students/batchwise" component={BatchWiseStudents} />
-        <Route
-          path="/students/batchDetails/:id"
-          component={BatchWiseStudentDetails}
-        />
-        <Route path="/teachers/teacherPayment" component={TeacherPayment} />
-        <Route
-          path="/teachers/teacherPaymentDetails"
-          component={TeacherPaymentDetails}
-        />
+    <Router>
+      <div>
+        <Switch>
+          <Route exact path="/">
+            <Dashboard />
+          </Route>
+          <Route path="/grade">
+            <CreateGrade />
+          </Route>
+          <Route path="/edit/:id">
+            <EditGrade />
+          </Route>
+          <Route path="/subject">
+            <CreateSubject />
+          </Route>
+          <Route path="/editSubject/:id">
+            <EditSubject />
+          </Route>
+          <Route path="/sllabys">
+            <CreateSllabys />
+          </Route>
+          <Route path="/editSllabys/:id">
+            <EditSllabys />
+          </Route>
+          <Route path="/school">
+            <CreateSchool />
+          </Route>
+          <Route path="/editSchool/:id">
+            <EditSchool />
+          </Route>
+          <Route path="/teacher">
+            <CreateTeacher />
+          </Route>
+          <Route path="/editTeacher/:id">
+            <EditTeacher />
+          </Route>
+          <Route path="/teacherdetails/:id">
+            <TeacherDetails />
+          </Route>
+          <Route path="/editTeacherBatch/:id">
+            <EditTeacherBatch />
+          </Route>
+          <Route path="/students/allStudents">
+            <AddStudents />
+          </Route>
+          <Route path="/students/addStudent">
+            <AllStudents />
+          </Route>
+          <Route path="/students/ActiveStudents">
+            <ActiveStudents />
+          </Route>
+          <Route path="/students/StudentDetails/:id">
+            <StudentDetails />
+          </Route>
+          <Route path="/editStudent/:id">
+            <EditStudent />
+          </Route>
+          <Route path="/students/batchwise">
+            <BatchWiseStudents />
+          </Route>
+          <Route path="/students/batchDetails/:id">
+            <BatchWiseStudentDetails />
+          </Route>
+          <Route path="/teachers/teacherPayment">
+            <TeacherPayment />
+          </Route>
+          <Route path="/teachers/teacherPaymentDetails">
+            <TeacherPaymentDetails />
+          </Route>
 
-        <Route path="/teststudents" component={StudentTest} />
+          <Route path="/teststudents">
+            <StudentTest />
+          </Route>
 
-        <Route
-          path="/students/payments/batchPayment"
-          component={BatchPayments}
-        />
-      </Switch>
-    </div>
+          <Route path="/students/payments/batchPayment">
+            <BatchPayments />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
