@@ -323,12 +323,12 @@ export class BatchWiseStudentDetails extends Component {
                     }}
                     variant="contained"
                   >
-                    <a
+                    <Typography
                       style={{ color: 'black', textDecoration: 'none' }}
                       href="#"
                     >
                       Print
-                    </a>
+                    </Typography>
                   </Button>
                 )}
                 content={() => this.componentRef}

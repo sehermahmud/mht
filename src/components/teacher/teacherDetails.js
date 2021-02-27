@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import {
-  Card,
-  CardContent,
-} from '@material-ui/core';
+import { Card, CardContent } from '@material-ui/core';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -17,7 +14,6 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -85,7 +81,7 @@ const TeacherBatchlist = (props) => (
           marginBottom: '0.5em',
         }}
       >
-        <a
+        <Typography
           className="text-decoration-none"
           data-toggle="modal"
           data-target="#exampleModal"
@@ -94,7 +90,7 @@ const TeacherBatchlist = (props) => (
           }}
         >
           delete{' '}
-        </a>
+        </Typography>
       </Button>
     </td>
 
@@ -404,12 +400,6 @@ class TeacherDetails extends Component {
       teacherLastCertificatePhoto,
     } = this.state.teachers;
 
-    const Error = () => (
-      <div>
-        <li>Invalid password</li>
-      </div>
-    );
-
     return (
       <Grid style={{ marginTop: '3em' }}>
         <Typography variant="h5" style={{ marginLeft: '1em', color: 'white' }}>
@@ -457,7 +447,7 @@ class TeacherDetails extends Component {
                   </Typography>
                   <img
                     src={teacherPhoto}
-                    alt="Teacher's Photo"
+                    alt="Teacher"
                     style={{
                       width: '10em',
                       height: '10em',
@@ -484,7 +474,7 @@ class TeacherDetails extends Component {
                   </Typography>
                   <img
                     src={teacherNID}
-                    alt="Teacher's NID Photo"
+                    alt="Teacher's NID"
                     style={{
                       width: '10em',
                       height: '10em',

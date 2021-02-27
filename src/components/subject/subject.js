@@ -14,7 +14,6 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -44,7 +43,7 @@ const Subject = (props) => (
         }}
       >
         <Link
-          style={{ color: 'white', background: '#fdd835', color: 'black' }}
+          style={{ color: 'white', background: '#fdd835' }}
           className="text-decoration-none"
           to={'/editSubject/' + props.subject._id}
         >
@@ -63,7 +62,7 @@ const Subject = (props) => (
         data-toggle="modal"
         data-target="#exampleModal"
       >
-        <a
+        <Typography
           className="text-decoration-none"
           href="#"
           data-toggle="modal"
@@ -71,7 +70,7 @@ const Subject = (props) => (
           style={{ color: 'white', background: '#f44336' }}
         >
           delete{' '}
-        </a>
+        </Typography>
       </Button>
     </td>
     <div
@@ -220,15 +219,6 @@ class CreateSubject extends Component {
   }
 
   render() {
-    const handleChangePage = (event, newPage) => {
-      this.onChangePage(newPage);
-    };
-
-    const handleChangeRowsPerPage = (event) => {
-      this.onChangeRowsPerPage(+event.target.value);
-      this.onChangePage(0);
-    };
-
     const userAttributes = [];
     this.state.subjects.forEach((el) => {
       userAttributes.push({
@@ -267,7 +257,7 @@ class CreateSubject extends Component {
               data-toggle="modal"
               data-target="#exampleModal"
             >
-              <a
+              <Typography
                 className="text-decoration-none"
                 href="#"
                 data-toggle="modal"
@@ -276,7 +266,7 @@ class CreateSubject extends Component {
                 style={{ color: 'white' }}
               >
                 delete{' '}
-              </a>
+              </Typography>
             </Button>
           </React.Fragment>
         ),

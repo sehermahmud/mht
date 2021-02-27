@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { withStyles } from '@material-ui/styles';
 
 const styles = (theme) => ({
@@ -41,8 +40,6 @@ class TeacherPhoto extends Component {
     // const imageUpload = $('imageUpload');
     // const img = $('img');
     // const file = e.target.files[0];
-    const profile =
-      'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
     const reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {

@@ -69,10 +69,6 @@ export class StudentDetails extends Component {
       studentSchool,
       sllabys,
       specialNote,
-      checked,
-      checked2,
-      subject,
-      StartDate,
       studentPermentId,
     } = this.state.students;
 
@@ -139,7 +135,7 @@ export class StudentDetails extends Component {
                 >
                   <img
                     src={studentPhoto}
-                    alt="student's Photo"
+                    alt="student"
                     style={{
                       border: '1px solid black',
                       width: '10em',

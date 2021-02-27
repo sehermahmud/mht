@@ -58,15 +58,14 @@ const Sllabys = (props) => (
           background: 'red',
         }}
       >
-        <a
+        <Typography
           className="text-decoration-none"
-          href="#"
           data-toggle="modal"
           data-target="#exampleModal"
           style={{ color: 'white' }}
         >
           delete{' '}
-        </a>
+        </Typography>
       </Button>
     </td>
     <div
@@ -232,7 +231,7 @@ class CreateSubject extends Component {
               data-toggle="modal"
               data-target="#exampleModal"
             >
-              <a
+              <Typography
                 className="text-decoration-none"
                 href="#"
                 data-toggle="modal"
@@ -241,7 +240,7 @@ class CreateSubject extends Component {
                 style={{ color: 'white' }}
               >
                 delete{' '}
-              </a>
+              </Typography>
             </Button>
           </React.Fragment>
         ),

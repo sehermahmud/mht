@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { withStyles } from '@material-ui/styles';
 
 const styles = (theme) => ({
@@ -54,7 +53,7 @@ class TeacherNID extends Component {
     return (
       <div className="page">
         <div className={classes.container}>
-          <h5 className="heading">Teacher NID Photo</h5>
+          <h5 className="heading">Teacher NID</h5>
           <div className={classes.imgHolder}>
             <img src={profileImg} alt="" id="img" className={classes.img} />
           </div>

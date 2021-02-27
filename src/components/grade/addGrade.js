@@ -64,16 +64,15 @@ const Grade = (props) => (
         data-toggle="modal"
         data-target="#exampleModal"
       >
-        <a
+        <Typography
           className="text-decoration-none"
-          href="#"
           data-toggle="modal"
           data-id="props.grade._id"
           data-target="#exampleModal"
           style={{ color: 'white' }}
         >
           delete{' '}
-        </a>
+        </Typography>
       </Button>
     </td>
     <div
@@ -123,54 +122,6 @@ const Grade = (props) => (
     </div>
   </tr>
 );
-
-// const columns = [
-//   {
-//     dataField: "id",
-//     text: "sl",
-//     sort: true,
-//     scope: "col" ,
-//     width: '4em'
-//   },
-//   {
-//     dataField: "name",
-//     text: "Grade",
-//     sort: true,
-//     scope: "col" ,
-//     width: '15em'
-//   },
-//   {
-//     dataField: "name",
-//     text: "Description",
-//     sort: true,
-//     scope: "col" ,
-//     width: '30em'
-//   },
-//   {
-//     dataField: "name",
-//     text: "Actions",
-//     sort: true,
-//     scope: "col" ,
-//     width: '20em'
-//   },
-// ]
-
-{
-  /* <thead className="">
-                <th scope="col" style={{ width: '4em' }}>
-                  sl
-                </th>
-                <th scope="col" style={{ width: '15em' }}>
-                  Grade
-                </th>
-                <th scope="col" style={{ width: '30em' }}>
-                  Description
-                </th>
-                <th scope="col" style={{ width: '20em' }}>
-                  Actions
-                </th>
-              </thead> */
-}
 
 class CreateGrade extends Component {
   constructor(props) {
@@ -284,33 +235,6 @@ class CreateGrade extends Component {
     });
   }
 
-  handleSearch(event) {
-    const rowData = this.state.grades.map((gradeRow) =>
-      Object.values(gradeRow).filter(
-        (option) => option !== true && option !== false
-      )
-    );
-
-    const matches = rowData.map((gradeRow) =>
-      gradeRow.map((option) =>
-        option.toLowerCase().includes(event.target.value.toLowerCase())
-      )
-    );
-
-    const newRows = [...this.state.grades];
-    matches.map((gradeRow, index) =>
-      gradeRow.includes(true)
-        ? (newRows[index].search = true)
-        : (newRows[index].search = false)
-    );
-
-    this.setState(newRows);
-  }
-
-  handleSearch(event) {
-    const rowData = this.state.grade;
-  }
-
   render() {
     const userAttributes = [];
     this.state.grades.forEach((el) => {
@@ -350,16 +274,15 @@ class CreateGrade extends Component {
               data-toggle="modal"
               data-target="#exampleModal"
             >
-              <a
+              <Typography
                 className="text-decoration-none"
-                href="#"
                 data-toggle="modal"
                 data-id="props.grade._id"
                 data-target="#exampleModal"
                 style={{ color: 'white' }}
               >
                 delete{' '}
-              </a>
+              </Typography>
             </Button>
           </React.Fragment>
         ),
@@ -540,92 +463,7 @@ class CreateGrade extends Component {
                 border: '1px solid #b2dfdb',
                 background: '#b2dfdb',
               }}
-            />
-            {/* <Grid container direction="row">
-              <Grid item container direction="column" sm>
-                <section id="search_processes" class="center">
-                  <div id="filter_content">
-                    <table id="table_filters">
-                      <tr id="row_special"> */}
-            {/* <label style={{ marginRight: '0.5em' }}>
-                            Show entries of
-                          </label> */}
-            {/* <select class="form-control" id="records_comboBox">
-                          <option id="10" value="10">
-                            10
-                          </option>
-                          <option id="25" value="25">
-                            25
-                          </option>
-                          <option id="50" value="50">
-                            50
-                          </option>
-                        </select>
-                      </tr>
-                    </table>
-                  </div>
-                </section>
-              </Grid> */}
-            {/* <Grid
-                item
-                container
-                direction="column"
-                sm
-                style={{ marginLeft: '40em', marginTop: '0.5em' }}
-              >
-                <Paper
-                  elevation={0}
-                  component="form"
-                  style={{
-                    padding: '2px 3px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    width: 400,
-                    border: '1px solid black',
-                  }}
-                >
-                  <InputBase
-                    style={{
-                      marginLeft: '1em',
-                      flex: 1,
-                    }}
-                    placeholder="Search"
-                    inputProps={{ 'aria-label': 'Search' }}
-                  />
-                  <IconButton
-                    type="submit"
-                    style={{ padding: 10 }}
-                    aria-label="search"
-                  >
-                    <SearchIcon />
-                  </IconButton>
-                </Paper>
-              </Grid>
-            </Grid> */}
-            {/* <br /> */}
-            {/* <table
-              id="team-list"
-              className="table table-striped table-bordered"
-              cellspacing="0"
-              width="100%"
-            >
-              <thead className="">
-                <th scope="col" style={{ width: '4em' }}>
-                  sl
-                </th>
-                <th scope="col" style={{ width: '15em' }}>
-                  Grade
-                </th>
-                <th scope="col" style={{ width: '30em' }}>
-                  Description
-                </th>
-                <th scope="col" style={{ width: '20em' }}>
-                  Actions
-                </th>
-              </thead>
-              <tbody>{this.gradelist()}</tbody>
-            </table> */}
-            {/* <br /> */}
+              />
             <MDBDataTable striped bordered data={data} />
           </CardContent>
         </Card>

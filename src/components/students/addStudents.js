@@ -991,10 +991,6 @@ class AddStudents extends Component {
       </div>
     ) : null;
 
-    const {
-      checked, //you used metaField here but it's metadata
-    } = this.state;
-
     return (
       <Grid style={{ marginTop: '3em' }}>
         <Typography

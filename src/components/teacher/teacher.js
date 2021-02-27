@@ -80,9 +80,8 @@ const Teacher = (props) => (
           marginRight: '1em',
         }}
       >
-        <a
+        <Typography
           className="text-decoration-none"
-          href="#"
           data-toggle="modal"
           data-target="#exampleModal"
           style={{
@@ -90,7 +89,7 @@ const Teacher = (props) => (
           }}
         >
           delete{' '}
-        </a>
+        </Typography>
       </Button>
     </td>
     <div
@@ -332,9 +331,8 @@ class CreateTeacher extends Component {
                 marginRight: '1em',
               }}
             >
-              <a
+              <Typography
                 className="text-decoration-none"
-                href="#"
                 data-toggle="modal"
                 data-target="#exampleModal"
                 style={{
@@ -342,7 +340,7 @@ class CreateTeacher extends Component {
                 }}
               >
                 delete{' '}
-              </a>
+              </Typography>
             </Button>
           </React.Fragment>
         ),

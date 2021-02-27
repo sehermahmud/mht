@@ -302,7 +302,7 @@ export class BatchPayments extends Component {
                 >
                   <img
                     src=""
-                    alt="student's Photo"
+                    alt="student"
                     style={{
                       border: '1px solid black',
                       width: '10em',

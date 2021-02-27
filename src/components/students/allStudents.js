@@ -91,9 +91,8 @@ const Students = (props) => (
           fontSize: '0.9em',
         }}
       >
-        <a
+        <Typography
           className="text-decoration-none"
-          href="#"
           data-toggle="modal"
           data-target="#exampleModal"
           style={{
@@ -101,7 +100,7 @@ const Students = (props) => (
           }}
         >
           Delete
-        </a>
+        </Typography>
       </Button>
       <Button
         style={{
@@ -115,9 +114,8 @@ const Students = (props) => (
           fontSize: '0.9em',
         }}
       >
-        <a
+        <Typography
           className="text-decoration-none"
-          href="#"
           data-toggle="modal"
           data-target="#exampleModal"
           style={{
@@ -125,7 +123,7 @@ const Students = (props) => (
           }}
         >
           Invoice Update
-        </a>
+        </Typography>
       </Button>
       <Button
         style={{
@@ -139,9 +137,8 @@ const Students = (props) => (
           fontSize: '0.9em',
         }}
       >
-        <a
+        <Typography
           className="text-decoration-none"
-          href="#"
           data-toggle="modal"
           data-target="#exampleModal"
           style={{
@@ -149,7 +146,7 @@ const Students = (props) => (
           }}
         >
           Last paid Update
-        </a>
+        </Typography>
       </Button>
     </td>
 
@@ -478,9 +475,8 @@ export class AllStudents extends Component {
                 fontSize: '0.9em',
               }}
             >
-              <a
+              <Typography
                 className="text-decoration-none"
-                href="#"
                 data-toggle="modal"
                 data-target="#exampleModal"
                 style={{
@@ -488,7 +484,7 @@ export class AllStudents extends Component {
                 }}
               >
                 Delete
-              </a>
+              </Typography>
             </Button>
             <Button
               style={{
@@ -502,7 +498,7 @@ export class AllStudents extends Component {
                 fontSize: '0.9em',
               }}
             >
-              <a
+              <Typography
                 className="text-decoration-none"
                 href="#"
                 style={{
@@ -510,7 +506,7 @@ export class AllStudents extends Component {
                 }}
               >
                 Invoice Update
-              </a>
+              </Typography>
             </Button>
             <Button
               style={{
@@ -524,7 +520,7 @@ export class AllStudents extends Component {
                 fontSize: '0.9em',
               }}
             >
-              <a
+              <Typography
                 className="text-decoration-none"
                 href="#"
                 style={{
@@ -532,7 +528,7 @@ export class AllStudents extends Component {
                 }}
               >
                 Last paid Update
-              </a>
+              </Typography>
             </Button>
           </React.Fragment>
         ),
