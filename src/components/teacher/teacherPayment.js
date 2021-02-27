@@ -21,6 +21,7 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import { Button, Grid } from '@material-ui/core';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import DashboardIcon from '@material-ui/icons/';
+import DashboardIcon from '@material-ui/icons/Dashboard';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import DateFnsUtils from '@date-io/date-fns';
 import {
