@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import CreateGrade from './components/grade/addGrade';
@@ -31,8 +31,8 @@ import BatchPayments from './components/students/payment/batchPayments';
 
 function App() {
   return (
-    <Router>
-      <div>
+    <div>
+      <Switch>
         <br />
         <Route path="/" component={Dashboard} />
         <Route path="/grade" component={CreateGrade} />
@@ -69,8 +69,8 @@ function App() {
           path="/students/payments/batchPayment"
           component={BatchPayments}
         />
-      </div>
-    </Router>
+      </Switch>
+    </div>
   );
 }
 
