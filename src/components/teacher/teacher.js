@@ -422,7 +422,7 @@ class CreateTeacher extends Component {
             />
             <div className="form-group row">
               <label className="col-sm-4">
-                <Grid item container spacing={2} item xs={12}>
+                <Grid item container spacing={2} xs={12}>
                   <input
                     placeholder="Teacher Name"
                     style={{ marginBottom: '1.3em', marginLeft: '0.5em' }}

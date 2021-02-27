@@ -729,11 +729,11 @@ class TeacherDetails extends Component {
                 </div>
                 <Button
                   variant="contained"
-                  style={{ margin: '2px' }}
                   style={{
                     background: '#1de9b6',
                     marginTop: '2em',
                     marginLeft: '0.5em',
+                    margin: '2px',
                   }}
                   onClick={this.onSubmit}
                 >
