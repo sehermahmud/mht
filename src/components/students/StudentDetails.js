@@ -21,6 +21,7 @@ import FileCopyIcon from '@material-ui/icons/FileCopy';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import axios from 'axios';
+import ListItem from '@material-ui/core/ListItem';
 
 export class StudentDetails extends Component {
   constructor(props) {
@@ -341,18 +342,13 @@ export class StudentDetails extends Component {
             >
               <thead>
                 <tr>
-                  <td scope="col">Batch Name</td>
-                  <td scope="col">Unit Price</td>
-                  <td scope="col">Last Paid Date</td>
+                  <th scope="col">Batch Name</th>
+                  <th scope="col">Unit Price</th>
+                  <th scope="col">Last Paid Date</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  {/* <td>{checked}</td> */}
-                  {/* <td>{batchPrice}</td> */}
-                  {/* <td>{StartDate.substring(0, 10)}</td> */}
-                  {/* <td>{StartDate && StartDate.substring(0, 10)}</td> */}
-                </tr>
+                <tr></tr>
               </tbody>
             </table>
           </CardContent>
@@ -389,11 +385,11 @@ export class StudentDetails extends Component {
             >
               <thead>
                 <tr>
-                  <td scope="col">Invoice Id</td>
-                  <td scope="col">Payment Date</td>
-                  <td scope="col">Batch name</td>
-                  <td scope="col">Payment For</td>
-                  <td scope="col">Price</td>
+                  <th scope="col">Invoice Id</th>
+                  <th scope="col">Payment Date</th>
+                  <th scope="col">Batch name</th>
+                  <th scope="col">Payment For</th>
+                  <th scope="col">Price</th>
                 </tr>
               </thead>
               <tbody>
@@ -440,11 +436,11 @@ export class StudentDetails extends Component {
             >
               <thead>
                 <tr>
-                  <td scope="col">Invoice Id</td>
-                  <td scope="col">Payment Date</td>
-                  <td scope="col">Batch name</td>
-                  <td scope="col">Payment For</td>
-                  <td scope="col">Price</td>
+                  <th scope="col">Invoice Id</th>
+                  <th scope="col">Payment Date</th>
+                  <th scope="col">Batch name</th>
+                  <th scope="col">Payment For</th>
+                  <th scope="col">Price</th>
                 </tr>
               </thead>
               <tbody>

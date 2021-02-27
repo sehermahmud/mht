@@ -630,36 +630,6 @@ export class AllStudents extends Component {
               }}
             />
             <br />
-            {/* <table
-              id="dtBasicExample"
-              className="table table-striped table-bordered"
-              cellspacing="0"
-              width="100%"
-            >
-              <thead>
-                <tr>
-                  <td scope="col" style={{ width: '20em' }}>
-                    Student Name
-                  </td>
-                  <td scope="col" style={{ width: '11em' }}>
-                    Student Number
-                  </td>
-                  <td scope="col" style={{ width: '11em' }}>
-                    Guardian Number
-                  </td>
-                  <td scope="col" style={{ width: '15em' }}>
-                    Special Note
-                  </td>
-                  <td scope="col" style={{ width: '18em' }}>
-                    email address
-                  </td>
-                  <td scope="col" style={{ width: '28em' }}>
-                    Action
-                  </td>
-                </tr>
-              </thead>
-              <tbody>{this.studentlist()}</tbody>
-            </table> */}
             <MDBDataTable striped bordered data={data} />
           </CardContent>
         </Card>

@@ -51,24 +51,24 @@ export class ComponentToPrint extends React.Component {
       >
         <thead>
           <tr>
-            <td scope="col" style={{ width: '12em' }}>
+            <th scope="col" style={{ width: '12em' }}>
               Student Name
-            </td>
-            <td scope="col" style={{ width: '5em' }}>
+            </th>
+            <th scope="col" style={{ width: '5em' }}>
               Student's Number
-            </td>
-            <td scope="col" style={{ width: '5em' }}>
+            </th>
+            <th scope="col" style={{ width: '5em' }}>
               Guardian's Number
-            </td>
-            <td scope="col" style={{ width: '10em' }}>
+            </th>
+            <th scope="col" style={{ width: '10em' }}>
               Email Address
-            </td>
-            <td scope="col" style={{ width: '8em' }}>
+            </th>
+            <th scope="col" style={{ width: '8em' }}>
               School Name
-            </td>
-            <td scope="col" style={{ width: '8em' }}>
+            </th>
+            <th scope="col" style={{ width: '8em' }}>
               Special Note
-            </td>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -361,24 +361,24 @@ export class BatchWiseStudentDetails extends Component {
             >
               <thead>
                 <tr>
-                  <td scope="col" style={{ width: '12em' }}>
+                  <th scope="col" style={{ width: '12em' }}>
                     Student Name
-                  </td>
-                  <td scope="col" style={{ width: '5em' }}>
+                  </th>
+                  <th scope="col" style={{ width: '5em' }}>
                     Student's Number
-                  </td>
-                  <td scope="col" style={{ width: '5em' }}>
+                  </th>
+                  <th scope="col" style={{ width: '5em' }}>
                     Guardian's Number
-                  </td>
-                  <td scope="col" style={{ width: '10em' }}>
+                  </th>
+                  <th scope="col" style={{ width: '10em' }}>
                     Email Address
-                  </td>
-                  <td scope="col" style={{ width: '8em' }}>
+                  </th>
+                  <th scope="col" style={{ width: '8em' }}>
                     School Name
-                  </td>
-                  <td scope="col" style={{ width: '8em' }}>
+                  </th>
+                  <th scope="col" style={{ width: '8em' }}>
                     Special Note
-                  </td>
+                  </th>
                 </tr>
               </thead>
               <tbody>

@@ -193,21 +193,21 @@ class TeacherPaymentDetails extends Component {
                 >
                   <thead>
                     <tr>
-                      <td scope="col" style={{ width: '1em' }}>
+                      <th scope="col" style={{ width: '1em' }}>
                         sl
-                      </td>
-                      <td scope="col" style={{ width: '10em' }}>
+                      </th>
+                      <th scope="col" style={{ width: '10em' }}>
                         Name
-                      </td>
-                      <td scope="col" style={{ width: '7em' }}>
+                      </th>
+                      <th scope="col" style={{ width: '7em' }}>
                         Phone Number
-                      </td>
-                      <td scope="col" style={{ width: '7em' }}>
+                      </th>
+                      <th scope="col" style={{ width: '7em' }}>
                         email Id
-                      </td>
-                      <td scope="col" style={{ width: '5em' }}>
+                      </th>
+                      <th scope="col" style={{ width: '5em' }}>
                         Paid Price
-                      </td>
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -316,21 +316,21 @@ class TeacherPaymentDetails extends Component {
                 >
                   <thead>
                     <tr>
-                      <td scope="col" style={{ width: '1em' }}>
+                      <th scope="col" style={{ width: '1em' }}>
                         sl
-                      </td>
-                      <td scope="col" style={{ width: '10em' }}>
+                      </th>
+                      <th scope="col" style={{ width: '10em' }}>
                         Name
-                      </td>
-                      <td scope="col" style={{ width: '7em' }}>
+                      </th>
+                      <th scope="col" style={{ width: '7em' }}>
                         Phone Number
-                      </td>
-                      <td scope="col" style={{ width: '7em' }}>
+                      </th>
+                      <th scope="col" style={{ width: '7em' }}>
                         email Id
-                      </td>
-                      <td scope="col" style={{ width: '5em' }}>
+                      </th>
+                      <th scope="col" style={{ width: '5em' }}>
                         Paid Price
-                      </td>
+                      </th>
                     </tr>
                   </thead>
                   <tbody>

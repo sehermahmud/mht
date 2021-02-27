@@ -212,33 +212,33 @@ class TeacherPayment extends Component {
             >
               <thead>
                 <tr>
-                  <td scope="col" style={{ width: '15em' }}>
+                  <th scope="col" style={{ width: '15em' }}>
                     Batch Name
-                  </td>
-                  <td scope="col" style={{ width: '15em' }}>
+                  </th>
+                  <th scope="col" style={{ width: '15em' }}>
                     Schedule
-                  </td>
-                  <td scope="col" style={{ width: '3em' }}>
+                  </th>
+                  <th scope="col" style={{ width: '3em' }}>
                     Active Students
-                  </td>
-                  <td scope="col" style={{ width: '3em' }}>
+                  </th>
+                  <th scope="col" style={{ width: '3em' }}>
                     Paid Students
-                  </td>
-                  <td scope="col" style={{ width: '3em' }}>
+                  </th>
+                  <th scope="col" style={{ width: '3em' }}>
                     Unpaid Students
-                  </td>
-                  <td scope="col" style={{ width: '8em' }}>
+                  </th>
+                  <th scope="col" style={{ width: '8em' }}>
                     Expected Amount/=
-                  </td>
-                  <td scope="col" style={{ width: '8em' }}>
+                  </th>
+                  <th scope="col" style={{ width: '8em' }}>
                     Pending Amount/=
-                  </td>
-                  <td scope="col" style={{ width: '8em' }}>
+                  </th>
+                  <th scope="col" style={{ width: '8em' }}>
                     Paid Amount/=
-                  </td>
-                  <td scope="col" style={{ width: '3em' }}>
+                  </th>
+                  <th scope="col" style={{ width: '3em' }}>
                     Actions
-                  </td>
+                  </th>
                 </tr>
               </thead>
               <tbody>

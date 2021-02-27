@@ -427,39 +427,6 @@ export class AllStudents extends Component {
                 background: '#b2dfdb',
               }}
             />
-            {/* <table
-              id="dtBasicExample"
-              className="table table-striped table-bordered"
-              cellspacing="0"
-              width="100%"
-            >
-              <thead>
-                <tr>
-                  <td scope="col" style={{ width: '12em' }}>
-                    Student Name
-                  </td>
-                  <td scope="col" style={{ width: '8em' }}>
-                    Student Number
-                  </td>
-                  <td scope="col" style={{ width: '8em' }}>
-                    Guardian Number
-                  </td>
-                  <td scope="col" style={{ width: '6em' }}>
-                    Special Note
-                  </td>
-                  <td scope="col" style={{ width: '18em' }}>
-                    Batch
-                  </td>
-                  <td scope="col" style={{ width: '8em' }}>
-                    Total Payable amount/=
-                  </td>
-                  <td scope="col" style={{ width: '3em' }}>
-                    Action
-                  </td>
-                </tr>
-              </thead>
-              <tbody>{this.studentlist()}</tbody>
-            </table> */}
             <br />
             <MDBDataTable bordered striped data={data} />
           </CardContent>

@@ -237,27 +237,27 @@ export class BatchPayments extends Component {
             >
               <thead>
                 <tr>
-                  <td scope="col" style={{ width: '4em' }}>
+                  <th scope="col" style={{ width: '4em' }}>
                     Batch
-                  </td>
-                  <td scope="col" style={{ width: '4em' }}>
+                  </th>
+                  <th scope="col" style={{ width: '4em' }}>
                     Name
-                  </td>
-                  <td scope="col" style={{ width: '4em' }}>
+                  </th>
+                  <th scope="col" style={{ width: '4em' }}>
                     PaymentDate
-                  </td>
-                  <td scope="col" style={{ width: '4em' }}>
+                  </th>
+                  <th scope="col" style={{ width: '4em' }}>
                     Duefor
-                  </td>
-                  <td scope="col" style={{ width: '4em' }}>
+                  </th>
+                  <th scope="col" style={{ width: '4em' }}>
                     PaidAmount
-                  </td>
-                  <td scope="col" style={{ width: '4em' }}>
+                  </th>
+                  <th scope="col" style={{ width: '4em' }}>
                     DueAmount
-                  </td>
-                  <td scope="col" style={{ width: '4em' }}>
+                  </th>
+                  <th scope="col" style={{ width: '4em' }}>
                     Clear
-                  </td>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -396,30 +396,30 @@ export class BatchPayments extends Component {
               >
                 <thead>
                   <tr>
-                    <td scope="col" style={{ width: '8em' }}>
+                    <th scope="col" style={{ width: '8em' }}>
                       Batch Name
-                    </td>
-                    <td scope="col" style={{ width: '4em' }}>
+                    </th>
+                    <th scope="col" style={{ width: '4em' }}>
                       Payment form
-                    </td>
-                    <td scope="col" style={{ width: '3em' }}>
+                    </th>
+                    <th scope="col" style={{ width: '3em' }}>
                       Unit Price/=
-                    </td>
-                    <td scope="col" style={{ width: '4em' }}>
+                    </th>
+                    <th scope="col" style={{ width: '4em' }}>
                       no. of month
-                    </td>
-                    <td scope="col" style={{ width: '9em' }}>
+                    </th>
+                    <th scope="col" style={{ width: '9em' }}>
                       Total Price Per Course /=
-                    </td>
-                    <td scope="col" style={{ width: '3em' }}>
+                    </th>
+                    <th scope="col" style={{ width: '3em' }}>
                       Regular
-                    </td>
-                    <td scope="col" style={{ width: '3em' }}>
+                    </th>
+                    <th scope="col" style={{ width: '3em' }}>
                       Due
-                    </td>
-                    <td scope="col" style={{ width: '3em' }}>
+                    </th>
+                    <th scope="col" style={{ width: '3em' }}>
                       Discount
-                    </td>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
