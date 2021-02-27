@@ -266,7 +266,10 @@ class EditStudent extends Component {
 
   componentDidMount(id) {
     axios
-      .get('http://localhost:4000/students/' + this.props.match.params.id)
+      .get(
+        'https://mht-backend.herokuapp.com/students/' +
+          this.props.match.params.id
+      )
       .then((response) => {
         this.setState({
           studentFullName: response.data.studentFullName,
@@ -305,7 +308,7 @@ class EditStudent extends Component {
         console.log(error);
       });
 
-    axios.get('http://localhost:4000/schools/').then((response) => {
+    axios.get('https://mht-backend.herokuapp.com/schools/').then((response) => {
       if (response.data.length > 0) {
         this.setState({
           schools: response.data.map((school) => school.school),
@@ -315,7 +318,7 @@ class EditStudent extends Component {
       console.log(this.state.schools);
     });
 
-    axios.get('http://localhost:4000/sllabys/').then((response) => {
+    axios.get('https://mht-backend.herokuapp.com/sllabys/').then((response) => {
       if (response.data.length > 0) {
         this.setState({
           allsllabys: response.data.map((sllabys) => sllabys.sllabys),
@@ -325,17 +328,19 @@ class EditStudent extends Component {
       console.log(this.state.allsllabys);
     });
 
-    axios.get('http://localhost:4000/subjects/').then((response) => {
-      if (response.data.length > 0) {
-        this.setState({
-          subjects: response.data.map((subject) => subject.subject),
-        });
-      }
+    axios
+      .get('https://mht-backend.herokuapp.com/subjects/')
+      .then((response) => {
+        if (response.data.length > 0) {
+          this.setState({
+            subjects: response.data.map((subject) => subject.subject),
+          });
+        }
 
-      console.log(this.state.subjects);
-    });
+        console.log(this.state.subjects);
+      });
 
-    // axios.get('http://localhost:4000/subjects/').then((response) => {
+    // axios.get('https://mht-backend.herokuapp.com/subjects/').then((response) => {
     //   if (response.data.length > 0) {
     //     this.setState({
     //       batchs: response.data.map(
@@ -371,7 +376,7 @@ class EditStudent extends Component {
     // this.props.match.params.id
     axios
       .get(
-        `http://localhost:4000/subjects/` +
+        `https://mht-backend.herokuapp.com/subjects/` +
           this.props.match.params.id +
           '/batch'
       )
@@ -385,13 +390,15 @@ class EditStudent extends Component {
         console.log(this.state);
       });
 
-    axios.get(`http://localhost:4000/subject/batch`).then((response) => {
-      if (response.data.length > 0) {
-        this.setState({
-          batchs: response.data.map((subjectBatch) => subjectBatch.Batch),
-        });
-      }
-    });
+    axios
+      .get(`https://mht-backend.herokuapp.com/subject/batch`)
+      .then((response) => {
+        if (response.data.length > 0) {
+          this.setState({
+            batchs: response.data.map((subjectBatch) => subjectBatch.Batch),
+          });
+        }
+      });
   }
 
   onSubmit(e) {
@@ -432,7 +439,8 @@ class EditStudent extends Component {
 
     axios
       .post(
-        'http://localhost:4000/students/update/' + this.props.match.params.id,
+        'https://mht-backend.herokuapp.com/students/update/' +
+          this.props.match.params.id,
         student
       )
       .then((res) => console.log(res.data));

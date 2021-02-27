@@ -253,7 +253,10 @@ class TeacherDetails extends Component {
 
   componentDidMount(id) {
     axios
-      .get('http://localhost:4000/teachers/' + this.props.match.params.id)
+      .get(
+        'https://mht-backend.herokuapp.com/teachers/' +
+          this.props.match.params.id
+      )
       .then((response) => {
         this.setState({ teachers: response.data });
         console.log('teacher: ', this.state.teachers);
@@ -264,7 +267,7 @@ class TeacherDetails extends Component {
 
     // axios
     //   .get(
-    //     'http://localhost:4000/teachersBatch/' +
+    //     'https://mht-backend.herokuapp.com/teachersBatch/' +
     //       this.props.match.params.id +
     //       '/allTeacherBatch'
     //   )
@@ -280,7 +283,7 @@ class TeacherDetails extends Component {
 
     axios
       .get(
-        'http://localhost:4000/teachersBatch/' +
+        'https://mht-backend.herokuapp.com/teachersBatch/' +
           this.props.match.params.id +
           '/allTeacherBatch'
       )
@@ -294,7 +297,7 @@ class TeacherDetails extends Component {
         console.log(error);
       });
 
-    axios.get('http://localhost:4000/grades/').then((response) => {
+    axios.get('https://mht-backend.herokuapp.com/grades/').then((response) => {
       if (response.data.length > 0) {
         this.setState({
           grades: response.data.map((grading) => grading.grade),
@@ -303,16 +306,18 @@ class TeacherDetails extends Component {
       }
     });
 
-    axios.get('http://localhost:4000/subjects/').then((response) => {
-      if (response.data.length > 0) {
-        this.setState({
-          subjects: response.data.map((subject) => subject.subject),
-          subject: response.data[0].subject,
-        });
-      }
-    });
+    axios
+      .get('https://mht-backend.herokuapp.com/subjects/')
+      .then((response) => {
+        if (response.data.length > 0) {
+          this.setState({
+            subjects: response.data.map((subject) => subject.subject),
+            subject: response.data[0].subject,
+          });
+        }
+      });
 
-    axios.get('http://localhost:4000/sllabys/').then((response) => {
+    axios.get('https://mht-backend.herokuapp.com/sllabys/').then((response) => {
       if (response.data.length > 0) {
         this.setState({
           allsllabys: response.data.map((sllabys) => sllabys.sllabys),
@@ -341,7 +346,7 @@ class TeacherDetails extends Component {
 
     axios
       .post(
-        `http://localhost:4000/teachersBatch/` +
+        `https://mht-backend.herokuapp.com/teachersBatch/` +
           this.props.match.params.id +
           `/` +
           `5f846ec167f0f40472a094ac` +
@@ -355,7 +360,7 @@ class TeacherDetails extends Component {
 
   deleteTeacher(id) {
     axios
-      .delete('http://localhost:4000/teachersBatch/' + id)
+      .delete('https://mht-backend.herokuapp.com/teachersBatch/' + id)
       .then((res) => console.log(res.data));
 
     this.setState({

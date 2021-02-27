@@ -75,7 +75,7 @@ export class BatchPayments extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:4000/students/')
+      .get('https://mht-backend.herokuapp.com/students/')
       .then((response) => {
         this.setState({ students: response.data });
       })

@@ -66,7 +66,7 @@ class EditBatchTeacher extends Component {
   componentDidMount() {
     axios
       .get(
-        'http://localhost:4000/teachersBatch/' +
+        'https://mht-backend.herokuapp.com/teachersBatch/' +
           this.props.match.params.id +
           '/' +
           this.props.match.params.id
@@ -89,7 +89,7 @@ class EditBatchTeacher extends Component {
       });
 
     axios
-      .get('http://localhost:4000/grades/')
+      .get('https://mht-backend.herokuapp.com/grades/')
       .then((response) => {
         if (response.data.length > 0) {
           this.setState({
@@ -101,15 +101,17 @@ class EditBatchTeacher extends Component {
         console.log(error);
       });
 
-    axios.get('http://localhost:4000/subjects/').then((response) => {
-      if (response.data.length > 0) {
-        this.setState({
-          subjects: response.data.map((subject) => subject.subject),
-        });
-      }
-    });
+    axios
+      .get('https://mht-backend.herokuapp.com/subjects/')
+      .then((response) => {
+        if (response.data.length > 0) {
+          this.setState({
+            subjects: response.data.map((subject) => subject.subject),
+          });
+        }
+      });
 
-    axios.get('http://localhost:4000/sllabys/').then((response) => {
+    axios.get('https://mht-backend.herokuapp.com/sllabys/').then((response) => {
       if (response.data.length > 0) {
         this.setState({
           allsllabys: response.data.map((sllabys) => sllabys.sllabys),
@@ -173,7 +175,7 @@ class EditBatchTeacher extends Component {
 
     axios
       .post(
-        'http://localhost:4000/teachersBatch/update/' +
+        'https://mht-backend.herokuapp.com/teachersBatch/update/' +
           this.props.match.params.id,
         teacher
       )
@@ -181,7 +183,8 @@ class EditBatchTeacher extends Component {
 
     axios
       .post(
-        'http://localhost:4000/batchs/update/' + this.props.match.params.id,
+        'https://mht-backend.herokuapp.com/batchs/update/' +
+          this.props.match.params.id,
         teacher
       )
       .then((res) => console.log(res.data));

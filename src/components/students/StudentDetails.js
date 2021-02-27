@@ -36,7 +36,10 @@ export class StudentDetails extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:4000/students/' + this.props.match.params.id)
+      .get(
+        'https://mht-backend.herokuapp.com/students/' +
+          this.props.match.params.id
+      )
       .then((response) => {
         this.setState({ students: response.data });
         console.log('student: ', this.state.students);
@@ -47,7 +50,7 @@ export class StudentDetails extends Component {
 
     axios
       .get(
-        'http://localhost:4000/teachersBatch/5f8c354dafee4d26e65c6720/5f8eacf21b7c8c0d074ae292'
+        'https://mht-backend.herokuapp.com/teachersBatch/5f8c354dafee4d26e65c6720/5f8eacf21b7c8c0d074ae292'
       )
       .then((response) => {
         this.setState({ batch: response.data });

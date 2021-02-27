@@ -232,7 +232,7 @@ class CreateTeacher extends Component {
     console.log(newTeacher);
 
     axios
-      .post('http://localhost:4000/teachers/add', newTeacher)
+      .post('https://mht-backend.herokuapp.com/teachers/add', newTeacher)
       .then((res) => console.log(res.data));
 
     window.location.reload(true);
@@ -240,7 +240,7 @@ class CreateTeacher extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:4000/teachers/')
+      .get('https://mht-backend.herokuapp.com/teachers/')
       .then((response) => {
         this.setState({ teachers: response.data });
       })
@@ -251,7 +251,7 @@ class CreateTeacher extends Component {
 
   deleteTeacher(id) {
     axios
-      .delete('http://localhost:4000/teachers/' + id)
+      .delete('https://mht-backend.herokuapp.com/teachers/' + id)
       .then((res) => console.log(res.data));
 
     this.setState({

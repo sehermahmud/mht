@@ -41,7 +41,10 @@ class EditSubject extends Component {
 
   componentDidMount(id) {
     axios
-      .get('http://localhost:4000/subjects/' + this.props.match.params.id)
+      .get(
+        'https://mht-backend.herokuapp.com/subjects/' +
+          this.props.match.params.id
+      )
       .then((response) => {
         this.setState({
           subject: response.data.subject,
@@ -77,7 +80,8 @@ class EditSubject extends Component {
 
     axios
       .post(
-        'http://localhost:4000/subjects/update/' + this.props.match.params.id,
+        'https://mht-backend.herokuapp.com/subjects/update/' +
+          this.props.match.params.id,
         subject
       )
       .then((res) => console.log(res.data));

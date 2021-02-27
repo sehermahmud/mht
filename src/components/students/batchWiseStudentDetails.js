@@ -121,7 +121,7 @@ export class BatchWiseStudentDetails extends Component {
   componentDidMount(id) {
     axios
       .get(
-        'http://localhost:4000/subjects/' +
+        'https://mht-backend.herokuapp.com/subjects/' +
           '5f846ec167f0f40472a094ac/' +
           this.props.match.params.id
       )

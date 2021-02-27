@@ -183,7 +183,7 @@ class CreateGrade extends Component {
     console.log(newGrade);
 
     axios
-      .post('http://localhost:4000/grades/add', newGrade)
+      .post('https://mht-backend.herokuapp.com/grades/add', newGrade)
       .then((res) => console.log(res.data));
 
     window.location.reload(true);
@@ -191,7 +191,7 @@ class CreateGrade extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:4000/grades/')
+      .get('https://mht-backend.herokuapp.com/grades/')
       .then((response) => {
         this.setState({ grades: response.data });
         console.log(this.state.grades);
@@ -203,7 +203,7 @@ class CreateGrade extends Component {
 
   deleteGrade(id) {
     axios
-      .delete('http://localhost:4000/grades/' + id)
+      .delete('https://mht-backend.herokuapp.com/grades/' + id)
       .then((res) => console.log(res.data));
 
     this.setState({

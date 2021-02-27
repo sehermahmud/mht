@@ -152,7 +152,7 @@ class CreateSubject extends Component {
     console.log(newSllabys);
 
     axios
-      .post('http://localhost:4000/sllabys/add', newSllabys)
+      .post('https://mht-backend.herokuapp.com/sllabys/add', newSllabys)
       .then((res) => console.log(res.data));
 
     window.location.reload(true);
@@ -160,7 +160,7 @@ class CreateSubject extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:4000/sllabys/')
+      .get('https://mht-backend.herokuapp.com/sllabys/')
       .then((response) => {
         this.setState({ allSllabys: response.data });
       })
@@ -171,7 +171,7 @@ class CreateSubject extends Component {
 
   deleteSllabys(id) {
     axios
-      .delete('http://localhost:4000/sllabys/' + id)
+      .delete('https://mht-backend.herokuapp.com/sllabys/' + id)
       .then((res) => console.log(res.data));
 
     this.setState({

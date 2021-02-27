@@ -41,7 +41,10 @@ class EditSllabys extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:4000/sllabys/' + this.props.match.params.id)
+      .get(
+        'https://mht-backend.herokuapp.com/sllabys/' +
+          this.props.match.params.id
+      )
       .then((response) => {
         this.setState({
           sllabys: response.data.sllabys,
@@ -77,7 +80,8 @@ class EditSllabys extends Component {
 
     axios
       .post(
-        'http://localhost:4000/sllabys/update/' + this.props.match.params.id,
+        'https://mht-backend.herokuapp.com/sllabys/update/' +
+          this.props.match.params.id,
         sllabys
       )
       .then((res) => console.log(res.data));

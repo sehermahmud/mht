@@ -162,7 +162,7 @@ class CreateSchool extends Component {
     console.log(newSchool);
 
     axios
-      .post('http://localhost:4000/schools/add', newSchool)
+      .post('https://mht-backend.herokuapp.com/schools/add', newSchool)
       .then((res) => console.log(res.data));
 
     window.location.reload(true);
@@ -170,7 +170,7 @@ class CreateSchool extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:4000/schools/')
+      .get('https://mht-backend.herokuapp.com/schools/')
       .then((response) => {
         this.setState({ schools: response.data });
 
@@ -183,7 +183,7 @@ class CreateSchool extends Component {
 
   deleteSchool(id) {
     axios
-      .delete('http://localhost:4000/schools/' + id)
+      .delete('https://mht-backend.herokuapp.com/schools/' + id)
       .then((res) => console.log(res.data));
 
     this.setState({

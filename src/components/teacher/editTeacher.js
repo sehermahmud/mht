@@ -58,7 +58,10 @@ class EditTeacher extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:4000/teachers/' + this.props.match.params.id)
+      .get(
+        'https://mht-backend.herokuapp.com/teachers/' +
+          this.props.match.params.id
+      )
       .then((response) => {
         this.setState({
           teacherName: response.data.teacherName,
@@ -143,7 +146,8 @@ class EditTeacher extends Component {
 
     axios
       .post(
-        'http://localhost:4000/teachers/update/' + this.props.match.params.id,
+        'https://mht-backend.herokuapp.com/teachers/update/' +
+          this.props.match.params.id,
         teacher
       )
       .then((res) => console.log(res.data));

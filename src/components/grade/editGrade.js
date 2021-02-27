@@ -41,7 +41,9 @@ class EditGrade extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:4000/grades/' + this.props.match.params.id)
+      .get(
+        'https://mht-backend.herokuapp.com/grades/' + this.props.match.params.id
+      )
       .then((response) => {
         this.setState({
           grade: response.data.grade,
@@ -77,7 +79,8 @@ class EditGrade extends Component {
 
     axios
       .post(
-        'http://localhost:4000/grades/update/' + this.props.match.params.id,
+        'https://mht-backend.herokuapp.com/grades/update/' +
+          this.props.match.params.id,
         grade
       )
       .then((res) => console.log(res.data));

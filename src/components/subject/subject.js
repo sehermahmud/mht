@@ -178,7 +178,7 @@ class CreateSubject extends Component {
     console.log(newSubject);
 
     axios
-      .post('http://localhost:4000/subjects/add', newSubject)
+      .post('https://mht-backend.herokuapp.com/subjects/add', newSubject)
       .then((res) => console.log(res.data));
 
     window.location.reload(true);
@@ -186,7 +186,7 @@ class CreateSubject extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:4000/subjects/')
+      .get('https://mht-backend.herokuapp.com/subjects/')
       .then((response) => {
         this.setState({ subjects: response.data });
       })
@@ -197,7 +197,7 @@ class CreateSubject extends Component {
 
   deleteSubject(id) {
     axios
-      .delete('http://localhost:4000/subjects/' + id)
+      .delete('https://mht-backend.herokuapp.com/subjects/' + id)
       .then((res) => console.log(res.data));
 
     this.setState({

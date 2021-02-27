@@ -49,19 +49,21 @@ export class BatchWiseStudent extends Component {
   }
 
   componentDidMount(id) {
-    axios.get('http://localhost:4000/subjects/').then((response) => {
-      if (response.data.length > 0) {
-        this.setState({
-          subjects: response.data.map((subject) => subject.subject),
-        });
-      }
+    axios
+      .get('https://mht-backend.herokuapp.com/subjects/')
+      .then((response) => {
+        if (response.data.length > 0) {
+          this.setState({
+            subjects: response.data.map((subject) => subject.subject),
+          });
+        }
 
-      console.log(this.state.subjects);
-    });
+        console.log(this.state.subjects);
+      });
 
     // axios
     //   .get(
-    //     'http://localhost:4000/subjects/' +
+    //     'https://mht-backend.herokuapp.com/subjects/' +
     //       this.props.match.params.id +
     //       '/batch'
     //   )
@@ -77,7 +79,7 @@ export class BatchWiseStudent extends Component {
 
     // axios
     //   .get(
-    //     'http://localhost:4000/subjects/' +
+    //     'https://mht-backend.herokuapp.com/subjects/' +
     //       this.props.match.params.id +
     //       '/batch'
     //   )
@@ -96,7 +98,7 @@ export class BatchWiseStudent extends Component {
 
     axios
       .get(
-        'http://localhost:4000/subjects/' +
+        'https://mht-backend.herokuapp.com/subjects/' +
           '5f846ec167f0f40472a094ac' +
           '/batch'
       )
@@ -111,7 +113,7 @@ export class BatchWiseStudent extends Component {
 
     // axios
     //   .get(
-    //     'http://localhost:4000/subjects/'
+    //     'https://mht-backend.herokuapp.com/subjects/'
     //   )
     //   .then((response) => {
     //     this.setState({
@@ -123,7 +125,7 @@ export class BatchWiseStudent extends Component {
     //   });
 
     axios
-      .get('http://localhost:4000/teachers/')
+      .get('https://mht-backend.herokuapp.com/teachers/')
       .then((response) => {
         this.setState({ Teachers: response.data });
       })
