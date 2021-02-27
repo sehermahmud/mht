@@ -79,7 +79,7 @@ function App() {
           <Route path="/students/addStudent">
             <AllStudents />
           </Route>
-          <Route path="/students/ActiveStudents">
+          <Route path="/students/activeStudents">
             <ActiveStudents />
           </Route>
           <Route path="/students/StudentDetails/:id">
