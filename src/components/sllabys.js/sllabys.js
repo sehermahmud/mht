@@ -753,7 +753,7 @@ export default function MiniDrawer(props) {
                   <ChevronLeftIcon style={{ marginLeft: '3.8em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link to="/students/addStudents">
+              <Link to="/students/addStudent">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />

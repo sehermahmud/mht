@@ -41,7 +41,7 @@ import CreateTeacher from './components/teacher/teacher';
 import EditTeacher from './components/teacher/editTeacher';
 import TeacherDetails from './components/teacher/teacherDetails';
 import EditTeacherBatch from './components/teacher/editBatch';
-import AddStudents from './components/students/addStudents';
+import AddStudents from './components/students/addStudent';
 
 const drawerWidth = 300;
 
@@ -283,7 +283,7 @@ export default function MiniDrawer() {
                   <ChevronLeftIcon style={{ marginLeft: '3.8em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link to="/students/addStudents">
+              <Link to="/students/addStudent">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />

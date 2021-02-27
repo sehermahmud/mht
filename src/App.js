@@ -15,7 +15,7 @@ import EditTeacher from './components/teacher/editTeacher';
 import TeacherDetails from './components/teacher/teacherDetails';
 import EditTeacherBatch from './components/teacher/editBatch';
 import AddStudents from './components/students/addStudents';
-// import Dashboard from './components/Dashboard';
+import Dashboard from './components/Dashboard';
 import AllStudents from './components/students/allStudents';
 import ActiveStudents from './components/students/ActiveStudents';
 import StudentDetails from './components/students/StudentDetails';
@@ -34,7 +34,7 @@ function App() {
     <Router>
       <div>
         <br />
-        <Route path="/" component={CreateGrade} />
+        <Route path="/" component={Dashboard} />
         <Route path="/grade" component={CreateGrade} />
         <Route path="/edit/:id" component={EditGrade} />
         <Route path="/subject" component={CreateSubject} />
