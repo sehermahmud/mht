@@ -34,7 +34,7 @@ function App() {
     <Router>
       <div>
         <br />
-        <Route path="/" component={Dashboard} />
+        <Route path="/" component={CreateGrade} />
         <Route path="/grade" component={CreateGrade} />
         <Route path="/edit/:id" component={EditGrade} />
         <Route path="/subject" component={CreateSubject} />
