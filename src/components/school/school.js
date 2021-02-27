@@ -1,20 +1,7 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import PropTypes from 'prop-types';
-import {
-  Card,
-  CardContent,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  InputBase,
-  Paper,
-  Hidden,
-} from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
+import { Card, CardContent } from '@material-ui/core';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -27,18 +14,12 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Button, Grid } from '@material-ui/core';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
@@ -133,7 +114,7 @@ const School = (props) => (
   </tr>
 );
 
-class CreateSubject extends Component {
+class CreateSchool extends Component {
   constructor(props) {
     super(props);
 
@@ -733,15 +714,8 @@ export default function MiniDrawer(props) {
           <Typography
             variant="h6"
             noWrap
-            style={{
-              fontSize: '2.5em',
-              fontFamily: 'Merienda One',
-              marginRight: '1.5em',
-              color: 'black',
-            }}
-            className={clsx({
-              [classes.hide]: open,
-            })}
+            className={classes.MHT}
+            style={{ color: 'black' }}
           >
             MHT
           </Typography>
@@ -782,7 +756,7 @@ export default function MiniDrawer(props) {
                 <DashboardIcon style={{ marginLeft: '0.7em' }} />
               </ListItemIcon>
               <ListItemText>
-                <a
+                <Typography
                   className={classes.fontStyle}
                   style={{
                     textDecoration: 'none',
@@ -796,7 +770,7 @@ export default function MiniDrawer(props) {
                   }}
                 >
                   Dashboard
-                </a>
+                </Typography>
               </ListItemText>
             </ListItem>
           </Link>
@@ -824,7 +798,9 @@ export default function MiniDrawer(props) {
                     <RadioButtonUncheckedIcon />
                   </ListItemIcon>
                   <ListItemText>
-                    <a style={{ color: 'white' }}>All Students</a>
+                    <Typography style={{ color: 'white' }}>
+                      All Students
+                    </Typography>
                   </ListItemText>
                 </ListItem>
               </Link>
@@ -834,7 +810,9 @@ export default function MiniDrawer(props) {
                     <RadioButtonUncheckedIcon />
                   </ListItemIcon>
                   <ListItemText>
-                    <a style={{ color: 'white' }}>Active Students</a>
+                    <Typography style={{ color: 'white' }}>
+                      Active Students
+                    </Typography>
                   </ListItemText>
                 </ListItem>
               </Link>
@@ -844,7 +822,9 @@ export default function MiniDrawer(props) {
                     <RadioButtonUncheckedIcon />
                   </ListItemIcon>
                   <ListItemText>
-                    <a style={{ color: 'white' }}>Batch wise Student</a>
+                    <Typography style={{ color: 'white' }}>
+                      Batch wise Student
+                    </Typography>
                   </ListItemText>
                 </ListItem>
               </Link>
@@ -854,7 +834,9 @@ export default function MiniDrawer(props) {
                     <RadioButtonUncheckedIcon />
                   </ListItemIcon>
                   <ListItemText>
-                    <a style={{ color: 'white' }}>Add New Student</a>
+                    <Typography style={{ color: 'white' }}>
+                      Add New Student
+                    </Typography>
                   </ListItemText>
                 </ListItem>
               </Link>
@@ -879,7 +861,9 @@ export default function MiniDrawer(props) {
                       <RadioButtonUncheckedIcon />
                     </ListItemIcon>
                     <ListItemText>
-                      <a style={{ color: 'white' }}>Batch payments</a>
+                      <Typography style={{ color: 'white' }}>
+                        Batch payments
+                      </Typography>
                     </ListItemText>
                   </ListItem>
                 </Link>
@@ -889,7 +873,9 @@ export default function MiniDrawer(props) {
                       <RadioButtonUncheckedIcon />
                     </ListItemIcon>
                     <ListItemText>
-                      <a style={{ color: 'white' }}>other payments</a>
+                      <Typography style={{ color: 'white' }}>
+                        other payments
+                      </Typography>
                     </ListItemText>
                   </ListItem>
                 </Link>
@@ -920,7 +906,9 @@ export default function MiniDrawer(props) {
                     <RadioButtonUncheckedIcon />
                   </ListItemIcon>
                   <ListItemText>
-                    <a style={{ color: 'white' }}>Add Teacher</a>
+                    <Typography style={{ color: 'white' }}>
+                      Add Teacher
+                    </Typography>
                   </ListItemText>
                 </ListItem>
               </Link>
@@ -930,7 +918,9 @@ export default function MiniDrawer(props) {
                     <RadioButtonUncheckedIcon />
                   </ListItemIcon>
                   <ListItemText>
-                    <a style={{ color: 'white' }}>Teacher payment</a>
+                    <Typography style={{ color: 'white' }}>
+                      Teacher payment
+                    </Typography>
                   </ListItemText>
                 </ListItem>
               </Link>
@@ -960,7 +950,9 @@ export default function MiniDrawer(props) {
                     <RadioButtonUncheckedIcon />
                   </ListItemIcon>
                   <ListItemText>
-                    <a style={{ color: 'white' }}>Reporting Dashboard</a>
+                    <Typography style={{ color: 'white' }}>
+                      Reporting Dashboard
+                    </Typography>
                   </ListItemText>
                 </ListItem>
               </Link>
@@ -970,7 +962,9 @@ export default function MiniDrawer(props) {
                     <RadioButtonUncheckedIcon />
                   </ListItemIcon>
                   <ListItemText>
-                    <a style={{ color: 'white' }}>Daily payment</a>
+                    <Typography style={{ color: 'white' }}>
+                      Daily payment
+                    </Typography>
                   </ListItemText>
                 </ListItem>
               </Link>
@@ -980,7 +974,9 @@ export default function MiniDrawer(props) {
                     <RadioButtonUncheckedIcon />
                   </ListItemIcon>
                   <ListItemText>
-                    <a style={{ color: 'white' }}>Other payment</a>
+                    <Typography style={{ color: 'white' }}>
+                      Other payment
+                    </Typography>
                   </ListItemText>
                 </ListItem>
               </Link>
@@ -1030,7 +1026,9 @@ export default function MiniDrawer(props) {
                         />
                       </ListItemIcon>
                       <ListItemText>
-                        <a style={{ color: 'white' }}>All User</a>
+                        <Typography style={{ color: 'white' }}>
+                          All User
+                        </Typography>
                       </ListItemText>
                     </ListItem>
                   </Link>
@@ -1042,7 +1040,9 @@ export default function MiniDrawer(props) {
                         />
                       </ListItemIcon>
                       <ListItemText>
-                        <a style={{ color: 'white' }}>Add User</a>
+                        <Typography style={{ color: 'white' }}>
+                          Add User
+                        </Typography>
                       </ListItemText>
                     </ListItem>
                   </Link>
@@ -1054,7 +1054,9 @@ export default function MiniDrawer(props) {
                         />
                       </ListItemIcon>
                       <ListItemText>
-                        <a style={{ color: 'white' }}>Edit User</a>
+                        <Typography style={{ color: 'white' }}>
+                          Edit User
+                        </Typography>
                       </ListItemText>
                     </ListItem>
                   </Link>
@@ -1066,7 +1068,9 @@ export default function MiniDrawer(props) {
                     <RadioButtonUncheckedIcon style={{ marginLeft: '0.7em' }} />
                   </ListItemIcon>
                   <ListItemText>
-                    <a className={classes.fontStyle}>Sllabys</a>
+                    <Typography className={classes.fontStyle}>
+                      Sllabys
+                    </Typography>
                   </ListItemText>
                 </ListItem>
               </Link>
@@ -1076,7 +1080,9 @@ export default function MiniDrawer(props) {
                     <RadioButtonUncheckedIcon style={{ marginLeft: '0.7em' }} />
                   </ListItemIcon>
                   <ListItemText>
-                    <a className={classes.fontStyle}>School</a>
+                    <Typography className={classes.fontStyle}>
+                      School
+                    </Typography>
                   </ListItemText>
                 </ListItem>
               </Link>
@@ -1086,7 +1092,9 @@ export default function MiniDrawer(props) {
                     <RadioButtonUncheckedIcon style={{ marginLeft: '0.7em' }} />
                   </ListItemIcon>
                   <ListItemText>
-                    <a className={classes.fontStyle}>Subjects</a>
+                    <Typography className={classes.fontStyle}>
+                      Subjects
+                    </Typography>
                   </ListItemText>
                 </ListItem>
               </Link>
@@ -1096,7 +1104,7 @@ export default function MiniDrawer(props) {
                     <RadioButtonUncheckedIcon style={{ marginLeft: '0.7em' }} />
                   </ListItemIcon>
                   <ListItemText>
-                    <a className={classes.fontStyle}>Grade</a>
+                    <Typography className={classes.fontStyle}>Grade</Typography>
                   </ListItemText>
                 </ListItem>
               </Link>
@@ -1105,7 +1113,7 @@ export default function MiniDrawer(props) {
         </List>
       </Drawer>
       <main className={classes.content}>
-        <CreateSubject {...props} />
+        <CreateSchool {...props} />
       </main>
     </div>
   );

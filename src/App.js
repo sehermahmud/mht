@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Header from './header';
 import CreateGrade from './components/grade/addGrade';
 import EditGrade from './components/grade/editGrade';
 import CreateSubject from './components/subject/subject';
