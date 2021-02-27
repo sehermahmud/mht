@@ -25,7 +25,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Button, Grid } from '@material-ui/core';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
-import DashboardIcon from '@material-ui/icons/Dashboard';
+import DashboardIcon from '@material-ui/icons/';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 
 import CreateGrade from './components/grade/addGrade';
@@ -240,7 +240,7 @@ export default function MiniDrawer() {
         </div>
         <Divider />
         <List>
-          <Link to="/Dashboard">
+          <Link to="/">
             <ListItem button>
               <ListItemIcon>
                 <DashboardIcon style={{ marginLeft: '0.7em' }} />

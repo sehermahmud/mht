@@ -17,14 +17,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
-import {
-  Button,
-  Card,
-  CardContent,
-  Grid,
-} from '@material-ui/core';
+import { Button, Card, CardContent, Grid } from '@material-ui/core';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
-import DashboardIcon from '@material-ui/icons/Dashboard';
+import DashboardIcon from '@material-ui/icons/';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import axios from 'axios';
 import { MDBDataTable } from 'mdbreact';
@@ -577,7 +572,7 @@ export default function MiniDrawer(props) {
         </div>
         <Divider />
         <List>
-          <Link to="/Dashboard">
+          <Link to="/">
             <ListItem button>
               <ListItemIcon>
                 <DashboardIcon style={{ marginLeft: '0.7em' }} />

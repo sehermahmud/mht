@@ -27,7 +27,7 @@ import {
   RadioGroup,
 } from '@material-ui/core';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
-import DashboardIcon from '@material-ui/icons/Dashboard';
+import DashboardIcon from '@material-ui/icons/';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import axios from 'axios';
 import Spinner from '@atlaskit/spinner';
@@ -698,7 +698,7 @@ export default function MiniDrawer(props) {
         </div>
         <Divider />
         <List>
-          <Link to="/Dashboard">
+          <Link to="/">
             <ListItem button>
               <ListItemIcon>
                 <DashboardIcon style={{ marginLeft: '0.7em' }} />
