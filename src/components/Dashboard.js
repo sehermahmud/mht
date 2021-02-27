@@ -18,7 +18,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
-import DashboardIcon from '@material-ui/icons/';
+import DashboardIcon from '@material-ui/icons/DashboardIcon';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 
 const drawerWidth = 300;
