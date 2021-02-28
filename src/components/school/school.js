@@ -207,9 +207,9 @@ class CreateSchool extends Component {
 
   render() {
     const userAttributes = [];
-    this.state.schools.forEach((el) => {
+    this.state.schools.forEach((el, order) => {
       userAttributes.push({
-        sl: 1,
+        sl: order + 1,
         school: el.school,
         description: el.description,
         address: el.address,
@@ -516,8 +516,8 @@ class CreateSchool extends Component {
                 </Paper>
               </Grid>
             </Grid> */}
-            <br />
-            {/* <table
+            {/* <br />
+            <table
               id="team-list"
               className="table table-striped table-bordered"
               cellspacing="0"
@@ -542,7 +542,7 @@ class CreateSchool extends Component {
               </thead>
               <tbody>{this.schoolslist()}</tbody>
             </table> */}
-            <br />
+            {/* <br /> */}
             <MDBDataTable striped bordered data={data} />
           </CardContent>
         </Card>

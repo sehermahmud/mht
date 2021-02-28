@@ -25,8 +25,6 @@ import FileCopyIcon from '@material-ui/icons/FileCopy';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 
-import { MDBDataTable } from 'mdbreact';
-
 const Sllabys = (props) => (
   <tr>
     <td></td>
@@ -35,11 +33,12 @@ const Sllabys = (props) => (
     <td>
       <Button
         style={{
-          background: '#fdd835',
+          color: 'white',
+          background: 'linear-gradient(45deg, #e65100 30%, #ff9800 90%)',
           marginRight: '1em',
           marginLeft: '1em',
-          marginTop: '0.5em',
-          marginBottom: '0.5em',
+          marginBottom: '0.1em',
+          marginTop: '0.1em',
         }}
       >
         <Link
@@ -52,11 +51,12 @@ const Sllabys = (props) => (
       </Button>
       <Button
         style={{
+          color: 'white',
+          background: 'linear-gradient(45deg, #b71c1c 30%, #f44336 90%)',
+          marginRight: '1em',
           marginLeft: '1em',
-          marginTop: '0.5em',
-          marginRight: '20em',
-          marginBottom: '0.5em',
-          background: 'red',
+          marginBottom: '0.1em',
+          marginTop: '0.1em',
         }}
       >
         <Typography
@@ -194,90 +194,6 @@ export class CreateSubject extends Component {
   }
 
   render() {
-    const userAttributes = [];
-    this.state.allSllabys.forEach((el) => {
-      userAttributes.push({
-        sl: 1,
-        sllabys: el.sllabys,
-        sllabysCode: el.sllabysCode,
-        action: (
-          <React.Fragment>
-            <Button
-              style={{
-                color: 'white',
-                background: 'linear-gradient(45deg, #e65100 30%, #ff9800 90%)',
-                marginRight: '1em',
-                marginLeft: '1em',
-                marginBottom: '0.1em',
-                marginTop: '0.1em',
-              }}
-            >
-              <Link
-                style={{ color: 'white' }}
-                className="text-decoration-none"
-                to={'/editSllabys/' + el._id}
-              >
-                edit
-              </Link>{' '}
-            </Button>
-            <Button
-              style={{
-                color: 'white',
-                background: 'linear-gradient(45deg, #b71c1c 30%, #f44336 90%)',
-                marginRight: '1em',
-                marginLeft: '1em',
-                marginBottom: '0.1em',
-                marginTop: '0.1em',
-              }}
-              data-toggle="modal"
-              data-target="#exampleModal"
-            >
-              <Typography
-                className="text-decoration-none"
-                href="#"
-                data-toggle="modal"
-                data-id="props.grade._id"
-                data-target="#exampleModal"
-                style={{ color: 'white' }}
-              >
-                delete{' '}
-              </Typography>
-            </Button>
-          </React.Fragment>
-        ),
-      });
-    });
-
-    const data = {
-      columns: [
-        {
-          label: 'sl',
-          field: 'sl',
-          sort: 'asc',
-          width: 5,
-        },
-        {
-          label: 'sllabys',
-          field: 'sllabys',
-          sort: 'asc',
-          width: 5,
-        },
-        {
-          label: 'sllabysCode',
-          field: 'sllabysCode',
-          sort: 'asc',
-          width: 5,
-        },
-        {
-          label: 'action',
-          field: 'action',
-          sort: 'asc',
-          width: 5,
-        },
-      ],
-      rows: userAttributes,
-    };
-
     return (
       <div style={{ marginTop: '3em' }}>
         <Typography
@@ -420,69 +336,7 @@ export class CreateSubject extends Component {
                 background: '#b2dfdb',
               }}
             />
-            {/* <Grid container direction="row">
-              <Grid item container direction="column" sm>
-                <section id="search_processes" class="center">
-                  <div id="filter_content">
-                    <table id="table_filters">
-                      <tr id="row_special"> */}
-            {/* <label style={{ marginRight: '0.5em' }}>
-                        Show entries of
-                      </label> */}
-            {/* <select class="form-control" id="records_comboBox">
-                          <option id="10" value="10">
-                            10
-                          </option>
-                          <option id="25" value="25">
-                            25
-                          </option>
-                          <option id="50" value="50">
-                            50
-                          </option>
-                        </select>
-                      </tr>
-                    </table>
-                  </div>
-                </section>
-              </Grid>
-              <Grid
-                item
-                container
-                direction="column"
-                sm
-                style={{ marginLeft: '40em', marginTop: '0.5em' }}
-              >
-                <Paper
-                  elevation={0}
-                  component="form"
-                  style={{
-                    padding: '2px 3px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    width: 400,
-                    border: '1px solid black',
-                  }}
-                >
-                  <InputBase
-                    style={{
-                      marginLeft: '1em',
-                      flex: 1,
-                    }}
-                    placeholder="Search"
-                    inputProps={{ 'aria-label': 'Search' }}
-                  />
-                  <IconButton
-                    type="submit"
-                    style={{ padding: 10 }}
-                    aria-label="search"
-                  >
-                    <SearchIcon />
-                  </IconButton>
-                </Paper>
-              </Grid>
-            </Grid> */}
-            <br />
-            {/* <table
+            <table
               id="team-list"
               className="table table-striped table-bordered"
               cellspacing="0"
@@ -503,9 +357,7 @@ export class CreateSubject extends Component {
                 </th>
               </thead>
               <tbody>{this.sllabyslist()}</tbody>
-            </table> */}
-            {/* <br /> */}
-            <MDBDataTable striped bordered data={data} />
+            </table>
           </CardContent>
         </Card>
       </div>

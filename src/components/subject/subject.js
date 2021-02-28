@@ -221,9 +221,9 @@ export class CreateSubject extends Component {
 
   render() {
     const userAttributes = [];
-    this.state.subjects.forEach((el) => {
+    this.state.subjects.forEach((el, order) => {
       userAttributes.push({
-        sl: 1,
+        sl: order + 1,
         subject: el.subject,
         description: el.description,
         action: (

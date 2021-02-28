@@ -239,9 +239,9 @@ export class CreateGrade extends Component {
 
   render() {
     const userAttributes = [];
-    this.state.grades.forEach((el) => {
+    this.state.grades.forEach((el, order) => {
       userAttributes.push({
-        sl: 1,
+        sl: order + 1,
         Grade: el.grade,
         Description: el.description,
         Action: (
@@ -718,114 +718,6 @@ export default function MiniDrawer(props) {
                   <ChevronLeftIcon style={{ marginLeft: '3.8em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link to="/students/addStudents">
-                <ListItem button>
-                  <ListItemIcon>
-                    <RadioButtonUncheckedIcon />
-                  </ListItemIcon>
-                  <ListItemText>
-                    <Typography style={{ color: 'white' }}>
-                      All Students
-                    </Typography>
-                  </ListItemText>
-                </ListItem>
-              </Link>
-              <Link to="/students/activeStudents">
-                <ListItem button>
-                  <ListItemIcon>
-                    <RadioButtonUncheckedIcon />
-                  </ListItemIcon>
-                  <ListItemText>
-                    <Typography style={{ color: 'white' }}>
-                      Active Students
-                    </Typography>
-                  </ListItemText>
-                </ListItem>
-              </Link>
-              <Link to="/students/batchwise">
-                <ListItem button>
-                  <ListItemIcon>
-                    <RadioButtonUncheckedIcon />
-                  </ListItemIcon>
-                  <ListItemText>
-                    <Typography style={{ color: 'white' }}>
-                      Batch wise Student
-                    </Typography>
-                  </ListItemText>
-                </ListItem>
-              </Link>
-              <Link to="/students/allStudents">
-                <ListItem button>
-                  <ListItemIcon>
-                    <RadioButtonUncheckedIcon />
-                  </ListItemIcon>
-                  <ListItemText>
-                    <Typography style={{ color: 'white' }}>
-                      Add New Student
-                    </Typography>
-                  </ListItemText>
-                </ListItem>
-              </Link>
-              <Accordion elevation={0} style={{ background: '#00bfa5' }}>
-                <AccordionSummary
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
-                  <ListItemIcon>
-                    <FileCopyIcon />
-                  </ListItemIcon>
-                  <Typography style={{ color: 'white' }}>
-                    Payment Section
-                  </Typography>
-                  <ListItemIcon>
-                    <ChevronLeftIcon style={{ marginLeft: '1.3em' }} />
-                  </ListItemIcon>
-                </AccordionSummary>
-                <Link to="/students/payments/batchPayment">
-                  <ListItem button>
-                    <ListItemIcon>
-                      <RadioButtonUncheckedIcon />
-                    </ListItemIcon>
-                    <ListItemText>
-                      <Typography style={{ color: 'white' }}>
-                        Batch payments
-                      </Typography>
-                    </ListItemText>
-                  </ListItem>
-                </Link>
-                <Link>
-                  <ListItem button>
-                    <ListItemIcon>
-                      <RadioButtonUncheckedIcon />
-                    </ListItemIcon>
-                    <ListItemText>
-                      <Typography style={{ color: 'white' }}>
-                        other payments
-                      </Typography>
-                    </ListItemText>
-                  </ListItem>
-                </Link>
-              </Accordion>
-            </Accordion>
-          </ListItem>
-          <ListItem button>
-            <Accordion
-              elevation={0}
-              className={classes.hover}
-              style={{ backgroundColor: 'transparent' }}
-            >
-              <AccordionSummary
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <ListItemIcon>
-                  <FileCopyIcon />
-                </ListItemIcon>
-                <Typography style={{ color: 'white' }}>Students</Typography>
-                <ListItemIcon>
-                  <ChevronLeftIcon style={{ marginLeft: '3.8em' }} />
-                </ListItemIcon>
-              </AccordionSummary>
               <Link to="/students/allStudents">
                 <ListItem button>
                   <ListItemIcon>
@@ -914,6 +806,50 @@ export default function MiniDrawer(props) {
                   </ListItem>
                 </Link>
               </Accordion>
+            </Accordion>
+          </ListItem>
+          <ListItem button>
+            <Accordion
+              elevation={0}
+              className={classes.hover}
+              style={{ backgroundColor: 'transparent' }}
+            >
+              <AccordionSummary
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <ListItemIcon>
+                  <FileCopyIcon />
+                </ListItemIcon>
+                <Typography style={{ color: 'white' }}>Teacher</Typography>
+                <ListItemIcon>
+                  <ChevronLeftIcon style={{ marginLeft: '4.1em' }} />
+                </ListItemIcon>
+              </AccordionSummary>
+              <Link to="/teacher">
+                <ListItem button>
+                  <ListItemIcon>
+                    <RadioButtonUncheckedIcon />
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography style={{ color: 'white' }}>
+                      Add Teacher
+                    </Typography>
+                  </ListItemText>
+                </ListItem>
+              </Link>
+              <Link to="/teachers/teacherPayment">
+                <ListItem button>
+                  <ListItemIcon>
+                    <RadioButtonUncheckedIcon />
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography style={{ color: 'white' }}>
+                      Teacher payment
+                    </Typography>
+                  </ListItemText>
+                </ListItem>
+              </Link>
             </Accordion>
           </ListItem>
           <ListItem button>

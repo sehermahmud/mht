@@ -275,15 +275,9 @@ export class CreateTeacher extends Component {
 
   render() {
     const userAttributes = [];
-    this.state.teachers.forEach((el) => {
+    this.state.teachers.forEach((el, order) => {
       userAttributes.push({
-        sl: (
-          <table id="team-list">
-            <tr>
-              <td></td>
-            </tr>
-          </table>
-        ),
+        sl: order + 1,
         TeacherName: el.teacherName,
         Subject: el.subject,
         Action: (
