@@ -49,7 +49,6 @@ const Teacher = (props) => (
           }}
           className="text-decoration-none"
           to={'/teacherdetails/' + props.teacher._id}
-          target="_blank"
         >
           details
         </Link>{' '}
@@ -549,29 +548,6 @@ export class CreateTeacher extends Component {
               }}
             />
             <br />
-            <table
-              id="team-list"
-              className="table table-striped table-bordered"
-              cellspacing="0"
-              width="100%"
-            >
-              <thead className="">
-                <th scope="col" style={{ width: '4em' }}>
-                  sl
-                </th>
-                <th scope="col" style={{ width: '20em' }}>
-                  Teacher Name
-                </th>
-                <th scope="col" style={{ width: '20em' }}>
-                  Subject
-                </th>
-                <th scope="col" style={{ width: '25em' }}>
-                  Actions
-                </th>
-              </thead>
-              <tbody>{this.teacherlist()}</tbody>
-            </table>
-            <br />
             <MDBDataTable striped bordered data={data} />
           </CardContent>
         </Card>
@@ -1046,7 +1022,7 @@ export function MiniDrawer(props) {
                       <ChevronLeftIcon style={{ marginLeft: '5.1em' }} />
                     </ListItemIcon>
                   </AccordionSummary>
-                  <Link to="/user/allUser">
+                  <Link>
                     <ListItem button>
                       <ListItemIcon>
                         <RadioButtonUncheckedIcon
@@ -1060,7 +1036,7 @@ export function MiniDrawer(props) {
                       </ListItemText>
                     </ListItem>
                   </Link>
-                  <Link to="/user/addUser">
+                  <Link>
                     <ListItem button>
                       <ListItemIcon>
                         <RadioButtonUncheckedIcon
@@ -1074,7 +1050,7 @@ export function MiniDrawer(props) {
                       </ListItemText>
                     </ListItem>
                   </Link>
-                  <Link to="/user/editUser">
+                  <Link>
                     <ListItem button>
                       <ListItemIcon>
                         <RadioButtonUncheckedIcon
