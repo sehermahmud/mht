@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { Card, CardContent } from '@material-ui/core';
 import clsx from 'clsx';
@@ -30,7 +30,7 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 
-class EditBatchTeacher extends Component {
+export class EditBatchTeacher extends Component {
   constructor(props) {
     super(props);
 
@@ -346,16 +346,19 @@ class EditBatchTeacher extends Component {
                     />
                   </MuiPickersUtilsProvider>
                 </div>
-                <Button
-                  style={{
-                    color: '#2196f3',
-                    border: '1px solid #2196f3',
-                    marginTop: '5em',
-                    marginLeft: '1em',
-                  }}
-                >
-                  <Link to="/teacher">Cancel</Link>
-                </Button>
+                <Link to="/teacher">
+                  <Button
+                    className="btn"
+                    style={{
+                      color: '#2196f3',
+                      border: '1px solid #2196f3',
+                      marginTop: '5em',
+                      marginLeft: '1em',
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                </Link>
                 <Button
                   className="btn btn-danger"
                   style={{
@@ -501,7 +504,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MiniDrawer(props) {
+export function MiniDrawer(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -617,7 +620,7 @@ export default function MiniDrawer(props) {
                   <ChevronLeftIcon style={{ marginLeft: '3.8em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link to="/students/addStudent">
+              <Link to="/students/allStudents">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -653,7 +656,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/students/allStudents">
+              <Link to="/students/addStudent">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -692,7 +695,7 @@ export default function MiniDrawer(props) {
                     </ListItemText>
                   </ListItem>
                 </Link>
-                <Link to="/students/payments/otherPayment">
+                <Link>
                   <ListItem button>
                     <ListItemIcon>
                       <RadioButtonUncheckedIcon />
@@ -769,7 +772,7 @@ export default function MiniDrawer(props) {
                   <ChevronLeftIcon style={{ marginLeft: '3.5em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link to="">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -781,7 +784,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/reporting/dailyPayment">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -793,7 +796,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/reporting/otherPayment">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -943,3 +946,5 @@ export default function MiniDrawer(props) {
     </div>
   );
 }
+
+export default withRouter(MiniDrawer);

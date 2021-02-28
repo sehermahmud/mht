@@ -40,9 +40,10 @@ function App() {
           <Route path="/grade">
             <CreateGrade />
           </Route>
-          <Route path="/edit/:id">
+          <Route path="/edit/:id" component={EditGrade} />
+          {/* <Route path="/edit/:id">
             <EditGrade />
-          </Route>
+          </Route> */}
           <Route path="/subject">
             <CreateSubject />
           </Route>
@@ -73,10 +74,10 @@ function App() {
           <Route path="/editTeacherBatch/:id">
             <EditTeacherBatch />
           </Route>
-          <Route path="/students/allStudents">
+          <Route path="/students/addStudent">
             <AddStudents />
           </Route>
-          <Route path="/students/addStudent">
+          <Route path="/students/allStudents">
             <AllStudents />
           </Route>
           <Route path="/students/activeStudents">
@@ -100,11 +101,9 @@ function App() {
           <Route path="/teachers/teacherPaymentDetails">
             <TeacherPaymentDetails />
           </Route>
-
           <Route path="/teststudents">
             <StudentTest />
           </Route>
-
           <Route path="/students/payments/batchPayment">
             <BatchPayments />
           </Route>

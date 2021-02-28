@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -157,7 +157,7 @@ export class BatchWiseStudentDetails extends Component {
     ];
 
     return (
-      <div style={{ marginTop: '4em' }}>
+      <div style={{ marginTop: '5em' }}>
         <Typography
           style={{
             marginLeft: '1rem',
@@ -522,7 +522,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MiniDrawer(props) {
+export function MiniDrawer(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -638,7 +638,7 @@ export default function MiniDrawer(props) {
                   <ChevronLeftIcon style={{ marginLeft: '3.8em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link to="/students/addStudent">
+              <Link to="/students/allStudents">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -674,7 +674,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/students/allStudents">
+              <Link to="/students/addStudent">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -713,7 +713,7 @@ export default function MiniDrawer(props) {
                     </ListItemText>
                   </ListItem>
                 </Link>
-                <Link to="/students/payments/otherPayment">
+                <Link>
                   <ListItem button>
                     <ListItemIcon>
                       <RadioButtonUncheckedIcon />
@@ -790,7 +790,7 @@ export default function MiniDrawer(props) {
                   <ChevronLeftIcon style={{ marginLeft: '3.5em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link to="">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -802,7 +802,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/reporting/dailyPayment">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -814,7 +814,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/reporting/otherPayment">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -964,3 +964,5 @@ export default function MiniDrawer(props) {
     </div>
   );
 }
+
+export default withRouter(MiniDrawer);

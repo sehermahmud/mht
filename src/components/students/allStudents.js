@@ -28,173 +28,6 @@ import { MDBDataTable } from 'mdbreact';
 
 const drawerWidth = 300;
 
-const Students = (props) => (
-  <tr>
-    <td>{props.student.studentFullName}</td>
-    <td>{props.student.studentPhoneNumber}</td>
-    <td>{props.student.guardianPhoneNumber}</td>
-    <td>{props.student.specialNote}</td>
-    <td>{props.student.email}</td>
-    <td>
-      <Button
-        style={{
-          color: 'white',
-          background: 'linear-gradient(45deg, #311b92 30%, #673ab7 90%)',
-          marginLeft: '0.5em',
-          marginRight: '0.5em',
-          marginTop: '0.3em',
-          marginBottom: '0.3em',
-          textTransform: 'none',
-          fontSize: '0.9em',
-        }}
-      >
-        <Link
-          style={{
-            color: 'white',
-          }}
-          className="text-decoration-none"
-          to={'/students/StudentDetails/' + props.student._id}
-        >
-          Details
-        </Link>
-      </Button>
-      <Button
-        style={{
-          color: 'white',
-          marginLeft: '0.5em',
-          marginRight: '0.5em',
-          marginTop: '0.3em',
-          marginBottom: '0.3em',
-          background: 'linear-gradient(45deg, #e65100 30%, #ff9800 90%)',
-          textTransform: 'none',
-          fontSize: '0.9em',
-        }}
-      >
-        <Link
-          style={{
-            color: 'white',
-          }}
-          className="text-decoration-none"
-          to={'/editStudent/' + props.student._id}
-        >
-          Edit
-        </Link>
-      </Button>
-      <Button
-        style={{
-          color: 'white',
-          background: 'linear-gradient(45deg, #b71c1c 30%, #f44336 90%)',
-          marginLeft: '0.5em',
-          marginRight: '0.5em',
-          marginTop: '0.3em',
-          marginBottom: '0.3em',
-          textTransform: 'none',
-          fontSize: '0.9em',
-        }}
-      >
-        <Typography
-          className="text-decoration-none"
-          data-toggle="modal"
-          data-target="#exampleModal"
-          style={{
-            color: 'white',
-          }}
-        >
-          Delete
-        </Typography>
-      </Button>
-      <Button
-        style={{
-          color: 'white',
-          background: 'linear-gradient(45deg, #212121 30%, #757575 90%)',
-          marginLeft: '0.5em',
-          marginRight: '0.5em',
-          marginTop: '0.3em',
-          marginBottom: '0.3em',
-          textTransform: 'none',
-          fontSize: '0.9em',
-        }}
-      >
-        <Typography
-          className="text-decoration-none"
-          data-toggle="modal"
-          data-target="#exampleModal"
-          style={{
-            color: 'white',
-          }}
-        >
-          Invoice Update
-        </Typography>
-      </Button>
-      <Button
-        style={{
-          color: 'white',
-          background: 'linear-gradient(45deg, #3e2723 30%, #795548 90%)',
-          marginLeft: '0.5em',
-          marginRight: '0.5em',
-          marginTop: '0.3em',
-          marginBottom: '0.3em',
-          textTransform: 'none',
-          fontSize: '0.9em',
-        }}
-      >
-        <Typography
-          className="text-decoration-none"
-          data-toggle="modal"
-          data-target="#exampleModal"
-          style={{
-            color: 'white',
-          }}
-        >
-          Last paid Update
-        </Typography>
-      </Button>
-    </td>
-
-    <div
-      className="modal fade"
-      id="exampleModal"
-      tabIndex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div className="modal-dialog modal-dialog-centered">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title" id="exampleModalLabel">
-              Are you sure you want to delete the Student? After that you can
-              not get it back!
-            </h5>
-          </div>
-          <div className="modal-footer">
-            <Button
-              data-dismiss="modal"
-              color="primary"
-              style={{
-                margin: '0.5em',
-                marginRight: '20em',
-                color: '#2196f3',
-                border: '1px solid #2196f3',
-              }}
-            >
-              Cancel
-            </Button>
-            <Button
-              autoFocus
-              style={{ margin: '0.5em', background: 'red', color: 'white' }}
-              onClick={() => {
-                props.deleteStudent(props.student._id);
-              }}
-            >
-              Delete
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </tr>
-);
-
 export class AllStudents extends Component {
   constructor(props) {
     super(props);
@@ -396,17 +229,17 @@ export class AllStudents extends Component {
     console.log('delete');
   }
 
-  studentlist() {
-    return this.state.students.map((currentStudents) => {
-      return (
-        <Students
-          student={currentStudents}
-          deleteStudent={this.deleteStudent}
-          key={currentStudents._id}
-        />
-      );
-    });
-  }
+  // studentlist() {
+  //   return this.state.students.map((currentStudents) => {
+  //     return (
+  //       <Students
+  //         student={currentStudents}
+  //         deleteStudent={this.deleteStudent}
+  //         key={currentStudents._id}
+  //       />
+  //     );
+  //   });
+  // }
 
   render() {
     const userAttributes = [];
@@ -577,7 +410,7 @@ export class AllStudents extends Component {
       rows: userAttributes,
     };
     return (
-      <div style={{ marginTop: '4em' }}>
+      <div style={{ marginTop: '5em' }}>
         <Typography
           style={{
             marginLeft: '1rem',
@@ -873,7 +706,7 @@ export default function MiniDrawer(props) {
                   <ChevronLeftIcon style={{ marginLeft: '3.8em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link to="/students/addStudent">
+              <Link to="/students/allStudents">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -909,7 +742,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/students/allStudents">
+              <Link to="/students/addStudent">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -948,7 +781,7 @@ export default function MiniDrawer(props) {
                     </ListItemText>
                   </ListItem>
                 </Link>
-                <Link to="/students/payments/otherPayment">
+                <Link>
                   <ListItem button>
                     <ListItemIcon>
                       <RadioButtonUncheckedIcon />
@@ -1025,7 +858,7 @@ export default function MiniDrawer(props) {
                   <ChevronLeftIcon style={{ marginLeft: '3.5em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link to="">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -1037,7 +870,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/reporting/dailyPayment">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -1049,7 +882,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/reporting/otherPayment">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -1194,7 +1027,7 @@ export default function MiniDrawer(props) {
         </List>
       </Drawer>
       <main className={classes.content}>
-        <Students {...props} />
+        <AllStudents {...props} />
       </main>
     </div>
   );

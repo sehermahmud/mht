@@ -348,7 +348,7 @@ export default function MiniDrawer() {
                     </ListItemText>
                   </ListItem>
                 </Link>
-                <Link to="/students/payments/otherPayment">
+                <Link>
                   <ListItem button>
                     <ListItemIcon>
                       <RadioButtonUncheckedIcon />
@@ -419,7 +419,7 @@ export default function MiniDrawer() {
                   <ChevronLeftIcon style={{ marginLeft: '3.5em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link to="/reporting/dailyPayment">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -429,7 +429,7 @@ export default function MiniDrawer() {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/reporting/otherPayment">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />

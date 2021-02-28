@@ -331,21 +331,21 @@ class AddStudents extends Component {
 
     // example in log
     // this.props.match.params.id
-    axios
-      .get(
-        `https://mht-backend.herokuapp.com/subjects/` +
-          this.props.match.params.id +
-          '/batch'
-      )
-      .then((response) => {
-        if (response.data.length > 0) {
-          this.setState({
-            batchs: response.data.map((specificBatch) => specificBatch),
-          });
-        }
+    // axios
+    //   .get(
+    //     `https://mht-backend.herokuapp.com/subjects/` +
+    //       this.props.match.params.id +
+    //       '/batch'
+    //   )
+    //   .then((response) => {
+    //     if (response.data.length > 0) {
+    //       this.setState({
+    //         batchs: response.data.map((specificBatch) => specificBatch),
+    //       });
+    //     }
 
-        console.log(this.state);
-      });
+    //     console.log(this.state);
+    //   });
 
     axios
       .get(`https://mht-backend.herokuapp.com/subject/batch`)
@@ -997,7 +997,7 @@ class AddStudents extends Component {
     ) : null;
 
     return (
-      <Grid style={{ marginTop: '3em' }}>
+      <Grid style={{ marginTop: '4em' }}>
         <Typography
           style={{
             marginLeft: '1rem',
@@ -1782,7 +1782,7 @@ export default function MiniDrawer(props) {
                   <ChevronLeftIcon style={{ marginLeft: '3.8em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link to="/students/addStudent">
+              <Link to="/students/allStudents">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -1818,7 +1818,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/students/allStudents">
+              <Link to="/students/addStudent">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -1857,7 +1857,7 @@ export default function MiniDrawer(props) {
                     </ListItemText>
                   </ListItem>
                 </Link>
-                <Link to="/students/payments/otherPayment">
+                <Link>
                   <ListItem button>
                     <ListItemIcon>
                       <RadioButtonUncheckedIcon />
@@ -1934,7 +1934,7 @@ export default function MiniDrawer(props) {
                   <ChevronLeftIcon style={{ marginLeft: '3.5em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link to="">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -1946,7 +1946,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/reporting/dailyPayment">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -1958,7 +1958,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/reporting/otherPayment">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />

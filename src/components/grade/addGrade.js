@@ -124,7 +124,7 @@ const Grade = (props) => (
   </tr>
 );
 
-class CreateGrade extends Component {
+export class CreateGrade extends Component {
   constructor(props) {
     super(props);
 
@@ -186,7 +186,8 @@ class CreateGrade extends Component {
       .post('https://mht-backend.herokuapp.com/grades/add', newGrade)
       .then((res) => console.log(res.data));
 
-    window.location.reload(true);
+    // window.location = '/grade';
+    window.location.reload(false);
   }
 
   componentDidMount() {
@@ -792,7 +793,7 @@ export default function MiniDrawer(props) {
                     </ListItemText>
                   </ListItem>
                 </Link>
-                <Link to="/students/payments/otherPayment">
+                <Link>
                   <ListItem button>
                     <ListItemIcon>
                       <RadioButtonUncheckedIcon />
@@ -820,35 +821,99 @@ export default function MiniDrawer(props) {
                 <ListItemIcon>
                   <FileCopyIcon />
                 </ListItemIcon>
-                <Typography style={{ color: 'white' }}>Teacher</Typography>
+                <Typography style={{ color: 'white' }}>Students</Typography>
                 <ListItemIcon>
-                  <ChevronLeftIcon style={{ marginLeft: '4.1em' }} />
+                  <ChevronLeftIcon style={{ marginLeft: '3.8em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link to="/teacher">
+              <Link to="/students/allStudents">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
                   </ListItemIcon>
                   <ListItemText>
                     <Typography style={{ color: 'white' }}>
-                      Add Teacher
+                      All Students
                     </Typography>
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/teachers/teacherPayment">
+              <Link to="/students/activeStudents">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
                   </ListItemIcon>
                   <ListItemText>
                     <Typography style={{ color: 'white' }}>
-                      Teacher payment
+                      Active Students
                     </Typography>
                   </ListItemText>
                 </ListItem>
               </Link>
+              <Link to="/students/batchwise">
+                <ListItem button>
+                  <ListItemIcon>
+                    <RadioButtonUncheckedIcon />
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography style={{ color: 'white' }}>
+                      Batch wise Student
+                    </Typography>
+                  </ListItemText>
+                </ListItem>
+              </Link>
+              <Link to="/students/addStudent">
+                <ListItem button>
+                  <ListItemIcon>
+                    <RadioButtonUncheckedIcon />
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography style={{ color: 'white' }}>
+                      Add New Student
+                    </Typography>
+                  </ListItemText>
+                </ListItem>
+              </Link>
+              <Accordion elevation={0} style={{ background: '#00bfa5' }}>
+                <AccordionSummary
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <ListItemIcon>
+                    <FileCopyIcon />
+                  </ListItemIcon>
+                  <Typography style={{ color: 'white' }}>
+                    Payment Section
+                  </Typography>
+                  <ListItemIcon>
+                    <ChevronLeftIcon style={{ marginLeft: '1.3em' }} />
+                  </ListItemIcon>
+                </AccordionSummary>
+                <Link to="/students/payments/batchPayment">
+                  <ListItem button>
+                    <ListItemIcon>
+                      <RadioButtonUncheckedIcon />
+                    </ListItemIcon>
+                    <ListItemText>
+                      <Typography style={{ color: 'white' }}>
+                        Batch payments
+                      </Typography>
+                    </ListItemText>
+                  </ListItem>
+                </Link>
+                <Link>
+                  <ListItem button>
+                    <ListItemIcon>
+                      <RadioButtonUncheckedIcon />
+                    </ListItemIcon>
+                    <ListItemText>
+                      <Typography style={{ color: 'white' }}>
+                        other payments
+                      </Typography>
+                    </ListItemText>
+                  </ListItem>
+                </Link>
+              </Accordion>
             </Accordion>
           </ListItem>
           <ListItem button>
@@ -869,7 +934,7 @@ export default function MiniDrawer(props) {
                   <ChevronLeftIcon style={{ marginLeft: '3.5em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link to="">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -881,7 +946,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/reporting/dailyPayment">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -893,7 +958,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/reporting/otherPayment">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />

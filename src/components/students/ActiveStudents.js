@@ -27,64 +27,7 @@ import { MDBDataTable } from 'mdbreact';
 
 const drawerWidth = 300;
 
-const Students = (props) => (
-  <tr>
-    <td>{props.student.studentFullName}</td>
-    <td>{props.student.studentPhoneNumber}</td>
-    <td>{props.student.guardianPhoneNumber}</td>
-    <td>{props.student.specialNote}</td>
-    <td>{props.student.checked}</td>
-    <td></td>
-    <td>
-      <Button
-        style={{
-          color: 'white',
-          background: 'linear-gradient(45deg, #311b92 30%, #673ab7 90%)',
-          marginLeft: '0.5em',
-          marginRight: '0.5em',
-          marginTop: '0.3em',
-          marginBottom: '0.3em',
-          textTransform: 'none',
-          fontSize: '0.9em',
-        }}
-      >
-        <Link
-          style={{
-            color: 'white',
-          }}
-          className="text-decoration-none"
-          to={'/students/StudentDetails/' + props.student._id}
-        >
-          Details
-        </Link>
-      </Button>
-      <Button
-        style={{
-          color: 'white',
-          marginLeft: '0.5em',
-          marginRight: '0.5em',
-          marginTop: '0.3em',
-          marginBottom: '0.3em',
-          background: 'linear-gradient(45deg, #e65100 30%, #ff9800 90%)',
-          textTransform: 'none',
-          fontSize: '0.9em',
-        }}
-      >
-        <Link
-          style={{
-            color: 'white',
-          }}
-          className="text-decoration-none"
-          to={'/editStudent/' + props.student._id}
-        >
-          Edit
-        </Link>
-      </Button>
-    </td>
-  </tr>
-);
-
-export class AllStudents extends Component {
+export class ActiveStudents extends Component {
   constructor(props) {
     super(props);
 
@@ -265,11 +208,11 @@ export class AllStudents extends Component {
     // this.getData();
   }
 
-  studentlist() {
-    return this.state.students.map((currentStudents) => {
-      return <Students student={currentStudents} key={currentStudents._id} />;
-    });
-  }
+  // studentlist() {
+  //   return this.state.students.map((currentStudents) => {
+  //     return <Students student={currentStudents} key={currentStudents._id} />;
+  //   });
+  // }
 
   render() {
     const userAttributes = [];
@@ -379,7 +322,7 @@ export class AllStudents extends Component {
       rows: userAttributes,
     };
     return (
-      <div style={{ marginTop: '3em' }}>
+      <div style={{ marginTop: '5em' }}>
         <Typography
           style={{
             marginLeft: '1rem',
@@ -675,7 +618,7 @@ export default function MiniDrawer(props) {
                   <ChevronLeftIcon style={{ marginLeft: '3.8em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link to="/students/addStudent">
+              <Link to="/students/allStudents">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -711,7 +654,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/students/allStudents">
+              <Link to="/students/addStudent">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -750,7 +693,7 @@ export default function MiniDrawer(props) {
                     </ListItemText>
                   </ListItem>
                 </Link>
-                <Link to="/students/payments/otherPayment">
+                <Link>
                   <ListItem button>
                     <ListItemIcon>
                       <RadioButtonUncheckedIcon />
@@ -827,7 +770,7 @@ export default function MiniDrawer(props) {
                   <ChevronLeftIcon style={{ marginLeft: '3.5em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link to="">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -839,7 +782,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/reporting/dailyPayment">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -851,7 +794,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/reporting/otherPayment">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -996,7 +939,7 @@ export default function MiniDrawer(props) {
         </List>
       </Drawer>
       <main className={classes.content}>
-        <Students {...props} />
+        <ActiveStudents {...props} />
       </main>
     </div>
   );

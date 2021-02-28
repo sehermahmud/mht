@@ -61,35 +61,6 @@ export class BatchWiseStudent extends Component {
         console.log(this.state.subjects);
       });
 
-    // axios
-    //   .get(
-    //     'https://mht-backend.herokuapp.com/subjects/' +
-    //       this.props.match.params.id +
-    //       '/batch'
-    //   )
-    //   .then((response) => {
-    //     if (response.data.length > 0) {
-    //       this.setState({
-    //         selectedBatch: response.data.map((subject) => subject),
-    //       });
-    //     }
-
-    //     console.log(this.state.selectedBatch);
-    //   });
-
-    // axios
-    //   .get(
-    //     'https://mht-backend.herokuapp.com/subjects/' +
-    //       this.props.match.params.id +
-    //       '/batch'
-    //   )
-    //   .then((response) => {
-    //     this.setState({ selectedBatch: response.data });
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-
     console.log(this.state.selectedBatch);
   }
 
@@ -110,19 +81,6 @@ export class BatchWiseStudent extends Component {
       .catch((error) => {
         console.log(error);
       });
-
-    // axios
-    //   .get(
-    //     'https://mht-backend.herokuapp.com/subjects/'
-    //   )
-    //   .then((response) => {
-    //     this.setState({
-    //       selectedBatch: response.data.batchUnderSubject,
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
 
     axios
       .get('https://mht-backend.herokuapp.com/teachers/')
@@ -145,43 +103,6 @@ export class BatchWiseStudent extends Component {
     });
 
     console.log(userAttributesTeacher);
-    // if (this.state.subjects[2] !== true)
-    //   this.state.selectedBatch.forEach((el) => {
-    //     userAttributes.push({
-    //       BatchName:
-    //         el.batchSubject +
-    //         '-' +
-    //         el.sllabys +
-    //         '-' +
-    //         el.grade +
-    //         '-' +
-    //         el.EndDate.substring(2, 4) +
-    //         '-' +
-    //         el.Batch,
-    //       Schedule: el.batchSchedule,
-    //       Teacher: userAttributesTeacher[0].Teacher,
-    //       ExpectedStudents: el.expectedStudents,
-    //       Actions: (
-    //         <Link
-    //           to="/students/batchDetails"
-    //           style={{ textDecoration: 'none' }}
-    //           target="_blank"
-    //         >
-    //           <Button
-    //             style={{
-    //               color: 'white',
-    //               background: '#673ab7',
-    //               textTransform: 'none',
-    //             }}
-    //           >
-    //             Details
-    //           </Button>{' '}
-    //         </Link>
-    //       ),
-    //     });
-    //   });
-
-    // else []
 
     const userAttributes = [];
     if (this.state.subjects[2] !== true) {
@@ -276,7 +197,7 @@ export class BatchWiseStudent extends Component {
       rows: userAttributes,
     };
     return (
-      <div style={{ marginTop: '4em' }}>
+      <div style={{ marginTop: '5em' }}>
         <Typography
           style={{
             marginLeft: '1rem',
@@ -348,7 +269,7 @@ export class BatchWiseStudent extends Component {
               </Grid>
               <Grid item container direction="column" sm>
                 <Button
-                  onClick={this.onShow}
+                  // onClick={this.onShow}
                   style={{
                     background: '#4caf50',
                     color: 'white',
@@ -617,7 +538,7 @@ export default function MiniDrawer(props) {
                   <ChevronLeftIcon style={{ marginLeft: '3.8em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link to="/students/addStudent">
+              <Link to="/students/allStudents">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -653,7 +574,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/students/allStudents">
+              <Link to="/students/addStudent">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -692,7 +613,7 @@ export default function MiniDrawer(props) {
                     </ListItemText>
                   </ListItem>
                 </Link>
-                <Link to="/students/payments/otherPayment">
+                <Link>
                   <ListItem button>
                     <ListItemIcon>
                       <RadioButtonUncheckedIcon />
@@ -769,7 +690,7 @@ export default function MiniDrawer(props) {
                   <ChevronLeftIcon style={{ marginLeft: '3.5em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link to="">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -781,7 +702,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/reporting/dailyPayment">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -793,7 +714,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/reporting/otherPayment">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />

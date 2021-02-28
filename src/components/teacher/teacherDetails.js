@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { Card, CardContent } from '@material-ui/core';
 import clsx from 'clsx';
@@ -140,7 +140,7 @@ const TeacherBatchDelete = (props) => (
   </Button>
 );
 
-class TeacherDetails extends Component {
+export class TeacherDetails extends Component {
   constructor(props) {
     super(props);
     this.onChangeBatch = this.onChangeBatch.bind(this);
@@ -264,22 +264,6 @@ class TeacherDetails extends Component {
       .catch(function (error) {
         console.log(error);
       });
-
-    // axios
-    //   .get(
-    //     'https://mht-backend.herokuapp.com/teachersBatch/' +
-    //       this.props.match.params.id +
-    //       '/allTeacherBatch'
-    //   )
-    //   .then((response) => {
-    //     this.setState({
-    //       Batchsteacher: response.data.teacher.teacherBatch,
-    //     });
-    //     console.log('teacherBatch: ', this.state);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
 
     axios
       .get(
@@ -1031,7 +1015,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MiniDrawer(props) {
+export function MiniDrawer(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -1147,7 +1131,7 @@ export default function MiniDrawer(props) {
                   <ChevronLeftIcon style={{ marginLeft: '3.8em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link to="/students/addStudent">
+              <Link to="/students/allStudents">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -1183,7 +1167,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/students/allStudents">
+              <Link to="/students/addStudent">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -1222,7 +1206,7 @@ export default function MiniDrawer(props) {
                     </ListItemText>
                   </ListItem>
                 </Link>
-                <Link to="/students/payments/otherPayment">
+                <Link>
                   <ListItem button>
                     <ListItemIcon>
                       <RadioButtonUncheckedIcon />
@@ -1299,7 +1283,7 @@ export default function MiniDrawer(props) {
                   <ChevronLeftIcon style={{ marginLeft: '3.5em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link to="">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -1311,7 +1295,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/reporting/dailyPayment">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -1323,7 +1307,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/reporting/otherPayment">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -1473,3 +1457,5 @@ export default function MiniDrawer(props) {
     </div>
   );
 }
+
+export default withRouter(MiniDrawer);

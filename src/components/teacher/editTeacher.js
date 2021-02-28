@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { Card, CardContent } from '@material-ui/core';
 import clsx from 'clsx';
@@ -28,7 +28,7 @@ import TeacherPhoto from '../../image/teacher/teacherPhoto';
 import TeacherNID from '../../image/teacher/teacherNID';
 import TeacherLastCertificate from '../../image/teacher/teacherlastCertificate';
 
-class EditTeacher extends Component {
+export class EditTeacher extends Component {
   constructor(props) {
     super(props);
 
@@ -283,19 +283,21 @@ class EditTeacher extends Component {
                 sm
                 style={{ marginTop: '10em', marginLeft: '10em' }}
               >
-                <Button
-                  className="btn"
-                  style={{
-                    color: '#2196f3',
-                    border: '1px solid #2196f3',
-                    textTransform: 'none',
-                    fontSize: 18,
-                    marginRight: '3em',
-                    marginLeft: '2em',
-                  }}
-                >
-                  <Link to="/teacher">Cancel</Link>
-                </Button>
+                <Link to="/teacher">
+                  <Button
+                    cclassName="btn"
+                    style={{
+                      color: '#2196f3',
+                      border: '1px solid #2196f3',
+                      textTransform: 'none',
+                      fontSize: 18,
+                      marginRight: '3em',
+                      marginLeft: '2em',
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                </Link>
               </Grid>
               <Grid
                 item
@@ -451,7 +453,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MiniDrawer(props) {
+export function MiniDrawer(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -567,7 +569,7 @@ export default function MiniDrawer(props) {
                   <ChevronLeftIcon style={{ marginLeft: '3.8em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link to="/students/addStudent">
+              <Link to="/students/allStudents">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -603,7 +605,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/students/allStudents">
+              <Link to="/students/addStudent">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -642,7 +644,7 @@ export default function MiniDrawer(props) {
                     </ListItemText>
                   </ListItem>
                 </Link>
-                <Link to="/students/payments/otherPayment">
+                <Link>
                   <ListItem button>
                     <ListItemIcon>
                       <RadioButtonUncheckedIcon />
@@ -719,7 +721,7 @@ export default function MiniDrawer(props) {
                   <ChevronLeftIcon style={{ marginLeft: '3.5em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link to="">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -731,7 +733,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/reporting/dailyPayment">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -743,7 +745,7 @@ export default function MiniDrawer(props) {
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link to="/reporting/otherPayment">
+              <Link>
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
@@ -893,3 +895,5 @@ export default function MiniDrawer(props) {
     </div>
   );
 }
+
+export default withRouter(MiniDrawer);
