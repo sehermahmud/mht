@@ -145,19 +145,6 @@ export class AllStudents extends Component {
   handleInputChange = (event) => {
     const query = event.target.value;
 
-    // this.setState((prevState) => {
-    //   const filteredData = prevState.students.filter((student) => {
-    //     return student.studentFullName
-    //       .toLowerCase()
-    //       .includes(query.toLowerCase());
-    //   });
-
-    //   return {
-    //     query,
-    //     filteredData,
-    //   };
-    // });
-
     this.setState((prevState) => {
       const filteredData = prevState.students.filter((student) => {
         return (
@@ -179,8 +166,6 @@ export class AllStudents extends Component {
       };
     });
   };
-
-  // && student.specialNote
 
   getData = () => {
     fetch('https://mht-backend.herokuapp.com/students/')
@@ -221,29 +206,15 @@ export class AllStudents extends Component {
       });
 
     console.log(this.state);
-
-    // this.getData();
   }
 
   deleteStudent(id) {
     console.log('delete');
   }
 
-  // studentlist() {
-  //   return this.state.students.map((currentStudents) => {
-  //     return (
-  //       <Students
-  //         student={currentStudents}
-  //         deleteStudent={this.deleteStudent}
-  //         key={currentStudents._id}
-  //       />
-  //     );
-  //   });
-  // }
-
   render() {
     const userAttributes = [];
-    this.state.students.forEach((el) => {
+    this.state.students.forEach((el, id) => {
       userAttributes.push({
         StudentName: el.studentFullName,
         StudentNumber: el.studentPhoneNumber,
@@ -307,11 +278,11 @@ export class AllStudents extends Component {
                 textTransform: 'none',
                 fontSize: '0.9em',
               }}
+              data-toggle="modal"
+              data-target="#exampleModal"
             >
               <Typography
                 className="text-decoration-none"
-                data-toggle="modal"
-                data-target="#exampleModal"
                 style={{
                   color: 'white',
                 }}

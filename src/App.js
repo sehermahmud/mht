@@ -41,9 +41,6 @@ function App() {
             <CreateGrade />
           </Route>
           <Route path="/edit/:id" component={EditGrade} />
-          {/* <Route path="/edit/:id">
-            <EditGrade />
-          </Route> */}
           <Route path="/subject">
             <CreateSubject />
           </Route>
