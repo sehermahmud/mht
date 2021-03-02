@@ -247,8 +247,14 @@ class AddStudents extends Component {
     this.setState({ sllabys: e.target.value });
   }
 
-  onChangeStudentSubject(e) {
-    this.setState({ subject: e.target.value });
+  // onChangeStudentSubject(e) {
+  //   this.setState({ subject: e.target.value });
+  // }
+
+  onChangeStudentSubject(newCurrency) {
+    this.setState({
+      subject: newCurrency.value,
+    });
   }
 
   onChangeBatch(e) {
@@ -374,7 +380,7 @@ class AddStudents extends Component {
   }
 
   render() {
-    // const { batchSubject, sllabys, grade, EndDate, Batch } = this.state.batchs;
+    const { batchSubject, sllabys, grade, EndDate, Batch } = this.state.batchs;
 
     const content = this.state.checked ? (
       <div>
@@ -477,7 +483,13 @@ class AddStudents extends Component {
           >
             {this.state.batchs.map((batch) => {
               return (
-                <option key={batch} value={batch}>
+                <option
+                  key={batchSubject}
+                  value={
+                    batchSubject - sllabys - grade - EndDate &&
+                    EndDate.substring(2, 4) - Batch
+                  }
+                >
                   {batch.batchSubject}-{batch.sllabys}-{batch.grade}-
                   {batch.EndDate && batch.EndDate.substring(2, 4)}-{batch.Batch}
                 </option>
