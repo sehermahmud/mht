@@ -204,15 +204,7 @@ export class ActiveStudents extends Component {
       });
 
     console.log(this.state);
-
-    // this.getData();
   }
-
-  // studentlist() {
-  //   return this.state.students.map((currentStudents) => {
-  //     return <Students student={currentStudents} key={currentStudents._id} />;
-  //   });
-  // }
 
   render() {
     const userAttributes = [];

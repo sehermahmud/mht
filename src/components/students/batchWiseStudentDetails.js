@@ -44,8 +44,6 @@ export class ComponentToPrint extends React.Component {
         className="table table-striped table-bordered"
         width="100%"
         style={{
-          // marginLeft: '0.5em',
-          // marginRight: '0.5em',
           marginTop: '0.5em',
           marginBottom: '0.5em',
         }}

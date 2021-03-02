@@ -76,8 +76,6 @@ export class StudentDetails extends Component {
       studentPermentId,
     } = this.state.students;
 
-    // const { batchPrice } = this.state.batch;
-
     return (
       <div style={{ marginTop: '4em' }}>
         <Typography

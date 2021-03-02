@@ -297,65 +297,18 @@ class AddStudents extends Component {
         console.log(this.state.subjects);
       });
 
-    // axios.get('https://mht-backend.herokuapp.com/subjects/').then((response) => {
-    //   if (response.data.length > 0) {
-    //     this.setState({
-    //       batchs: response.data.map(
-    //         (Allbatch) =>
-    //           Allbatch.subject +
-    //           '-' +
-    //           Allbatch.sllabys +
-    //           '-' +
-    //           Allbatch.grade +
-    //           '-' +
-    //           Allbatch.Batch +
-    //           '(' +
-    //           Allbatch.EndDate.substring(0, 10) +
-    //           ' ' +
-    //           '--' +
-    //           ' ' +
-    //           Allbatch.StartDate.substring(0, 10) +
-    //           ')'
-    //       ),
-    //       subject: response.data[0].subject,
-    //       sllabys: response.data[0].sllabys,
-    //       grade: response.data[0].grade,
-    //       Batch: response.data[0].Batch,
-    //       EndDate: response.data[0].EndDate,
-    //       StartDate: response.data[0].StartDate,
-    //     });
-    //   }
-
-    //   console.log(this.state.batchs);
-    // });
-
-    // example in log
-    // this.props.match.params.id
-    // axios
-    //   .get(
-    //     `https://mht-backend.herokuapp.com/subjects/` +
-    //       this.props.match.params.id +
-    //       '/batch'
-    //   )
-    //   .then((response) => {
-    //     if (response.data.length > 0) {
-    //       this.setState({
-    //         batchs: response.data.map((specificBatch) => specificBatch),
-    //       });
-    //     }
-
-    //     console.log(this.state);
-    //   });
-
     axios
-      .get(`https://mht-backend.herokuapp.com/subject/batch`)
+      .get(
+        `https://mht-backend.herokuapp.com/teachersBatch/5f90440a838fe20a3e1520d6/allTeacherBatch`
+      )
       .then((response) => {
-        if (response.data.length > 0) {
+        if (response.data.teacher.teacherBatch.length > 0) {
           this.setState({
-            batchs: response.data.map((subjectBatch) => subjectBatch.Batch),
-            batch: response.data[0],
+            batchs: response.data.teacher.teacherBatch.map((batch) => batch),
           });
         }
+
+        console.log(this.state.batchs);
       });
   }
 
@@ -421,6 +374,8 @@ class AddStudents extends Component {
   }
 
   render() {
+    // const { batchSubject, sllabys, grade, EndDate, Batch } = this.state.batchs;
+
     const content = this.state.checked ? (
       <div>
         <div
@@ -517,9 +472,18 @@ class AddStudents extends Component {
           <select
             className="custom-select mr-sm-2"
             id="inlineFormCustomSelect"
-            // value={this.state.subject}
-            // onChange={this.onChangeStudentSubject}
-          ></select>
+            value={this.state.subject}
+            onChange={this.onChangeStudentSubject}
+          >
+            {this.state.batchs.map((batch) => {
+              return (
+                <option key={batch} value={batch}>
+                  {batch.batchSubject}-{batch.sllabys}-{batch.grade}-
+                  {batch.EndDate && batch.EndDate.substring(2, 4)}-{batch.Batch}
+                </option>
+              );
+            })}
+          </select>
         </div>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker

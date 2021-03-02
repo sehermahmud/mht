@@ -61,8 +61,6 @@ export class EditBatchTeacher extends Component {
     };
   }
 
-  // /:teacherBatchId
-
   componentDidMount() {
     axios
       .get(

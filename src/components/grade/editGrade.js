@@ -77,13 +77,13 @@ export class EditGrade extends Component {
 
     console.log(grade);
 
-    // axios
-    //   .post(
-    //     'https://mht-backend.herokuapp.com/grades/update/' +
-    //       this.props.match.params.id,
-    //     grade
-    //   )
-    //   .then((res) => console.log(res.data));
+    axios
+      .post(
+        'https://mht-backend.herokuapp.com/grades/update/' +
+          this.props.match.params.id,
+        grade
+      )
+      .then((res) => console.log(res.data));
 
     window.location = '/grade';
   }
