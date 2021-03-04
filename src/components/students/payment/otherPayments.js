@@ -20,7 +20,7 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import { Card, CardContent } from '@material-ui/core';
+import { Card, CardContent, Grid } from '@material-ui/core';
 import Spinner from '@atlaskit/spinner';
 import Tooltip from '@atlaskit/tooltip';
 import AsyncSelect from 'react-select/async';
@@ -143,9 +143,88 @@ export class OtherPayments extends Component {
             background: 'white',
           }}
         >
-          <CardContent elevation={3}>
-            <Typography>Student's Information</Typography>
-            <hr style={{ marginBottom: 0, marginTop: 0 }} />
+          <CardContent>
+            <Typography variant="h6">Student Information</Typography>
+            <Grid container direction="row">
+              <Grid item container direction="column" sm>
+                <div
+                  style={{
+                    width: '10em',
+                    height: '10em',
+                    marginTop: '1rem',
+                    display: 'block',
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    marginBottom: '1em',
+                  }}
+                >
+                  <img
+                    src=""
+                    alt="student"
+                    style={{
+                      border: '1px solid black',
+                      width: '10em',
+                      height: '10em',
+                      objectFit: 'cover',
+                      display: 'block',
+                      marginLeft: 'auto',
+                      marginRight: 'auto',
+                    }}
+                  />
+                </div>
+                <div style={{ marginBottom: '1em' }}>
+                  <Typography
+                    style={{
+                      fontSize: 16,
+                      fontWeight: 600,
+                      textAlign: 'center',
+                    }}
+                  >
+                    School Name: test
+                  </Typography>
+                </div>
+              </Grid>
+              <Grid item container direction="column" sm>
+                <div style={{ marginBottom: '1em' }}>
+                  <Typography style={{ fontSize: 16, fontWeight: 600 }}>
+                    Student Name:
+                  </Typography>
+                  <Typography>test</Typography>
+                </div>
+                <div style={{ marginBottom: '1em' }}>
+                  <Typography style={{ fontSize: 16, fontWeight: 600 }}>
+                    Father's Name:
+                  </Typography>
+                  <Typography>test</Typography>
+                </div>
+                <div style={{ marginBottom: '1em' }}>
+                  <Typography style={{ fontSize: 16, fontWeight: 600 }}>
+                    Mother's Name:
+                  </Typography>
+                  <Typography>test</Typography>
+                </div>
+              </Grid>
+              <Grid item container direction="column" sm>
+                <div style={{ marginBottom: '1em' }}>
+                  <Typography style={{ fontSize: 16, fontWeight: 600 }}>
+                    Student's Phone Number:
+                  </Typography>
+                  <Typography>test</Typography>
+                </div>
+                <div style={{ marginBottom: '1em' }}>
+                  <Typography style={{ fontSize: 16, fontWeight: 600 }}>
+                    Guardian's Phone Number:
+                  </Typography>
+                  <Typography>test</Typography>
+                </div>
+                <div style={{ marginBottom: '1em' }}>
+                  <Typography style={{ fontSize: 16, fontWeight: 600 }}>
+                    Email
+                  </Typography>
+                  <Typography>test@gmail.com</Typography>
+                </div>
+              </Grid>
+            </Grid>
           </CardContent>
         </Card>
         <hr
@@ -168,6 +247,9 @@ export class OtherPayments extends Component {
         >
           <CardContent elevation={3}>
             <Typography>Admission Payment Section</Typography>
+            <div className="alert alert-success" role="alert">
+              Admission fee is paid for this student !
+            </div>
           </CardContent>
         </Card>
         <hr
@@ -190,6 +272,65 @@ export class OtherPayments extends Component {
         >
           <CardContent elevation={3}>
             <Typography>Other Payment Section</Typography>
+            <br />
+            <table
+              className="table table-striped table-bordered"
+              cellSpacing="0"
+              width="100%"
+            >
+              <thead>
+                <tr>
+                  <th scope="col" style={{ width: '8em', textAlign: 'center' }}>
+                    Payment Type
+                  </th>
+                  <th scope="col" style={{ width: '4em', textAlign: 'center' }}>
+                    Description
+                  </th>
+                  <th scope="col" style={{ width: '3em', textAlign: 'center' }}>
+                    Amount /=
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Other Fee</td>
+                  <td>
+                    <form>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Description"
+                        />
+                      </div>
+                    </form>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Amount /="
+                      />
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <form>
+              <div class="row">
+                <div class="col"></div>
+                <div class="col">
+                  <button
+                    type="button"
+                    className="btn btn-block btn-lg"
+                    style={{ background: '#39cccc', color: 'white' }}
+                  >
+                    Payment
+                  </button>
+                </div>
+              </div>
+            </form>
           </CardContent>
         </Card>
       </div>
@@ -367,6 +508,8 @@ export default function OtherPayment(props) {
         </Toolbar>
       </AppBar>
       <Drawer
+        onMouseOver={() => handleDrawerOpen(true)}
+        onMouseLeave={handleDrawerClose}
         style={{ background: 'red' }}
         variant="permanent"
         className={clsx(classes.drawer, {

@@ -213,6 +213,8 @@ export default function MiniDrawer() {
         </Toolbar>
       </AppBar>
       <Drawer
+        onMouseOver={() => handleDrawerOpen(true)}
+        onMouseLeave={handleDrawerClose}
         style={{ background: 'red' }}
         variant="permanent"
         className={clsx(classes.drawer, {
