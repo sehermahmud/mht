@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import PropTypes from 'prop-types';
-import { Card, CardContent } from '@material-ui/core';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -20,309 +17,356 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
-import { Button, Grid } from '@material-ui/core';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
-
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import { MDBDataTable } from 'mdbreact';
+import { Card, CardContent } from '@material-ui/core';
 
-import './grade.css';
-
-const Grade = (props) => (
-  <tr>
-    <td></td>
-    <td>{props.grade.grade}</td>
-    <td>{props.grade.description}</td>
-    <td>
-      <Button
-        style={{
-          color: 'white',
-          background: 'linear-gradient(45deg, #e65100 30%, #ff9800 90%)',
-          marginRight: '1em',
-          marginLeft: '1em',
-          marginBottom: '0.1em',
-          marginTop: '0.1em',
-        }}
-      >
-        <Link
-          style={{ color: 'white' }}
-          className="text-decoration-none"
-          to={'/edit/' + props.grade._id}
-        >
-          edit
-        </Link>{' '}
-      </Button>
-      <Button
-        style={{
-          color: 'white',
-          background: 'linear-gradient(45deg, #b71c1c 30%, #f44336 90%)',
-          marginRight: '1em',
-          marginLeft: '1em',
-          marginBottom: '0.1em',
-          marginTop: '0.1em',
-        }}
-        data-toggle="modal"
-        data-target="#exampleModal"
-      >
-        <Typography
-          className="text-decoration-none"
-          data-toggle="modal"
-          data-id="props.grade._id"
-          data-target="#exampleModal"
-          style={{ color: 'white' }}
-        >
-          delete{' '}
-        </Typography>
-      </Button>
-    </td>
-    <div
-      data-id="props.grade._id"
-      className="modal fade"
-      id="exampleModal"
-      tabIndex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div className="modal-dialog modal-dialog-centered">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title" id="exampleModalLabel">
-              Are you sure you want to delete? After that you can not get it
-              back!
-            </h5>
-          </div>
-          <div className="modal-footer">
-            <Button
-              data-dismiss="modal"
-              color="primary"
-              style={{
-                margin: '0.5em',
-                marginRight: '20em',
-                border: '1px solid #2196f3',
-                color: '#2196f3',
-              }}
-            >
-              Cancel
-            </Button>
-            <Button
-              autoFocus
-              style={{
-                margin: '0.5em',
-                background: 'linear-gradient(45deg, #b71c1c 30%, #f44336 90%)',
-              }}
-              onClick={() => {
-                props.deleteGrade(props.grade._id);
-              }}
-            >
-              Delete
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </tr>
-);
-
-export class CreateGrade extends Component {
+export class OthersPaymentReporting extends Component {
   constructor(props) {
     super(props);
 
-    this.onOpen = this.onOpen.bind(this);
-    this.onChangeGrade = this.onChangeGrade.bind(this);
-    this.onChangeDescription = this.onChangeDescription.bind(this);
-    this.onChangeSearch = this.onChangeSearch.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.deleteGrade = this.deleteGrade.bind(this);
-    this.onChangepage = this.onChangepage.bind(this);
-    this.onChangerowPage = this.onChangerowPage.bind(this);
-
     this.state = {
-      grade: '',
-      description: '',
-      grades: [],
-      open: false,
-      search: '',
-      page: 0,
-      rowPage: '',
+      showDailyCollection: false,
+      showDueReporting: false,
+      showDateRangeCollection: false,
+      showMonthlyPaymentStatement: false,
     };
   }
 
-  onChangeSearch(e) {
+  _showDailyCollection = (bool) => {
     this.setState({
-      search: e.target.value,
+      showDailyCollection: bool,
     });
-  }
+  };
 
-  onOpen(e) {
+  _showDueReporting = (bool) => {
     this.setState({
-      open: e.target.value,
+      showDueReporting: bool,
     });
-  }
+  };
 
-  onChangeGrade(e) {
+  _showDateRangeCollection = (bool) => {
     this.setState({
-      grade: e.target.value,
+      showDateRangeCollection: bool,
     });
-  }
+  };
 
-  onChangeDescription(e) {
+  _showMonthlyPaymentStatement = (bool) => {
     this.setState({
-      description: e.target.value,
+      showMonthlyPaymentStatement: bool,
     });
-  }
-
-  onSubmit(e) {
-    e.preventDefault();
-
-    const newGrade = {
-      grade: this.state.grade,
-      description: this.state.description,
-    };
-
-    console.log(newGrade);
-
-    axios
-      .post('https://mht-backend.herokuapp.com/grades/add', newGrade)
-      .then((res) => console.log(res.data));
-
-    // window.location = '/grade';
-    window.location.reload(false);
-  }
-
-  componentDidMount() {
-    axios
-      .get('https://mht-backend.herokuapp.com/grades/')
-      .then((response) => {
-        this.setState({ grades: response.data });
-        console.log(this.state.grades);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  deleteGrade(id) {
-    axios
-      .delete('https://mht-backend.herokuapp.com/grades/' + id)
-      .then((res) => console.log(res.data));
-
-    this.setState({
-      grades: this.state.grades.filter((el) => el._id !== id),
-    });
-
-    window.location.reload(true);
-  }
-
-  onChangepage(e) {
-    this.setState({
-      page: 0,
-    });
-  }
-  onChangerowPage(e) {
-    this.setState({
-      rowPage: +e.target.value,
-    });
-  }
-
-  gradelist() {
-    return this.state.grades.map((currentgrade) => {
-      return (
-        <Grade
-          grade={currentgrade}
-          deleteGrade={this.deleteGrade}
-          key={currentgrade._id}
-        />
-      );
-    });
-  }
+  };
 
   render() {
-    const userAttributes = [];
-    this.state.grades.forEach((el, order) => {
-      userAttributes.push({
-        sl: order + 1,
-        Grade: el.grade,
-        Description: el.description,
-        Action: (
-          <React.Fragment>
-            <Button
-              style={{
-                color: 'white',
-                background: 'linear-gradient(45deg, #e65100 30%, #ff9800 90%)',
-                marginRight: '1em',
-                marginLeft: '1em',
-                marginBottom: '0.1em',
-                marginTop: '0.1em',
-              }}
+    const Content = this.state.showDailyCollection ? (
+      <div>
+        <hr
+          style={{
+            clear: 'both',
+            marginBottom: '1em',
+            marginTop: '1rem',
+            border: '3px solid #00796b',
+            background: '#00796b',
+            color: 'white',
+          }}
+        />
+        <Card
+          style={{
+            marginRight: '1rem',
+            marginLeft: '1rem',
+            borderRadius: 0,
+            background: 'white',
+          }}
+        >
+          <CardContent elevation={3}>
+            <Typography>Choose Reporting Option </Typography>
+            <hr style={{ marginBottom: 0, marginTop: 0 }} />
+            <br />
+            <div>showDailyCollectionshowDailyCollection</div>
+          </CardContent>
+        </Card>
+        <hr
+          style={{
+            clear: 'both',
+            marginBottom: '1em',
+            marginTop: '1rem',
+            border: '3px solid #00796b',
+            background: '#00796b',
+            color: 'white',
+          }}
+        />
+        <Card
+          style={{
+            marginRight: '1rem',
+            marginLeft: '1rem',
+            borderRadius: 0,
+            background: 'white',
+          }}
+        >
+          <CardContent elevation={3}>
+            <Typography>Payment Reporting</Typography>
+            <hr style={{ marginBottom: 0, marginTop: 0 }} />
+            <br />
+          </CardContent>
+        </Card>
+      </div>
+    ) : this.state.showDueReporting ? (
+      <div>
+        <hr
+          style={{
+            clear: 'both',
+            marginBottom: '1em',
+            marginTop: '1rem',
+            border: '3px solid #00796b',
+            background: '#00796b',
+            color: 'white',
+          }}
+        />
+        <Card
+          style={{
+            marginRight: '1rem',
+            marginLeft: '1rem',
+            borderRadius: 0,
+            background: 'white',
+          }}
+        >
+          <CardContent elevation={3}>
+            <Typography>Choose Reporting Option</Typography>
+            <hr style={{ marginBottom: 0, marginTop: 0 }} />
+            <br />
+            <div>showDueReportingshowDueReporting</div>
+          </CardContent>
+        </Card>
+        <hr
+          style={{
+            clear: 'both',
+            marginBottom: '1em',
+            marginTop: '1rem',
+            border: '3px solid #00796b',
+            background: '#00796b',
+            color: 'white',
+          }}
+        />
+        <Card
+          style={{
+            marginRight: '1rem',
+            marginLeft: '1rem',
+            borderRadius: 0,
+            background: 'white',
+          }}
+        >
+          <CardContent elevation={3}>
+            <Typography>Payment Reporting </Typography>
+            <hr style={{ marginBottom: 0, marginTop: 0 }} />
+            <br />
+          </CardContent>
+        </Card>
+      </div>
+    ) : this.state.showDateRangeCollection ? (
+      <div>
+        <hr
+          style={{
+            clear: 'both',
+            marginBottom: '1em',
+            marginTop: '1rem',
+            border: '3px solid #00796b',
+            background: '#00796b',
+            color: 'white',
+          }}
+        />
+        <Card
+          style={{
+            marginRight: '1rem',
+            marginLeft: '1rem',
+            borderRadius: 0,
+            background: 'white',
+          }}
+        >
+          <CardContent elevation={3}>
+            <Typography>Choose Reporting Option </Typography>
+            <hr style={{ marginBottom: 0, marginTop: 0 }} />
+            <br />
+            <div>showDateRangeCollection</div>
+          </CardContent>
+        </Card>
+        <hr
+          style={{
+            clear: 'both',
+            marginBottom: '1em',
+            marginTop: '1rem',
+            border: '3px solid #00796b',
+            background: '#00796b',
+            color: 'white',
+          }}
+        />
+        <Card
+          style={{
+            marginRight: '1rem',
+            marginLeft: '1rem',
+            borderRadius: 0,
+            background: 'white',
+          }}
+        >
+          <CardContent elevation={3}>
+            <Typography>Payment Reporting</Typography>
+            <hr style={{ marginBottom: 0, marginTop: 0 }} />
+            <br />
+          </CardContent>
+        </Card>
+      </div>
+    ) : this.state.showMonthlyPaymentStatement ? (
+      <div>
+        <hr
+          style={{
+            clear: 'both',
+            marginBottom: '1em',
+            marginTop: '1rem',
+            border: '3px solid #00796b',
+            background: '#00796b',
+            color: 'white',
+          }}
+        />
+        <Card
+          style={{
+            marginRight: '1rem',
+            marginLeft: '1rem',
+            borderRadius: 0,
+            background: 'white',
+          }}
+        >
+          <CardContent elevation={3}>
+            <Typography>Choose Reporting Option</Typography>
+            <hr style={{ marginBottom: 0, marginTop: 0 }} />
+            <br />
+            <div>showMonthlyPaymentStatement</div>
+          </CardContent>
+        </Card>
+        <hr
+          style={{
+            clear: 'both',
+            marginBottom: '1em',
+            marginTop: '1rem',
+            border: '3px solid #00796b',
+            background: '#00796b',
+            color: 'white',
+          }}
+        />
+        <Card
+          style={{
+            marginRight: '1rem',
+            marginLeft: '1rem',
+            borderRadius: 0,
+            background: 'white',
+          }}
+        >
+          <CardContent elevation={3}>
+            <Typography>Payment Reporting</Typography>
+            <hr style={{ marginBottom: 0, marginTop: 0 }} />
+            <br />
+          </CardContent>
+        </Card>
+      </div>
+    ) : (
+      <div>
+        <hr
+          style={{
+            clear: 'both',
+            marginBottom: '1em',
+            marginTop: '1rem',
+            border: '3px solid #00796b',
+            background: '#00796b',
+            color: 'white',
+          }}
+        />
+        <Card
+          style={{
+            marginRight: '1rem',
+            marginLeft: '1rem',
+            borderRadius: 0,
+            background: 'white',
+          }}
+        >
+          <CardContent elevation={3}>
+            <Typography>Choose Reporting Option </Typography>
+            <hr style={{ marginBottom: 0, marginTop: 0 }} />
+            <br />
+          </CardContent>
+        </Card>
+        <hr
+          style={{
+            clear: 'both',
+            marginBottom: '1em',
+            marginTop: '1rem',
+            border: '3px solid #00796b',
+            background: '#00796b',
+            color: 'white',
+          }}
+        />
+        <Card
+          style={{
+            marginRight: '1rem',
+            marginLeft: '1rem',
+            borderRadius: 0,
+            background: 'white',
+          }}
+        >
+          <CardContent elevation={3}>
+            <Typography>Payment Reporting</Typography>
+            <br />
+            <table
+              className="table table-striped table-bordered"
+              cellspacing="0"
+              width="100%"
             >
-              <Link
-                style={{ color: 'white' }}
-                className="text-decoration-none"
-                to={'/edit/' + el._id}
-              >
-                edit
-              </Link>{' '}
-            </Button>
-            <Button
-              style={{
-                color: 'white',
-                background: 'linear-gradient(45deg, #b71c1c 30%, #f44336 90%)',
-                marginRight: '1em',
-                marginLeft: '1em',
-                marginBottom: '0.1em',
-                marginTop: '0.1em',
-              }}
-              data-toggle="modal"
-              data-target="#exampleModal"
-            >
-              <Typography
-                className="text-decoration-none"
-                data-toggle="modal"
-                data-id="props.grade._id"
-                data-target="#exampleModal"
-                style={{ color: 'white' }}
-              >
-                delete{' '}
-              </Typography>
-            </Button>
-          </React.Fragment>
-        ),
-      });
-    });
+              <thead className="">
+                <th scope="col" style={{ width: '1em' }}>
+                  Invoice ID
+                </th>
+                <th scope="col" style={{ width: '17em' }}>
+                  Student Permanent ID
+                </th>
+                <th scope="col" style={{ width: '20em' }}>
+                  Student Name
+                </th>
+                <th scope="col" style={{ width: '20em' }}>
+                  Phone Number
+                </th>
+                <th scope="col" style={{ width: '13em' }}>
+                  Payment Date
+                </th>
+                <th scope="col" style={{ width: '20em' }}>
+                  Payment Type
+                </th>
+                <th scope="col" style={{ width: '13em' }}>
+                  Description
+                </th>
+                <th scope="col" style={{ width: '13em' }}>
+                  Total Amount/-
+                </th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>Total:</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </CardContent>
+        </Card>
+      </div>
+    );
 
-    const data = {
-      columns: [
-        {
-          label: 'sl',
-          field: 'sl',
-          sort: 'asc',
-          width: 150,
-        },
-        {
-          label: 'Grade',
-          field: 'Grade',
-          sort: 'asc',
-          width: 270,
-        },
-        {
-          label: 'Description',
-          field: 'Description',
-          sort: 'asc',
-          width: 200,
-        },
-        {
-          label: 'Action',
-          field: 'Action',
-          sort: 'asc',
-          width: 100,
-        },
-      ],
-      rows: userAttributes,
-    };
     return (
-      <div style={{ marginTop: '3em' }}>
+      <div style={{ marginTop: '5em' }}>
         <Typography
+          variant="h5"
           style={{
             marginLeft: '1rem',
             textAlign: 'left',
@@ -330,7 +374,7 @@ export class CreateGrade extends Component {
             color: 'white',
           }}
         >
-          Grade Module
+          Payment Reporting Dashboard
         </Typography>
         <Typography
           style={{
@@ -339,9 +383,10 @@ export class CreateGrade extends Component {
             float: 'right',
             marginRight: '1rem',
             color: 'white',
+            marginBottom: '1rem',
           }}
         >
-          Home-Grade
+          Home - Reporting - Payment Reporting Page
         </Typography>
         <hr
           style={{
@@ -350,6 +395,7 @@ export class CreateGrade extends Component {
             marginTop: '1rem',
             border: '3px solid #00796b',
             background: '#00796b',
+            color: 'white',
           }}
         />
         <Card
@@ -357,126 +403,61 @@ export class CreateGrade extends Component {
             marginRight: '1rem',
             marginLeft: '1rem',
             borderRadius: 0,
-            background: '#f3e5f5',
+            background: 'white',
           }}
         >
           <CardContent elevation={3}>
-            <Typography variant="h6">Create New Grade</Typography>
-            <hr
-              style={{
-                marginRight: '0rem',
-                marginLeft: '0rem',
-                marginTop: '0',
-                marginBottom: '2em',
-                border: '1px solid #009688',
-                background: '#009688',
-              }}
-            />
-            <Grid container direction="row">
-              <Grid item container direction="column" sm>
-                <div className="form-group">
-                  <label style={{ marginLeft: '3em', marginRight: '3em' }}>
-                    Write Grade Name:{' '}
-                  </label>
-                  <input
-                    style={{
-                      marginLeft: '3em',
-                      marginRight: '4em',
-                      width: '500px',
-                    }}
-                    type="text"
-                    required
-                    placeholder="Grade"
-                    className="form-control"
-                    value={this.state.grade}
-                    onChange={this.onChangeGrade}
-                  />
-                </div>
-              </Grid>
-              <Grid item container direction="column" sm>
-                <div className="form-group">
-                  <label style={{ marginLeft: '3em' }}>
-                    Write Grade Description:{' '}
-                  </label>
-                  <input
-                    style={{
-                      marginLeft: '3em',
-                      width: '500px',
-                    }}
-                    type="text"
-                    required
-                    placeholder="Grade Description"
-                    className="form-control"
-                    value={this.state.description}
-                    onChange={this.onChangeDescription}
-                  />
-                </div>
-              </Grid>
-              <Grid
-                item
-                container
-                direction="column"
-                sm
-                style={{ marginTop: '10em' }}
-              >
-                <Button
-                  type="submit"
-                  value="Create Subject"
-                  className="btn btn-danger"
-                  onClick={this.onSubmit}
-                  style={{
-                    background:
-                      'linear-gradient(45deg, #1b5e20 30%, #4caf50 90%)',
-                    color: 'white',
-                    textTransform: 'none',
-                    fontSize: 18,
-                  }}
+            <Typography>Choose Reporting Option</Typography>
+            <hr style={{ marginBottom: 0, marginTop: 0 }} />
+            <div className="form-row" style={{ marginTop: '1em' }}>
+              <div className="form-group col-md-3">
+                <button
+                  type="button"
+                  onClick={this._showDailyCollection.bind(null, true)}
+                  className="btn btn-block btn-lg"
+                  style={{ background: '#00a65a', color: 'white' }}
                 >
-                  Submit
-                </Button>
-              </Grid>
-            </Grid>
+                  <strong>Daily</strong> Collection
+                </button>
+              </div>
+              <div className="form-group col-md-3">
+                <button
+                  type="button"
+                  onClick={this._showDueReporting.bind(null, true)}
+                  className="btn btn-block btn-lg"
+                  style={{ background: '#dd4b39', color: 'white' }}
+                >
+                  <strong>Due</strong> Reporting
+                </button>
+              </div>
+              <div className="form-group col-md-3">
+                <button
+                  type="button"
+                  onClick={this._showDateRangeCollection.bind(null, true)}
+                  className="btn btn-block btn-lg"
+                  style={{ background: '#00c0ef', color: 'white' }}
+                >
+                  <strong>Show Date Range</strong> Collection
+                </button>
+              </div>
+              <div className="form-group col-md-3">
+                <button
+                  type="button"
+                  onClick={this._showMonthlyPaymentStatement.bind(null, true)}
+                  className="btn btn-block btn-lg"
+                  style={{ background: '#f39c12', color: 'white' }}
+                >
+                  <strong>Monthly Payment </strong> Statement
+                </button>
+              </div>
+            </div>
           </CardContent>
         </Card>
-        <br />
-        <hr
-          style={{
-            marginRight: '0rem',
-            marginLeft: '0rem',
-            marginTop: '0',
-            marginBottom: '1.1em',
-            border: '15px solid #4db6ac',
-            background: '#4db6ac',
-          }}
-        />
-        <Card
-          style={{ marginRight: '1rem', marginLeft: '1rem', borderRadius: 0 }}
-        >
-          <CardContent elevation={3}>
-            <Typography variant="h6" style={{}}>
-              Grade List
-            </Typography>
-            <hr
-              style={{
-                marginRight: '0rem',
-                marginLeft: '0rem',
-                marginTop: '0',
-                marginBottom: '1em',
-                border: '1px solid #b2dfdb',
-                background: '#b2dfdb',
-              }}
-            />
-            <MDBDataTable striped bordered data={data} />
-          </CardContent>
-        </Card>
+        {Content}
       </div>
     );
   }
 }
-
-CreateGrade.propTypes = {
-  width: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']).isRequired,
-};
 
 const drawerWidth = 300;
 
@@ -490,7 +471,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    background: 'linear-gradient(45deg, #1565c0 30%, #ec407a 50%, #6a1b9a 90%)',
+    background: 'linear-gradient(45deg, #1565c0 30%, #ffffff 50%, #6a1b9a 90%)',
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -499,7 +480,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    backgroundColor: '#004d40',
+    background: 'linear-gradient(45deg, #1565c0 30%, #ffffff 50%, #6a1b9a 90%)',
   },
   menuButton: {
     marginRight: 36,
@@ -543,7 +524,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(0),
   },
   link: {
     fontFamily: 'Handlee',
@@ -1028,7 +1009,7 @@ export default function MiniDrawer(props) {
         </List>
       </Drawer>
       <main className={classes.content}>
-        <CreateGrade {...props} />
+        <OthersPaymentReporting {...props} />
       </main>
     </div>
   );

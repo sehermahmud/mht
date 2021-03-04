@@ -354,7 +354,9 @@ export default function MiniDrawer() {
                       <RadioButtonUncheckedIcon />
                     </ListItemIcon>
                     <ListItemText>
-                      <a style={{ color: 'white' }}>other payments</a>
+                      <a style={{ color: 'white' }}>
+                        Other's Payment Reportings
+                      </a>
                     </ListItemText>
                   </ListItem>
                 </Link>
@@ -425,7 +427,7 @@ export default function MiniDrawer() {
                     <RadioButtonUncheckedIcon />
                   </ListItemIcon>
                   <ListItemText>
-                    <a style={{ color: 'white' }}>Daily payment</a>
+                    <a style={{ color: 'white' }}>Batch Payment Reporting</a>
                   </ListItemText>
                 </ListItem>
               </Link>
@@ -435,7 +437,7 @@ export default function MiniDrawer() {
                     <RadioButtonUncheckedIcon />
                   </ListItemIcon>
                   <ListItemText>
-                    <a style={{ color: 'white' }}>Other payment</a>
+                    <a style={{ color: 'white' }}>Other's Payment Reporting</a>
                   </ListItemText>
                 </ListItem>
               </Link>

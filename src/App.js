@@ -24,10 +24,11 @@ import BatchWiseStudents from './components/students/batchWiseStudent';
 import BatchWiseStudentDetails from './components/students/batchWiseStudentDetails';
 import TeacherPayment from './components/teacher/teacherPayment';
 import TeacherPaymentDetails from './components/teacher/teacherPaymentDetails';
-
 import StudentTest from './components/students/Studenttest';
-
 import BatchPayments from './components/students/payment/batchPayments';
+import OtherPayments from './components/students/payment/otherPayments';
+import BatchPaymentReporting from './components/reporting/batchPaymentreporting';
+import OthersPaymentReporting from './components/reporting/othersPaymentreporting';
 
 function App() {
   return (
@@ -103,6 +104,15 @@ function App() {
           </Route>
           <Route path="/students/payments/batchPayment">
             <BatchPayments />
+          </Route>
+          <Route path="/students/payments/otherspaymentreporting">
+            <OtherPayments />
+          </Route>
+          <Route path="/reporting/batchpaymentreporting">
+            <BatchPaymentReporting />
+          </Route>
+          <Route path="/reporting/otherspaymentreporting">
+            <OthersPaymentReporting />
           </Route>
         </Switch>
       </div>

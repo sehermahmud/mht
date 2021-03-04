@@ -20,10 +20,180 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import { Card, CardContent } from '@material-ui/core';
+import Spinner from '@atlaskit/spinner';
+import Tooltip from '@atlaskit/tooltip';
+import AsyncSelect from 'react-select/async';
+import { stateOptions } from './docs/data';
 
-export default class OtherPayments extends Component {
+const LoadingIndicator = (props) => {
+  return (
+    <Tooltip content={'Custom Loader'}>
+      <Spinner {...props} delay={0} />
+    </Tooltip>
+  );
+};
+
+const filterColors = (inputValue) =>
+  stateOptions.filter((i) =>
+    i.label.toLowerCase().includes(inputValue.toLowerCase())
+  );
+
+const promiseOptions = (inputValue) =>
+  new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(filterColors(inputValue));
+    }, 1000);
+  });
+
+export class OtherPayments extends Component {
   render() {
-    return <div style={{ marginTop: '4em' }}>otherPayments</div>;
+    return (
+      <div style={{ marginTop: '5em' }}>
+        <Typography
+          variant="h5"
+          style={{
+            marginLeft: '1rem',
+            textAlign: 'left',
+            float: 'left',
+            color: 'white',
+          }}
+        >
+          Payment Dashboard
+        </Typography>
+        <Typography
+          style={{
+            marginLeft: '1rem',
+            textAlign: 'right',
+            float: 'right',
+            marginRight: '1rem',
+            color: 'white',
+            marginBottom: '1rem',
+          }}
+        >
+          Home - Students - Payment - Student Payment Page
+        </Typography>
+        <hr
+          style={{
+            clear: 'both',
+            marginBottom: '1em',
+            marginTop: '1rem',
+            border: '3px solid #00796b',
+            background: '#00796b',
+            color: 'white',
+          }}
+        />
+        <Card
+          style={{
+            marginRight: '1rem',
+            marginLeft: '1rem',
+            borderRadius: 0,
+            background: 'white',
+          }}
+        >
+          <CardContent elevation={3}>
+            <Typography>Search for a Student</Typography>
+            <hr style={{ marginBottom: 0, marginTop: 0 }} />
+            <div className="form-row" style={{ marginTop: '1em' }}>
+              <div className="form-group col-md-4">
+                <AsyncSelect
+                  menuPortalTarget={document.querySelector('body')}
+                  cacheOptions
+                  defaultOptions
+                  loadOptions={promiseOptions}
+                  components={{ LoadingIndicator }}
+                />
+              </div>
+              <div className="form-group col-md-4">
+                <button
+                  type="button"
+                  className="btn btn-block btn-lg"
+                  style={{ background: '#001f3f', color: 'white' }}
+                >
+                  Show Student Info & Admission Status
+                </button>
+              </div>
+              <div className="form-group col-md-4">
+                <button
+                  type="button"
+                  className="btn btn-block btn-lg"
+                  style={{ background: '#39cccc', color: 'white' }}
+                >
+                  Buy Other Equipment
+                </button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <hr
+          style={{
+            clear: 'both',
+            marginBottom: '1em',
+            marginTop: '1rem',
+            border: '3px solid #00796b',
+            background: '#00796b',
+            color: 'white',
+          }}
+        />
+        <Card
+          style={{
+            marginRight: '1rem',
+            marginLeft: '1rem',
+            borderRadius: 0,
+            background: 'white',
+          }}
+        >
+          <CardContent elevation={3}>
+            <Typography>Student's Information</Typography>
+            <hr style={{ marginBottom: 0, marginTop: 0 }} />
+          </CardContent>
+        </Card>
+        <hr
+          style={{
+            clear: 'both',
+            marginBottom: '1em',
+            marginTop: '1rem',
+            border: '3px solid #00796b',
+            background: '#00796b',
+            color: 'white',
+          }}
+        />
+        <Card
+          style={{
+            marginRight: '1rem',
+            marginLeft: '1rem',
+            borderRadius: 0,
+            background: 'white',
+          }}
+        >
+          <CardContent elevation={3}>
+            <Typography>Admission Payment Section</Typography>
+          </CardContent>
+        </Card>
+        <hr
+          style={{
+            clear: 'both',
+            marginBottom: '1em',
+            marginTop: '1rem',
+            border: '3px solid #00796b',
+            background: '#00796b',
+            color: 'white',
+          }}
+        />
+        <Card
+          style={{
+            marginRight: '1rem',
+            marginLeft: '1rem',
+            borderRadius: 0,
+            background: 'white',
+          }}
+        >
+          <CardContent elevation={3}>
+            <Typography>Other Payment Section</Typography>
+          </CardContent>
+        </Card>
+      </div>
+    );
   }
 }
 
@@ -342,14 +512,14 @@ export default function OtherPayment(props) {
                     </ListItemText>
                   </ListItem>
                 </Link>
-                <Link>
+                <Link to="/students/payments/otherspaymentreporting">
                   <ListItem button>
                     <ListItemIcon>
                       <RadioButtonUncheckedIcon />
                     </ListItemIcon>
                     <ListItemText>
                       <Typography style={{ color: 'white' }}>
-                        other payments
+                        Other's Payment Reportings
                       </Typography>
                     </ListItemText>
                   </ListItem>
@@ -419,38 +589,27 @@ export default function OtherPayment(props) {
                   <ChevronLeftIcon style={{ marginLeft: '3.5em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link>
+
+              <Link to="/reporting/batchpaymentreporting">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
                   </ListItemIcon>
                   <ListItemText>
                     <Typography style={{ color: 'white' }}>
-                      Reporting Dashboard
+                      Batch Payment Reporting
                     </Typography>
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link>
+              <Link to="/reporting/otherspaymentreporting">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
                   </ListItemIcon>
                   <ListItemText>
                     <Typography style={{ color: 'white' }}>
-                      Daily payment
-                    </Typography>
-                  </ListItemText>
-                </ListItem>
-              </Link>
-              <Link>
-                <ListItem button>
-                  <ListItemIcon>
-                    <RadioButtonUncheckedIcon />
-                  </ListItemIcon>
-                  <ListItemText>
-                    <Typography style={{ color: 'white' }}>
-                      Other payment
+                      Other's Payment Reporting
                     </Typography>
                   </ListItemText>
                 </ListItem>

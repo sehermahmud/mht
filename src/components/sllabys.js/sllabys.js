@@ -680,14 +680,14 @@ export function MiniDrawer(props) {
                     </ListItemText>
                   </ListItem>
                 </Link>
-                <Link>
+                <Link to="/students/payments/otherspaymentreporting">
                   <ListItem button>
                     <ListItemIcon>
                       <RadioButtonUncheckedIcon />
                     </ListItemIcon>
                     <ListItemText>
                       <Typography style={{ color: 'white' }}>
-                        other payments
+                        Other's Payment Reportings
                       </Typography>
                     </ListItemText>
                   </ListItem>
@@ -757,38 +757,27 @@ export function MiniDrawer(props) {
                   <ChevronLeftIcon style={{ marginLeft: '3.5em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link>
+
+              <Link to="/reporting/batchpaymentreporting">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
                   </ListItemIcon>
                   <ListItemText>
                     <Typography style={{ color: 'white' }}>
-                      Reporting Dashboard
+                      Batch Payment Reporting
                     </Typography>
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link>
+              <Link to="/reporting/otherspaymentreporting">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
                   </ListItemIcon>
                   <ListItemText>
                     <Typography style={{ color: 'white' }}>
-                      Daily payment
-                    </Typography>
-                  </ListItemText>
-                </ListItem>
-              </Link>
-              <Link>
-                <ListItem button>
-                  <ListItemIcon>
-                    <RadioButtonUncheckedIcon />
-                  </ListItemIcon>
-                  <ListItemText>
-                    <Typography style={{ color: 'white' }}>
-                      Other payment
+                      Other's Payment Reporting
                     </Typography>
                   </ListItemText>
                 </ListItem>

@@ -28,8 +28,33 @@ import LocalAtmIcon from '@material-ui/icons/LocalAtm';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import { Button } from '@material-ui/core';
 import { MDBDataTable } from 'mdbreact';
+import axios from 'axios';
 
 export class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      batchs: [],
+    };
+  }
+
+  componentDidMount(id) {
+    axios
+      .get(
+        `https://mht-backend.herokuapp.com/teachersBatch/5f90440a838fe20a3e1520d6/allTeacherBatch`
+      )
+      .then((response) => {
+        if (response.data.teacher.teacherBatch.length > 0) {
+          this.setState({
+            batchs: response.data.teacher.teacherBatch.map((batch) => batch),
+          });
+        }
+
+        console.log(this.state.batchs);
+      });
+  }
+
   render() {
     // const userAttributes = [];
     // this.state.grades.forEach((el, order) => {
@@ -213,9 +238,9 @@ export class Dashboard extends Component {
             sm
             style={{ marginLeft: '0.9em', marginRight: '0.9em' }}
           >
-            <div class="card mb-3" style={{ maxWidth: '340px' }}>
-              <div class="row no-gutters">
-                <div class="col-md-4">
+            <div className="card mb-3" style={{ maxWidth: '340px' }}>
+              <div className="row no-gutters">
+                <div className="col-md-4">
                   <div style={{ backgroundColor: '#001f3f' }}>
                     <PeopleOutlineIcon
                       style={{
@@ -229,8 +254,8 @@ export class Dashboard extends Component {
                     />
                   </div>
                 </div>
-                <div class="col-md-8">
-                  <div class="card-body">
+                <div className="col-md-8">
+                  <div className="card-body">
                     <p>TOTAL NUMBER OF STUDENTS: 0</p>
                     <p>TOTAL NUMBER OF ACTIVE STUDENTS: 0</p>
                     <p>TOTAL NUMBER OF ENGAGED STUDENTS: 0</p>
@@ -246,9 +271,9 @@ export class Dashboard extends Component {
             sm
             style={{ marginLeft: '0.9em', marginRight: '0.9em' }}
           >
-            <div class="card mb-3" style={{ maxWidth: '340px' }}>
-              <div class="row no-gutters">
-                <div class="col-md-4">
+            <div className="card mb-3" style={{ maxWidth: '340px' }}>
+              <div className="row no-gutters">
+                <div className="col-md-4">
                   <div style={{ backgroundColor: '#f39c12' }}>
                     <LocalAtmIcon
                       style={{
@@ -263,8 +288,8 @@ export class Dashboard extends Component {
                     />
                   </div>
                 </div>
-                <div class="col-md-8">
-                  <div class="card-body">
+                <div className="col-md-8">
+                  <div className="card-body">
                     <p>TOTAL EXPECTED AMOUNT: 0</p>
                   </div>
                 </div>
@@ -278,9 +303,9 @@ export class Dashboard extends Component {
             sm
             style={{ marginLeft: '0.9em', marginRight: '0.9em' }}
           >
-            <div class="card mb-3" style={{ maxWidth: '340px' }}>
-              <div class="row no-gutters">
-                <div class="col-md-4">
+            <div className="card mb-3" style={{ maxWidth: '340px' }}>
+              <div className="row no-gutters">
+                <div className="col-md-4">
                   <div style={{ backgroundColor: '#00a65a' }}>
                     <AttachMoneyIcon
                       style={{
@@ -295,8 +320,8 @@ export class Dashboard extends Component {
                     />
                   </div>
                 </div>
-                <div class="col-md-8">
-                  <div class="card-body">
+                <div className="col-md-8">
+                  <div className="card-body">
                     <p>TOTAL PAID AMOUNT: 0</p>
                     <p>TOTAL DISCOUNT AMOUNT: 0</p>
                   </div>
@@ -311,9 +336,9 @@ export class Dashboard extends Component {
             sm
             style={{ marginLeft: '0.9em', marginRight: '0.9em' }}
           >
-            <div class="card mb-3" style={{ maxWidth: '340px' }}>
-              <div class="row no-gutters">
-                <div class="col-md-4">
+            <div className="card mb-3" style={{ maxWidth: '340px' }}>
+              <div className="row no-gutters">
+                <div className="col-md-4">
                   <div style={{ backgroundColor: '#dd4b39' }}>
                     <AttachMoneyIcon
                       style={{
@@ -328,8 +353,8 @@ export class Dashboard extends Component {
                     />
                   </div>
                 </div>
-                <div class="col-md-8">
-                  <div class="card-body">
+                <div className="col-md-8">
+                  <div className="card-body">
                     <p>TOTAL DUE AMOUNT: 0</p>
                   </div>
                 </div>
@@ -684,14 +709,14 @@ export default function MiniDrawer(props) {
                     </ListItemText>
                   </ListItem>
                 </Link>
-                <Link>
+                <Link to="/students/payments/otherspaymentreporting">
                   <ListItem button>
                     <ListItemIcon>
                       <RadioButtonUncheckedIcon />
                     </ListItemIcon>
                     <ListItemText>
                       <Typography style={{ color: 'white' }}>
-                        other payments
+                        Other's Payment Reportings
                       </Typography>
                     </ListItemText>
                   </ListItem>
@@ -761,38 +786,27 @@ export default function MiniDrawer(props) {
                   <ChevronLeftIcon style={{ marginLeft: '3.5em' }} />
                 </ListItemIcon>
               </AccordionSummary>
-              <Link>
+
+              <Link to="/reporting/batchpaymentreporting">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
                   </ListItemIcon>
                   <ListItemText>
                     <Typography style={{ color: 'white' }}>
-                      Reporting Dashboard
+                      Batch Payment Reporting
                     </Typography>
                   </ListItemText>
                 </ListItem>
               </Link>
-              <Link>
+              <Link to="/reporting/otherspaymentreporting">
                 <ListItem button>
                   <ListItemIcon>
                     <RadioButtonUncheckedIcon />
                   </ListItemIcon>
                   <ListItemText>
                     <Typography style={{ color: 'white' }}>
-                      Daily payment
-                    </Typography>
-                  </ListItemText>
-                </ListItem>
-              </Link>
-              <Link>
-                <ListItem button>
-                  <ListItemIcon>
-                    <RadioButtonUncheckedIcon />
-                  </ListItemIcon>
-                  <ListItemText>
-                    <Typography style={{ color: 'white' }}>
-                      Other payment
+                      Other's Payment Reporting
                     </Typography>
                   </ListItemText>
                 </ListItem>
