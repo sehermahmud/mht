@@ -80,10 +80,42 @@ export class OthersPaymentReporting extends Component {
           }}
         >
           <CardContent elevation={3}>
-            <Typography>Choose Reporting Option </Typography>
+            <Typography>Daily Reporting</Typography>
             <hr style={{ marginBottom: 0, marginTop: 0 }} />
             <br />
-            <div>showDailyCollectionshowDailyCollection</div>
+            <div>
+              <h4>Showing Daily Payment Reporting</h4>
+              <table
+                id="dtBasicExample"
+                className="table table-striped table-bordered"
+                width="100%"
+                style={{
+                  marginTop: '0.5em',
+                  marginBottom: '0.5em',
+                }}
+              >
+                <thead>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </CardContent>
         </Card>
         <hr
@@ -105,7 +137,7 @@ export class OthersPaymentReporting extends Component {
           }}
         >
           <CardContent elevation={3}>
-            <Typography>Payment Reporting</Typography>
+            <Typography>Daily Reporting</Typography>
             <hr style={{ marginBottom: 0, marginTop: 0 }} />
             <br />
           </CardContent>
@@ -135,7 +167,7 @@ export class OthersPaymentReporting extends Component {
             <Typography>Choose Reporting Option</Typography>
             <hr style={{ marginBottom: 0, marginTop: 0 }} />
             <br />
-            <div>showDueReportingshowDueReporting</div>
+            <div>showDueReporting</div>
           </CardContent>
         </Card>
         <hr

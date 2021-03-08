@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { renderToString } from 'react-dom/server';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -20,7 +21,293 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import { Card, CardContent } from '@material-ui/core';
+import { Card, CardContent, Button } from '@material-ui/core';
+import { CSVLink } from 'react-csv';
+import jsPDF from 'jspdf';
+import ReactToPrint from 'react-to-print';
+import ReactExport from 'react-export-excel';
+
+const ExcelFile = ReactExport.ExcelFile;
+const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
+const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
+
+const dataSet1 = [];
+
+export class DailyCollectionprint extends Component {
+  render() {
+    return (
+      <table
+        width="100%"
+        style={{
+          marginTop: '0.5em',
+          marginBottom: '0.5em',
+        }}
+      >
+        <thead>
+          <tr>
+            <th style={{ width: '10em' }}>Invoice ID</th>
+            <th style={{ width: '10em' }}>Student Name</th>
+            <th style={{ width: '20em' }}>Batches(name,price,payment for)</th>
+            <th style={{ width: '10em' }}>Discount</th>
+            <th style={{ width: '8em' }}>Pending</th>
+            <th style={{ width: '8em' }}>Paid Amount/-</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    );
+  }
+}
+
+export class DueReportingprint extends Component {
+  render() {
+    return (
+      <table
+        id="dtBasicExample"
+        className="table table-striped table-bordered"
+        width="100%"
+        style={{
+          marginTop: '0.5em',
+          marginBottom: '0.5em',
+        }}
+      >
+        <thead>
+          <tr>
+            <th scope="col" style={{ width: '12em' }}>
+              Student Id
+            </th>
+            <th scope="col" style={{ width: '5em' }}>
+              Student Name
+            </th>
+            <th scope="col" style={{ width: '5em' }}>
+              Student Phone no.
+            </th>
+            <th scope="col" style={{ width: '10em' }}>
+              Guardian's Phone no.
+            </th>
+            <th scope="col" style={{ width: '8em' }}>
+              Batches(name, price, Last Paid Date)
+            </th>
+            <th scope="col" style={{ width: '8em' }}>
+              Total Due /-
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    );
+  }
+}
+
+export class RefundReportingprint extends Component {
+  render() {
+    return (
+      <table
+        id="dtBasicExample"
+        className="table table-striped table-bordered"
+        width="100%"
+        style={{
+          marginTop: '0.5em',
+          marginBottom: '0.5em',
+        }}
+      >
+        <thead>
+          <tr>
+            <th scope="col" style={{ width: '12em' }}>
+              Invoice ID
+            </th>
+            <th scope="col" style={{ width: '5em' }}>
+              Student Name
+            </th>
+            <th scope="col" style={{ width: '5em' }}>
+              Invoice Details(name, price, payment for)
+            </th>
+            <th scope="col" style={{ width: '10em' }}>
+              Paid Amount /-
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    );
+  }
+}
+
+export class DateRangeCollectionprint extends Component {
+  render() {
+    return (
+      <table
+        id="dtBasicExample"
+        className="table table-striped table-bordered"
+        width="100%"
+        style={{
+          marginTop: '0.5em',
+          marginBottom: '0.5em',
+        }}
+      >
+        <thead>
+          <tr>
+            <th scope="col" style={{ width: '12em' }}>
+              Invoice ID
+            </th>
+            <th scope="col" style={{ width: '5em' }}>
+              Student Name
+            </th>
+            <th scope="col" style={{ width: '5em' }}>
+              Batches(name,price,payment for)
+            </th>
+            <th scope="col" style={{ width: '10em' }}>
+              Discount
+            </th>
+            <th scope="col" style={{ width: '8em' }}>
+              Pending
+            </th>
+            <th scope="col" style={{ width: '8em' }}>
+              Paid Amount/-
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    );
+  }
+}
+
+export class MonthlyPaymentStatementprint extends Component {
+  render() {
+    return (
+      <table
+        id="dtBasicExample"
+        className="table table-striped table-bordered"
+        width="100%"
+        style={{
+          marginTop: '0.5em',
+          marginBottom: '0.5em',
+        }}
+      >
+        <thead>
+          <tr>
+            <th scope="col" style={{ width: '12em' }}>
+              Invoice ID
+            </th>
+            <th scope="col" style={{ width: '5em' }}>
+              Student Name
+            </th>
+            <th scope="col" style={{ width: '5em' }}>
+              Payment for
+            </th>
+            <th scope="col" style={{ width: '5em' }}>
+              Batch name
+            </th>
+            <th scope="col" style={{ width: '10em' }}>
+              Discount
+            </th>
+            <th scope="col" style={{ width: '8em' }}>
+              Pending
+            </th>
+            <th scope="col" style={{ width: '8em' }}>
+              Paid Amount/-
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    );
+  }
+}
+
+export class MonthlyDueStatementprint extends Component {
+  render() {
+    return (
+      <table
+        id="dtBasicExample"
+        className="table table-striped table-bordered"
+        width="100%"
+        style={{
+          marginTop: '0.5em',
+          marginBottom: '0.5em',
+        }}
+      >
+        <thead>
+          <tr>
+            <th scope="col" style={{ width: '12em' }}>
+              Student Id
+            </th>
+            <th scope="col" style={{ width: '5em' }}>
+              Student Name
+            </th>
+            <th scope="col" style={{ width: '5em' }}>
+              Student Phone no.
+            </th>
+            <th scope="col" style={{ width: '10em' }}>
+              Guardian's Phone no.
+            </th>
+            <th scope="col" style={{ width: '8em' }}>
+              Batches(name, price, Last Paid Date)
+            </th>
+            <th scope="col" style={{ width: '8em' }}>
+              Total Due /-
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    );
+  }
+}
 
 export class BatchPaymentReporting extends Component {
   constructor(props) {
@@ -36,52 +323,109 @@ export class BatchPaymentReporting extends Component {
     };
   }
 
-  _showDailyCollection = (bool) => {
+  _showDailyCollection = () => {
     this.setState({
-      showDailyCollection: bool,
+      showDailyCollection: true,
+      showDueReporting: false,
+      showRefundReporting: false,
+      showDateRangeCollection: false,
+      showMonthlyPaymentStatement: false,
+      showMonthlyDueStatement: false,
     });
   };
 
-  _showDueReporting = (bool) => {
+  _showDueReporting = () => {
     this.setState({
-      showDueReporting: bool,
+      showDailyCollection: false,
+      showDueReporting: true,
+      showRefundReporting: false,
+      showDateRangeCollection: false,
+      showMonthlyPaymentStatement: false,
+      showMonthlyDueStatement: false,
     });
   };
 
-  _showRefundReporting = (bool) => {
+  _showRefundReporting = () => {
     this.setState({
-      showRefundReporting: bool,
+      showDailyCollection: false,
+      showDueReporting: false,
+      showRefundReporting: true,
+      showDateRangeCollection: false,
+      showMonthlyPaymentStatement: false,
+      showMonthlyDueStatement: false,
     });
   };
 
-  _showDateRangeCollection = (bool) => {
+  _showDateRangeCollection = () => {
     this.setState({
-      showDateRangeCollection: bool,
+      showDailyCollection: false,
+      showDueReporting: false,
+      showRefundReporting: false,
+      showDateRangeCollection: true,
+      showMonthlyPaymentStatement: false,
+      showMonthlyDueStatement: false,
     });
   };
 
-  _showMonthlyPaymentStatement = (bool) => {
+  _showMonthlyPaymentStatement = () => {
     this.setState({
-      showMonthlyPaymentStatement: bool,
+      showDailyCollection: false,
+      showDueReporting: false,
+      showRefundReporting: false,
+      showDateRangeCollection: false,
+      showMonthlyPaymentStatement: true,
+      showMonthlyDueStatement: false,
     });
   };
 
-  _showMonthlyDueStatement = (bool) => {
+  _showMonthlyDueStatement = () => {
     this.setState({
-      showMonthlyDueStatement: bool,
+      showDailyCollection: false,
+      showDueReporting: false,
+      showRefundReporting: false,
+      showDateRangeCollection: false,
+      showMonthlyPaymentStatement: false,
+      showMonthlyDueStatement: true,
     });
   };
 
   render() {
+    const csvData = [
+      {
+        InvoiceID: '',
+        StudentName: '',
+        BatchesNamePricePayment: '',
+        Discount: '',
+        Pending: '',
+        PaidAmount: '',
+      },
+    ];
+
+    const generatePDF = () => {
+      const string = renderToString(<DailyCollectionprint />);
+      const pdf = new jsPDF('p', 'mm', 'a4');
+
+      pdf.fromHTML(string);
+      pdf.save('paymentreporting');
+    };
+
+    const generatePDF1 = () => {
+      const string = renderToString(<DueReportingprint />);
+      const pdf = new jsPDF('p', 'mm', 'a4');
+
+      pdf.fromHTML(string);
+      pdf.save('paymentreporting');
+    };
+
     const Content = this.state.showDailyCollection ? (
       <div>
         <hr
           style={{
             clear: 'both',
-            marginBottom: '1em',
-            marginTop: '1rem',
-            border: '3px solid #00796b',
-            background: '#00796b',
+            marginBottom: 0,
+            marginTop: '1em',
+            border: '3px solid #00a65a',
+            background: '#00a65a',
             color: 'white',
           }}
         />
@@ -94,19 +438,313 @@ export class BatchPaymentReporting extends Component {
           }}
         >
           <CardContent elevation={3}>
-            <Typography>Choose Reporting Option </Typography>
+            <Typography>Daily Reporting</Typography>
             <hr style={{ marginBottom: 0, marginTop: 0 }} />
             <br />
-            <div>showDailyCollectionshowDailyCollection</div>
+            <div>
+              <h4>Showing Daily Payment Reporting</h4>
+            </div>
           </CardContent>
         </Card>
         <hr
           style={{
             clear: 'both',
-            marginBottom: '1em',
+            marginBottom: 0,
             marginTop: '1rem',
-            border: '3px solid #00796b',
-            background: '#00796b',
+            border: '3px solid #00a65a',
+            background: '#00a65a',
+            color: 'white',
+          }}
+        />
+        <Card
+          style={{
+            marginRight: '1rem',
+            marginLeft: '1rem',
+            borderRadius: 0,
+            background: 'white',
+          }}
+        >
+          <CardContent elevation={3}>
+            <Typography>Daily Reporting</Typography>
+            <hr style={{ marginBottom: 0, marginTop: 0 }} />
+            <br />
+            <div style={{ margin: 0 }}>
+              <Button
+                elevation={1}
+                variant="contained"
+                style={{
+                  marginLeft: '0.3em',
+                  marginRight: '0.3em',
+                  marginTop: '0.3em',
+                  marginBotton: '0.3em',
+                }}
+              >
+                <CSVLink
+                  data={csvData}
+                  style={{ color: 'black', textDecoration: 'none' }}
+                >
+                  CSV
+                </CSVLink>
+              </Button>
+              <ExcelFile
+                element={
+                  <Button
+                    elevation={1}
+                    variant="contained"
+                    style={{
+                      marginLeft: '0.3em',
+                      marginRight: '0.3em',
+                      marginTop: '0.3em',
+                      marginBotton: '0.3em',
+                      textTransform: 'none',
+                    }}
+                  >
+                    Excel
+                  </Button>
+                }
+              >
+                <ExcelSheet data={dataSet1} name="Employees">
+                  <ExcelColumn label="Invoice ID" value="id" />
+                  <ExcelColumn
+                    label="Student Name Discount"
+                    value="StudentName"
+                  />
+                  <ExcelColumn
+                    label="Batches(name, price, payment for)"
+                    value="BatchesNamePricePayment"
+                  />
+                  <ExcelColumn label="Discount" value="Discount" />
+                  <ExcelColumn label="Pending" value="Pending" />
+                  <ExcelColumn label="Paid Amount /-" value="PaidAmount" />
+                </ExcelSheet>
+              </ExcelFile>
+              <Button
+                elevation={1}
+                style={{
+                  marginLeft: '0.3em',
+                  marginRight: '0.3em',
+                  marginTop: '0.3em',
+                  marginBotton: '0.3em',
+                }}
+                variant="contained"
+                onClick={generatePDF}
+              >
+                PDF
+              </Button>
+              <ReactToPrint
+                trigger={() => (
+                  <Button
+                    elevation={1}
+                    style={{
+                      marginLeft: '0.3em',
+                      marginRight: '0.3em',
+                      marginTop: '0.3em',
+                      marginBotton: '0.3em',
+                      textTransform: 'none',
+                    }}
+                    variant="contained"
+                  >
+                    <Typography
+                      style={{ color: 'black', textDecoration: 'none' }}
+                      href="#"
+                    >
+                      Print
+                    </Typography>
+                  </Button>
+                )}
+                content={() => this.dailyCollectionComponentRef}
+              />
+            </div>
+            <br />
+            <DailyCollectionprint
+              ref={(el) => (this.dailyCollectionComponentRef = el)}
+            />
+          </CardContent>
+        </Card>
+      </div>
+    ) : null;
+
+    const Content1 = this.state.showDueReporting ? (
+      <div>
+        <hr
+          style={{
+            clear: 'both',
+            marginBottom: '0',
+            marginTop: '1rem',
+            border: '3px solid #dd4b39',
+            background: '#dd4b39',
+            color: 'white',
+          }}
+        />
+        <Card
+          style={{
+            marginRight: '1rem',
+            marginLeft: '1rem',
+            borderRadius: 0,
+            background: 'white',
+          }}
+        >
+          <CardContent elevation={3}>
+            <Typography>Due Reporting</Typography>
+            <hr style={{ marginBottom: 0, marginTop: 0 }} />
+            <br />
+            <h4>Showing Due Payment Reporting</h4>
+          </CardContent>
+        </Card>
+        <hr
+          style={{
+            clear: 'both',
+            marginBottom: '0',
+            marginTop: '1rem',
+            border: '3px solid #dd4b39',
+            background: '#dd4b39',
+            color: 'white',
+          }}
+        />
+        <Card
+          style={{
+            marginRight: '1rem',
+            marginLeft: '1rem',
+            borderRadius: 0,
+            background: 'white',
+          }}
+        >
+          <CardContent elevation={3}>
+            <Typography>Due Reporting</Typography>
+            <hr style={{ marginBottom: 0, marginTop: 0 }} />
+            <br />
+            <div style={{ margin: 0 }}>
+              <Button
+                elevation={1}
+                variant="contained"
+                style={{
+                  marginLeft: '0.3em',
+                  marginRight: '0.3em',
+                  marginTop: '0.3em',
+                  marginBotton: '0.3em',
+                }}
+              >
+                <CSVLink
+                  data={csvData}
+                  style={{ color: 'black', textDecoration: 'none' }}
+                >
+                  CSV
+                </CSVLink>
+              </Button>
+              <ExcelFile
+                element={
+                  <Button
+                    elevation={1}
+                    variant="contained"
+                    style={{
+                      marginLeft: '0.3em',
+                      marginRight: '0.3em',
+                      marginTop: '0.3em',
+                      marginBotton: '0.3em',
+                      textTransform: 'none',
+                    }}
+                  >
+                    Excel
+                  </Button>
+                }
+              >
+                <ExcelSheet data={dataSet1} name="Employees">
+                  <ExcelColumn label="Student Id" value="id" />
+                  <ExcelColumn label="Student Name" value="name" />
+                  <ExcelColumn
+                    label="Student Phone no."
+                    value="StudentNumber"
+                  />
+                  <ExcelColumn
+                    label="Guardian's Phone no."
+                    value="Guardian's Phone no"
+                  />
+                  <ExcelColumn
+                    label="Batches(name, price, Last Paid Date)"
+                    value="Batches(name, price, Last Paid Date)"
+                  />
+                  <ExcelColumn label="Total Due /-" value="Total Due /-" />
+                </ExcelSheet>
+              </ExcelFile>
+              <Button
+                elevation={1}
+                style={{
+                  marginLeft: '0.3em',
+                  marginRight: '0.3em',
+                  marginTop: '0.3em',
+                  marginBotton: '0.3em',
+                }}
+                variant="contained"
+                onClick={generatePDF1}
+              >
+                PDF
+              </Button>
+              <ReactToPrint
+                trigger={() => (
+                  <Button
+                    elevation={1}
+                    style={{
+                      marginLeft: '0.3em',
+                      marginRight: '0.3em',
+                      marginTop: '0.3em',
+                      marginBotton: '0.3em',
+                      textTransform: 'none',
+                    }}
+                    variant="contained"
+                  >
+                    <Typography
+                      style={{ color: 'black', textDecoration: 'none' }}
+                      href="#"
+                    >
+                      Print
+                    </Typography>
+                  </Button>
+                )}
+                content={() => this.dueReportingComponentRef}
+              />
+            </div>
+            <br />
+            <DueReportingprint
+              ref={(el) => (this.dueReportingComponentRef = el)}
+            />
+          </CardContent>
+        </Card>
+      </div>
+    ) : null;
+
+    const Content2 = this.state.showRefundReporting ? (
+      <div>
+        <hr
+          style={{
+            clear: 'both',
+            marginBottom: 0,
+            marginTop: '1rem',
+            border: '3px solid #3c8dbc',
+            background: '#3c8dbc',
+            color: 'white',
+          }}
+        />
+        <Card
+          style={{
+            marginRight: '1rem',
+            marginLeft: '1rem',
+            borderRadius: 0,
+            background: 'white',
+          }}
+        >
+          <CardContent elevation={3}>
+            <Typography>Monthly Refund Statement</Typography>
+            <hr style={{ marginBottom: 0, marginTop: 0 }} />
+            <br />
+          </CardContent>
+        </Card>
+        <hr
+          style={{
+            clear: 'both',
+            marginBottom: 0,
+            marginTop: '1rem',
+            border: '3px solid #3c8dbc',
+            background: '#3c8dbc',
             color: 'white',
           }}
         />
@@ -125,119 +763,17 @@ export class BatchPaymentReporting extends Component {
           </CardContent>
         </Card>
       </div>
-    ) : this.state.showDueReporting ? (
+    ) : null;
+
+    const Content3 = this.state.showDateRangeCollection ? (
       <div>
         <hr
           style={{
             clear: 'both',
-            marginBottom: '1em',
+            marginBottom: 0,
             marginTop: '1rem',
-            border: '3px solid #00796b',
-            background: '#00796b',
-            color: 'white',
-          }}
-        />
-        <Card
-          style={{
-            marginRight: '1rem',
-            marginLeft: '1rem',
-            borderRadius: 0,
-            background: 'white',
-          }}
-        >
-          <CardContent elevation={3}>
-            <Typography>Choose Reporting Option </Typography>
-            <hr style={{ marginBottom: 0, marginTop: 0 }} />
-            <br />
-            <div>showDueReportingshowDueReporting</div>
-          </CardContent>
-        </Card>
-        <hr
-          style={{
-            clear: 'both',
-            marginBottom: '1em',
-            marginTop: '1rem',
-            border: '3px solid #00796b',
-            background: '#00796b',
-            color: 'white',
-          }}
-        />
-        <Card
-          style={{
-            marginRight: '1rem',
-            marginLeft: '1rem',
-            borderRadius: 0,
-            background: 'white',
-          }}
-        >
-          <CardContent elevation={3}>
-            <Typography>Payment Reporting</Typography>
-            <hr style={{ marginBottom: 0, marginTop: 0 }} />
-            <br />
-          </CardContent>
-        </Card>
-      </div>
-    ) : this.state.showRefundReporting ? (
-      <div>
-        <hr
-          style={{
-            clear: 'both',
-            marginBottom: '1em',
-            marginTop: '1rem',
-            border: '3px solid #00796b',
-            background: '#00796b',
-            color: 'white',
-          }}
-        />
-        <Card
-          style={{
-            marginRight: '1rem',
-            marginLeft: '1rem',
-            borderRadius: 0,
-            background: 'white',
-          }}
-        >
-          <CardContent elevation={3}>
-            <Typography>Choose Reporting Option</Typography>
-            <hr style={{ marginBottom: 0, marginTop: 0 }} />
-            <br />
-            <div>showRefundReporting</div>
-          </CardContent>
-        </Card>
-        <hr
-          style={{
-            clear: 'both',
-            marginBottom: '1em',
-            marginTop: '1rem',
-            border: '3px solid #00796b',
-            background: '#00796b',
-            color: 'white',
-          }}
-        />
-        <Card
-          style={{
-            marginRight: '1rem',
-            marginLeft: '1rem',
-            borderRadius: 0,
-            background: 'white',
-          }}
-        >
-          <CardContent elevation={3}>
-            <Typography>Payment Reporting</Typography>
-            <hr style={{ marginBottom: 0, marginTop: 0 }} />
-            <br />
-          </CardContent>
-        </Card>
-      </div>
-    ) : this.state.showDateRangeCollection ? (
-      <div>
-        <hr
-          style={{
-            clear: 'both',
-            marginBottom: '1em',
-            marginTop: '1rem',
-            border: '3px solid #00796b',
-            background: '#00796b',
+            border: '3px solid #00c0ef',
+            background: '#00c0ef',
             color: 'white',
           }}
         />
@@ -259,10 +795,10 @@ export class BatchPaymentReporting extends Component {
         <hr
           style={{
             clear: 'both',
-            marginBottom: '1em',
+            marginBottom: 0,
             marginTop: '1rem',
-            border: '3px solid #00796b',
-            background: '#00796b',
+            border: '3px solid #00c0ef',
+            background: '#00c0ef',
             color: 'white',
           }}
         />
@@ -281,15 +817,17 @@ export class BatchPaymentReporting extends Component {
           </CardContent>
         </Card>
       </div>
-    ) : this.state.showMonthlyPaymentStatement ? (
+    ) : null;
+
+    const Content4 = this.state.showMonthlyPaymentStatement ? (
       <div>
         <hr
           style={{
             clear: 'both',
-            marginBottom: '1em',
+            marginBottom: '0',
             marginTop: '1rem',
-            border: '3px solid #00796b',
-            background: '#00796b',
+            border: '3px solid #f39c12',
+            background: '#f39c12',
             color: 'white',
           }}
         />
@@ -311,10 +849,10 @@ export class BatchPaymentReporting extends Component {
         <hr
           style={{
             clear: 'both',
-            marginBottom: '1em',
+            marginBottom: '0',
             marginTop: '1rem',
-            border: '3px solid #00796b',
-            background: '#00796b',
+            border: '3px solid #f39c12',
+            background: '#f39c12',
             color: 'white',
           }}
         />
@@ -333,15 +871,17 @@ export class BatchPaymentReporting extends Component {
           </CardContent>
         </Card>
       </div>
-    ) : this.state.showMonthlyDueStatement ? (
+    ) : null;
+
+    const Content5 = this.state.showMonthlyDueStatement ? (
       <div>
         <hr
           style={{
             clear: 'both',
-            marginBottom: '1em',
+            marginBottom: '0',
             marginTop: '1rem',
-            border: '3px solid #00796b',
-            background: '#00796b',
+            border: '3px solid #dd4b39',
+            background: '#dd4b39',
             color: 'white',
           }}
         />
@@ -363,10 +903,10 @@ export class BatchPaymentReporting extends Component {
         <hr
           style={{
             clear: 'both',
-            marginBottom: '1em',
+            marginBottom: '0',
             marginTop: '1rem',
-            border: '3px solid #00796b',
-            background: '#00796b',
+            border: '3px solid #dd4b39',
+            background: '#dd4b39',
             color: 'white',
           }}
         />
@@ -385,58 +925,7 @@ export class BatchPaymentReporting extends Component {
           </CardContent>
         </Card>
       </div>
-    ) : (
-      <div>
-        <hr
-          style={{
-            clear: 'both',
-            marginBottom: '1em',
-            marginTop: '1rem',
-            border: '3px solid #00796b',
-            background: '#00796b',
-            color: 'white',
-          }}
-        />
-        <Card
-          style={{
-            marginRight: '1rem',
-            marginLeft: '1rem',
-            borderRadius: 0,
-            background: 'white',
-          }}
-        >
-          <CardContent elevation={3}>
-            <Typography>Choose Reporting Option</Typography>
-            <hr style={{ marginBottom: 0, marginTop: 0 }} />
-            <br />
-          </CardContent>
-        </Card>
-        <hr
-          style={{
-            clear: 'both',
-            marginBottom: '1em',
-            marginTop: '1rem',
-            border: '3px solid #00796b',
-            background: '#00796b',
-            color: 'white',
-          }}
-        />
-        <Card
-          style={{
-            marginRight: '1rem',
-            marginLeft: '1rem',
-            borderRadius: 0,
-            background: 'white',
-          }}
-        >
-          <CardContent elevation={3}>
-            <Typography>Payment Reporting </Typography>
-            <hr style={{ marginBottom: 0, marginTop: 0 }} />
-            <br />
-          </CardContent>
-        </Card>
-      </div>
-    );
+    ) : null;
 
     return (
       <div style={{ marginTop: '5em' }}>
@@ -549,6 +1038,11 @@ export class BatchPaymentReporting extends Component {
           </CardContent>
         </Card>
         {Content}
+        {Content1}
+        {Content2}
+        {Content3}
+        {Content4}
+        {Content5}
       </div>
     );
   }
