@@ -27,8 +27,8 @@ import TeacherPaymentDetails from './components/teacher/teacherPaymentDetails';
 import StudentTest from './components/students/Studenttest';
 import BatchPayments from './components/students/payment/batchPayments';
 import OtherPayments from './components/students/payment/otherPayments';
-import BatchPaymentReporting from './components/reporting/batchPaymentreporting';
-import OthersPaymentReporting from './components/reporting/othersPaymentreporting';
+import BatchPaymentReporting from './components/reporting/batchPaymentNav';
+import OthersPaymentReporting from './components/reporting/othersPaymentNav';
 
 function App() {
   return (
