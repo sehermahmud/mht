@@ -318,6 +318,12 @@ export default class BatchPaymentReporting extends Component {
     this.onChangeToDateRangeCollectionDate = this.onChangeToDateRangeCollectionDate.bind(
       this
     );
+    this.onChangePaymentMonthDate = this.onChangePaymentMonthDate.bind(
+      this
+    );
+    this.onChangeMonthlyDueStatement = this.onChangeMonthlyDueStatement.bind(
+      this
+    );
 
     this.state = {
       showDailyCollection: false,
@@ -331,6 +337,10 @@ export default class BatchPaymentReporting extends Component {
       fromDateRangeCollectionDate: new Date(),
       toDateRangeCollectionDate: new Date(),
       showDateRangeCollectionStatement: false,
+      paymentMonthDate: new Date(),
+      showMonthlyPayment: false,
+      monthlyDueStatement: new Date(),
+      showMonthlyDue: false
     };
   }
 
@@ -342,6 +352,10 @@ export default class BatchPaymentReporting extends Component {
       showDateRangeCollection: false,
       showMonthlyPaymentStatement: false,
       showMonthlyDueStatement: false,
+      showMonthlyRefundStatement: false,
+      showDateRangeCollectionStatement: false,
+      showMonthlyPayment: false,
+      showMonthlyDue: false
     });
   };
 
@@ -353,6 +367,10 @@ export default class BatchPaymentReporting extends Component {
       showDateRangeCollection: false,
       showMonthlyPaymentStatement: false,
       showMonthlyDueStatement: false,
+      showMonthlyRefundStatement: false,
+      showDateRangeCollectionStatement: false,
+      showMonthlyPayment: false,
+      showMonthlyDue: false
     });
   };
 
@@ -364,6 +382,10 @@ export default class BatchPaymentReporting extends Component {
       showDateRangeCollection: false,
       showMonthlyPaymentStatement: false,
       showMonthlyDueStatement: false,
+      showMonthlyRefundStatement: false,
+      showDateRangeCollectionStatement: false,
+      showMonthlyPayment: false,
+      showMonthlyDue: false
     });
   };
 
@@ -375,6 +397,10 @@ export default class BatchPaymentReporting extends Component {
       showDateRangeCollection: true,
       showMonthlyPaymentStatement: false,
       showMonthlyDueStatement: false,
+      showMonthlyRefundStatement: false,
+      showDateRangeCollectionStatement: false,
+      showMonthlyPayment: false,
+      showMonthlyDue: false
     });
   };
 
@@ -386,6 +412,10 @@ export default class BatchPaymentReporting extends Component {
       showDateRangeCollection: false,
       showMonthlyPaymentStatement: true,
       showMonthlyDueStatement: false,
+      showMonthlyRefundStatement: false,
+      showDateRangeCollectionStatement: false,
+      showMonthlyPayment: false,
+      showMonthlyDue: false
     });
   };
 
@@ -397,6 +427,10 @@ export default class BatchPaymentReporting extends Component {
       showDateRangeCollection: false,
       showMonthlyPaymentStatement: false,
       showMonthlyDueStatement: true,
+      showMonthlyRefundStatement: false,
+      showDateRangeCollectionStatement: false,
+      showMonthlyPayment: false,
+      showMonthlyDue: false
     });
   };
 
@@ -421,14 +455,50 @@ export default class BatchPaymentReporting extends Component {
   _showMonthlyRefundStatement = () => {
     this.setState({
       showMonthlyRefundStatement: true,
+      showDateRangeCollectionStatement: false,
+      showMonthlyPayment: false,
+      showMonthlyDue: false
     });
   };
 
   _showDateRangeCollectionStatement = () => {
     this.setState({
+      showMonthlyRefundStatement: false,
       showDateRangeCollectionStatement: true,
+      showMonthlyPayment: false,
+      showMonthlyDue: false
     });
   };
+
+  _showMonthlyPayment = () => {
+    this.setState({
+      showMonthlyRefundStatement: false,
+      showDateRangeCollectionStatement: false,
+      showMonthlyPayment: true,
+      showMonthlyDue: false
+    });
+  };
+
+  onChangePaymentMonthDate(date) {
+    this.setState({
+      paymentMonthDate: date,
+    });
+  }
+
+  _showMonthlyDue = () => {
+    this.setState({
+      showMonthlyRefundStatement: false,
+      showDateRangeCollectionStatement: false,
+      showMonthlyPayment: false,
+      showMonthlyDue: true
+    });
+  };
+
+  onChangeMonthlyDueStatement(date) {
+    this.setState({
+      monthlyDueStatement: date,
+    });
+  }
 
   render() {
     const csvData = [
@@ -472,6 +542,29 @@ export default class BatchPaymentReporting extends Component {
         Discount: '',
         Pending: '',
         PaidAmount: '',
+      },
+    ];
+
+    const csvData4 = [
+      {
+        InvoiceID: '',
+        StudentName: '',
+        PaymentFor: '',
+        BatchName: '',
+        Discount: '',
+        Pending: '',
+        PaidAmount: ''
+      },
+    ];
+
+    const csvData5 = [
+      {
+        StudentId: '',
+        StudentName: '',
+        StudentPhoneNumber: '',
+        GuardiansPhoneNumber: '',
+        BatchesNamePriceLastpaidDate: '',
+        TotalDue: ''
       },
     ];
 
@@ -555,6 +648,53 @@ export default class BatchPaymentReporting extends Component {
             'Discount',
             'Pending',
             'Paid Amount/-',
+          ],
+        ],
+        body: [
+          ['', '', '', '', '', ''],
+          // ...
+        ],
+      });
+      pdf.save('DateRangeCollection');
+    };
+
+    const generatePDF4 = () => {
+      const pdf = new jsPDF();
+
+      pdf.autoTable({
+        theme: 'plain',
+        head: [
+          [
+            'Invoice ID',
+            'Student Name',
+            'Payment for',
+            'Batch name',
+            'Discount',
+            'Pending',
+            'Paid Amount/-',
+          ],
+        ],
+        body: [
+          ['', '', '', '', '', '', ''],
+          // ...
+        ],
+      });
+      pdf.save('DateRangeCollection');
+    };
+
+    const generatePDF5 = () => {
+      const pdf = new jsPDF();
+
+      pdf.autoTable({
+        theme: 'plain',
+        head: [
+          [
+            'Invoice ID',
+            'Student Name',
+            'Student Phone no.',
+            'Guardians Phone no.',
+            'Batches(name, price, Last Paid Date)',
+            'Total Due /-'
           ],
         ],
         body: [
@@ -693,7 +833,7 @@ export default class BatchPaymentReporting extends Component {
           }
         >
           <ExcelColumn label="Invoice ID" value="id" />
-          <ExcelColumn label="Student Name Discount" value="StudentName" />
+          <ExcelColumn label="Student Name" value="StudentName" />
           <ExcelColumn
             label="Batches(name, price, payment for)"
             value="BatchesNamePricePayment"
@@ -741,6 +881,181 @@ export default class BatchPaymentReporting extends Component {
         <br />
         <DateRangeCollectionprint
           ref={(el) => (this.dateRangeCollectionprintComponentRef = el)}
+        />
+      </div>
+    ) : null;
+
+    const ContentPaymentMonthDate = this.state
+      .showMonthlyPayment ? (
+      <div style={{ margin: 0 }}>
+        <Button
+          elevation={1}
+          variant="contained"
+          style={{
+            marginLeft: '0.3em',
+            marginRight: '0.3em',
+            marginTop: '0.3em',
+            marginBotton: '0.3em',
+          }}
+        >
+          <CSVLink
+            data={csvData4}
+            style={{ color: 'black', textDecoration: 'none' }}
+          >
+            CSV
+          </CSVLink>
+        </Button>
+        <ExcelFile
+          element={
+            <Button
+              elevation={1}
+              variant="contained"
+              style={{
+                marginLeft: '0.3em',
+                marginRight: '0.3em',
+                marginTop: '0.3em',
+                marginBotton: '0.3em',
+                textTransform: 'none',
+              }}
+            >
+              Excel
+            </Button>
+          }
+        >
+          <ExcelColumn label="Invoice ID" value="id" />
+          <ExcelColumn label="Student Name" value="StudentName" />
+          <ExcelColumn label="Payment for" value="PaymentFor" />
+          <ExcelColumn label= "Batche name" value="BatchName"/>
+          <ExcelColumn label="Discount" value="Discount" />
+          <ExcelColumn label="Pending" value="Pending" />
+          <ExcelColumn label="Paid Amount /-" value="PaidAmount" />
+        </ExcelFile>
+        <Button
+          elevation={1}
+          style={{
+            marginLeft: '0.3em',
+            marginRight: '0.3em',
+            marginTop: '0.3em',
+            marginBotton: '0.3em',
+          }}
+          variant="contained"
+          onClick={generatePDF4}
+        >
+          PDF
+        </Button>
+        <ReactToPrint
+          trigger={() => (
+            <Button
+              elevation={1}
+              style={{
+                marginLeft: '0.3em',
+                marginRight: '0.3em',
+                marginTop: '0.3em',
+                marginBotton: '0.3em',
+                textTransform: 'none',
+              }}
+              variant="contained"
+            >
+              <Typography
+                style={{ color: 'black', textDecoration: 'none' }}
+                href="#"
+              >
+                Print
+              </Typography>
+            </Button>
+          )}
+          content={() => this.monthlyPaymentStatementprintComponentRef}
+        />
+        <br />
+        <MonthlyPaymentStatementprint
+          ref={(el) => (this.monthlyPaymentStatementprintComponentRef = el)}
+        />
+      </div>
+    ) : null;
+
+    const ContentMonthlyDueStatement = this.state
+      .showMonthlyDue ? (
+      <div style={{ margin: 0 }}>
+        <Button
+          elevation={1}
+          variant="contained"
+          style={{
+            marginLeft: '0.3em',
+            marginRight: '0.3em',
+            marginTop: '0.3em',
+            marginBotton: '0.3em',
+          }}
+        >
+          <CSVLink
+            data={csvData5}
+            style={{ color: 'black', textDecoration: 'none' }}
+          >
+            CSV
+          </CSVLink>
+        </Button>
+        <ExcelFile
+          element={
+            <Button
+              elevation={1}
+              variant="contained"
+              style={{
+                marginLeft: '0.3em',
+                marginRight: '0.3em',
+                marginTop: '0.3em',
+                marginBotton: '0.3em',
+                textTransform: 'none',
+              }}
+            >
+              Excel
+            </Button>
+          }
+        >
+          <ExcelColumn label="Invoice ID" value="id" />
+          <ExcelColumn label="Student Name" value="StudentName" />
+          <ExcelColumn label="Student Phone no." value="StudentPhoneNumber" />
+          <ExcelColumn label= "Guardians Phone no." value="Guardians Phone Number"/>
+          <ExcelColumn label="Batches(name, price, Last Paid Date)" value="BatchesNamePriceLastpaidDate)" />
+          <ExcelColumn label="Total Due /-" value="TotalDue" />
+        </ExcelFile>
+        <Button
+          elevation={1}
+          style={{
+            marginLeft: '0.3em',
+            marginRight: '0.3em',
+            marginTop: '0.3em',
+            marginBotton: '0.3em',
+          }}
+          variant="contained"
+          onClick={generatePDF5}
+        >
+          PDF
+        </Button>
+        <ReactToPrint
+          trigger={() => (
+            <Button
+              elevation={1}
+              style={{
+                marginLeft: '0.3em',
+                marginRight: '0.3em',
+                marginTop: '0.3em',
+                marginBotton: '0.3em',
+                textTransform: 'none',
+              }}
+              variant="contained"
+            >
+              <Typography
+                style={{ color: 'black', textDecoration: 'none' }}
+                href="#"
+              >
+                Print
+              </Typography>
+            </Button>
+          )}
+          content={() => this.monthlyDueStatementprintComponentRef}
+        />
+        <br />
+        <MonthlyDueStatementprint
+          ref={(el) => (this.monthlyDueStatementprintComponentRef = el)}
         />
       </div>
     ) : null;
@@ -1250,10 +1565,39 @@ export default class BatchPaymentReporting extends Component {
           }}
         >
           <CardContent elevation={3}>
-            <Typography>Choose Reporting Option </Typography>
+            <Typography>Monthly Statement</Typography>
             <hr style={{ marginBottom: 0, marginTop: 0 }} />
             <br />
-            <div>showMonthlyPaymentStatement</div>
+            <Typography>Month (For Monthly Payment Statement)</Typography>
+            <div className="form-row">
+              <div className="form-group col-md-6">
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <KeyboardDatePicker
+                    style={{ marginTop: '0.5em' }}
+                    fullWidth
+                    disableToolbar
+                    variant="inline"
+                    margin="normal"
+                    format="dd/MM/yyyy"
+                    value={this.state.paymentMonthDate}
+                    onChange={this.onChangePaymentMonthDate}
+                    KeyboardButtonProps={{
+                      'aria-label': 'change date',
+                    }}
+                  />
+                </MuiPickersUtilsProvider>
+              </div>
+              <div className="form-group col-md-6">
+                <button
+                  type="button"
+                  onClick={this._showMonthlyPayment.bind(null, true)}
+                  className="btn btn-block btn-lg"
+                  style={{ background: '#f39c12', color: 'white' }}
+                >
+                  <strong>Monthly Payment</strong> Statement
+                </button>
+              </div>
+            </div>
           </CardContent>
         </Card>
         <hr
@@ -1278,6 +1622,7 @@ export default class BatchPaymentReporting extends Component {
             <Typography>Payment Reporting </Typography>
             <hr style={{ marginBottom: 0, marginTop: 0 }} />
             <br />
+            {ContentPaymentMonthDate}
           </CardContent>
         </Card>
       </div>
@@ -1304,10 +1649,39 @@ export default class BatchPaymentReporting extends Component {
           }}
         >
           <CardContent elevation={3}>
-            <Typography>Choose Reporting Option </Typography>
+            <Typography>Mothly Due Reporting</Typography>
             <hr style={{ marginBottom: 0, marginTop: 0 }} />
             <br />
-            <div>showMonthlyDueStatement</div>
+            <Typography>Month (For Monthly Due Statement)</Typography>
+            <div className="form-row">
+              <div className="form-group col-md-6">
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <KeyboardDatePicker
+                    style={{ marginTop: '0.5em' }}
+                    fullWidth
+                    disableToolbar
+                    variant="inline"
+                    margin="normal"
+                    format="dd/MM/yyyy"
+                    value={this.state.monthlyDueStatement}
+                    onChange={this.onChangeMonthlyDueStatement}
+                    KeyboardButtonProps={{
+                      'aria-label': 'change date',
+                    }}
+                  />
+                </MuiPickersUtilsProvider>
+              </div>
+              <div className="form-group col-md-6">
+                <button
+                  type="button"
+                  onClick={this._showMonthlyDue.bind(null, true)}
+                  className="btn btn-block btn-lg"
+                  style={{ background: '#dd4b39', color: 'white' }}
+                >
+                  <strong>Monthly Payment</strong> Statement
+                </button>
+              </div>
+            </div>
           </CardContent>
         </Card>
         <hr
@@ -1332,6 +1706,7 @@ export default class BatchPaymentReporting extends Component {
             <Typography>Payment Reporting</Typography>
             <hr style={{ marginBottom: 0, marginTop: 0 }} />
             <br />
+            {ContentMonthlyDueStatement}
           </CardContent>
         </Card>
       </div>
