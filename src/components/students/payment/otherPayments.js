@@ -21,15 +21,15 @@ import FileCopyIcon from '@material-ui/icons/FileCopy';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import { Card, CardContent, Grid } from '@material-ui/core';
-import Spinner from '@atlaskit/spinner';
-import Tooltip from '@atlaskit/tooltip';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Tooltip from '@material-ui/core/Tooltip';
 import AsyncSelect from 'react-select/async';
 import { stateOptions } from './docs/data';
 
 const LoadingIndicator = (props) => {
   return (
     <Tooltip content={'Custom Loader'}>
-      <Spinner {...props} delay={0} />
+      <CircularProgress {...props} delay={0} />
     </Tooltip>
   );
 };

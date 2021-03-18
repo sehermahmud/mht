@@ -36,20 +36,22 @@ export class DailyCollectionprint extends Component {
               Invoice ID
             </th>
             <th scope="col" style={{ width: '10em' }}>
-              Student Name
-            </th>
-            <th scope="col" style={{ width: '20em' }}>
-              Batches(name,price,payment for)
+              Student Permanent ID
             </th>
             <th scope="col" style={{ width: '10em' }}>
-              Discount
+              Student Name
+            </th>
+            <th scope="col" style={{ width: '10em' }}>
+              Phone Number
             </th>
             <th scope="col" style={{ width: '8em' }}>
-              Pending
+              Payment Date
             </th>
             <th scope="col" style={{ width: '8em' }}>
-              Paid Amount/-
+              Payment Type
             </th>
+            <th scope="col" style={{ width: '8em' }}>Description</th>
+            <th>Total Amount /-</th>
           </tr>
         </thead>
         <tbody>
@@ -60,6 +62,18 @@ export class DailyCollectionprint extends Component {
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Total:</td>
+            <td>0/-</td>
           </tr>
         </tbody>
       </table>
@@ -82,27 +96,35 @@ export class DueReportingprint extends Component {
         <thead>
           <tr>
             <th scope="col" style={{ width: '12em' }}>
-              Student Id
+              Driving License Number
             </th>
-            <th scope="col" style={{ width: '5em' }}>
+            <th scope="col" style={{ width: '12em' }}>
+              Student Permanent Id
+            </th>
+            <th scope="col" style={{ width: '10em' }}>
               Student Name
             </th>
-            <th scope="col" style={{ width: '5em' }}>
+            <th scope="col" style={{ width: '10em' }}>
               Student Phone no.
             </th>
             <th scope="col" style={{ width: '10em' }}>
               Guardian's Phone no.
             </th>
             <th scope="col" style={{ width: '8em' }}>
-              Batches(name, price, Last Paid Date)
+              Email Address
             </th>
             <th scope="col" style={{ width: '8em' }}>
-              Total Due /-
+              Father's Name
+            </th>
+            <th scope="col" style={{ width: "8em" }}>
+              School Name
             </th>
           </tr>
         </thead>
         <tbody>
           <tr>
+            <td></td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -130,23 +152,29 @@ export class DateRangeCollectionprint extends Component {
       >
         <thead>
           <tr>
-            <th scope="col" style={{ width: '12em' }}>
+            <th scope="col" style={{ width: '8em' }}>
               Invoice ID
             </th>
-            <th scope="col" style={{ width: '5em' }}>
+            <th scope="col" style={{ width: "10em" }}>
+              Student Permanent ID
+            </th>
+            <th scope="col" style={{ width: '8em' }}>
               Student Name
             </th>
-            <th scope="col" style={{ width: '5em' }}>
-              Batches(name,price,payment for)
-            </th>
-            <th scope="col" style={{ width: '10em' }}>
-              Discount
+            <th scope="col" style={{ width: '8em' }}>
+              Phone Number
             </th>
             <th scope="col" style={{ width: '8em' }}>
-              Pending
+              Payment Date
             </th>
             <th scope="col" style={{ width: '8em' }}>
-              Paid Amount/-
+              Payment Type
+            </th>
+            <th scope="col" style={{ width: '8em' }}>
+              Description
+            </th>
+            <th scope="col" style={{ width: '8em' }}>
+              Total Amount/-
             </th>
           </tr>
         </thead>
@@ -158,6 +186,18 @@ export class DateRangeCollectionprint extends Component {
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Total:</td>
+            <td>0/-</td>
           </tr>
         </tbody>
       </table>
@@ -177,28 +217,31 @@ export class MonthlyPaymentStatementprint extends Component {
           marginBottom: '0.5em',
         }}
       >
-        <thead>
+      <thead>
           <tr>
-            <th scope="col" style={{ width: '12em' }}>
+            <th scope="col" style={{ width: '8em' }}>
               Invoice ID
             </th>
-            <th scope="col" style={{ width: '5em' }}>
+            <th scope="col" style={{ width: "10em" }}>
+              Student Permanent ID
+            </th>
+            <th scope="col" style={{ width: '8em' }}>
               Student Name
             </th>
-            <th scope="col" style={{ width: '5em' }}>
-              Payment for
-            </th>
-            <th scope="col" style={{ width: '5em' }}>
-              Batch name
-            </th>
-            <th scope="col" style={{ width: '10em' }}>
-              Discount
+            <th scope="col" style={{ width: '8em' }}>
+              Phone Number
             </th>
             <th scope="col" style={{ width: '8em' }}>
-              Pending
+              Payment Date
             </th>
             <th scope="col" style={{ width: '8em' }}>
-              Paid Amount/-
+              Payment Type
+            </th>
+            <th scope="col" style={{ width: '8em' }}>
+              Description
+            </th>
+            <th scope="col" style={{ width: '8em' }}>
+              Total Amount/-
             </th>
           </tr>
         </thead>
@@ -211,6 +254,17 @@ export class MonthlyPaymentStatementprint extends Component {
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Total:</td>
+            <td>0/-</td>
           </tr>
         </tbody>
       </table>
@@ -320,33 +374,39 @@ export default class OthersPaymentReporting extends Component {
     const csvData = [
       {
         InvoiceID: '',
+        StudentPermanentID: '',
         StudentName: '',
-        BatchesNamePricePayment: '',
-        Discount: '',
-        Pending: '',
-        PaidAmount: '',
+        PhoneNumber: '',
+        PaymentDate: '',
+        PaymentType: '',
+        Description: '',
+        TotalAmount: ''
       },
     ];
 
     const csvData1 = [
       {
-        StudentId: '',
+        DrivingLicenseNumber: '',
+        StudentPermanentId: '',
         StudentName: '',
         StudentPhoneNo: '',
         GuardiansPhoneNo: '',
-        BatchesNamePricePayment: '',
-        TotalDue: '',
+        EmailAddress: '',
+        FathersName: '',
+        SchoolName: '',
       },
     ];
 
     const csvData2 = [
       {
         InvoiceID: '',
+        StudentPermanentID: '',
         StudentName: '',
-        BatchesNamePricePayment: '',
-        Discount: '',
-        Pending: '',
-        PaidAmount: '',
+        PhoneNumber: '',
+        PaymentDate: '',
+        PaymentType: '',
+        Description: '',
+        TotalAmount: ''
       },
     ];
 
@@ -370,15 +430,17 @@ export default class OthersPaymentReporting extends Component {
         head: [
           [
             'Invoice ID',
+            'Student Permanent ID',
             'Student Name',
-            'Batches(name,price,payment for)',
-            'Discount',
-            'Pending',
-            'Paid Amount/-',
+            'Phone Number',
+            'Payment Date',
+            'Payment Type',
+            'Description',
+            'total Amount/-',
           ],
         ],
         body: [
-          ['', '', '', '', '', ''],
+          ['', '', '', '', '', '','',''],
           // ...
         ],
       });
@@ -392,16 +454,18 @@ export default class OthersPaymentReporting extends Component {
         theme: 'plain',
         head: [
           [
-            'Student Id',
+            'Driving License Number',
+            'Student Permanent Id',
             'Student Name',
             'Student Phone no.',
             'Guardians Phone no.',
-            'Batches(name, price, Last Paid Date)',
-            'Total Due /-',
+            'EmailAddress',
+            'FathersName',
+            'SchoolName'
           ],
         ],
         body: [
-          ['', '', '', '', '', ''],
+          ['', '', '', '', '', '', '', ''],
           // ...
         ],
       });
@@ -416,15 +480,17 @@ export default class OthersPaymentReporting extends Component {
         head: [
           [
             'Invoice ID',
+            'Student Permanent ID',
             'Student Name',
-            'Batches(name,price,payment for)',
-            'Discount',
-            'Pending',
-            'Paid Amount/-',
+            'Phone Number',
+            'Payment Date',
+            'Payment Type',
+            'Description',
+            'total Amount/-',
           ],
         ],
         body: [
-          ['', '', '', '', '', ''],
+          ['', '', '', '', '', '', '', ''],
           // ...
         ],
       });
@@ -439,18 +505,19 @@ export default class OthersPaymentReporting extends Component {
         head: [
           [
             'Invoice ID',
+            'Student Permanent ID',
             'Student Name',
-            'Payment for',
-            'Batch name',
-            'Discount',
-            'Pending',
-            'Paid Amount/-',
+            'Phone Number',
+            'Payment Date',
+            'Payment Type',
+            'Description',
+            'total Amount/-',
           ],
         ],
         body: [
-          ['', '', '', '', '', '', ''],
+          ['', '', '', '', '', '', '', ''],
           // ...
-        ],
+        ], 
       });
       pdf.save('DateRangeCollection');
     };
@@ -476,32 +543,39 @@ export default class OthersPaymentReporting extends Component {
           </CSVLink>
         </Button>
         <ExcelFile
-          element={
-            <Button
-              elevation={1}
-              variant="contained"
-              style={{
-                marginLeft: '0.3em',
-                marginRight: '0.3em',
-                marginTop: '0.3em',
-                marginBotton: '0.3em',
-                textTransform: 'none',
-              }}
-            >
-              Excel
-            </Button>
-          }
-        >
-          <ExcelColumn label="Invoice ID" value="id" />
-          <ExcelColumn label="Student Name" value="StudentName" />
-          <ExcelColumn
-            label="Batches(name, price, payment for)"
-            value="BatchesNamePricePayment"
-          />
-          <ExcelColumn label="Discount" value="Discount" />
-          <ExcelColumn label="Pending" value="Pending" />
-          <ExcelColumn label="Paid Amount /-" value="PaidAmount" />
-        </ExcelFile>
+                element={
+                  <Button
+                    elevation={1}
+                    variant="contained"
+                    style={{
+                      marginLeft: '0.3em',
+                      marginRight: '0.3em',
+                      marginTop: '0.3em',
+                      marginBotton: '0.3em',
+                      textTransform: 'none',
+                    }}
+                  >
+                    Excel
+                  </Button>
+                }
+              >
+                <ExcelSheet data={dataSet1} name="Employees">
+                  <ExcelColumn label="Invoice ID" value="id" />
+                  <ExcelColumn label="Student Permanent ID" value="StudentPermanentId" />
+                  <ExcelColumn
+                    label="Student Name"
+                    value="StudentName"
+                  />
+                  <ExcelColumn
+                    label="Phone Number"
+                    value="PhoneNumber"
+                  />
+                  <ExcelColumn label="Payment Date" value="PaymentDate" />
+                  <ExcelColumn label="Payment Type" value="PaymentType" />
+                  <ExcelColumn label="Description" value="Description" />
+                  <ExcelColumn label="Total Amount /-" value="TotalAmount" />
+                </ExcelSheet>
+              </ExcelFile>
         <Button
           elevation={1}
           style={{
@@ -721,17 +795,19 @@ export default class OthersPaymentReporting extends Component {
               >
                 <ExcelSheet data={dataSet1} name="Employees">
                   <ExcelColumn label="Invoice ID" value="id" />
+                  <ExcelColumn label="Student Permanent ID" value="StudentPermanentId" />
                   <ExcelColumn
-                    label="Student Name Discount"
+                    label="Student Name"
                     value="StudentName"
                   />
                   <ExcelColumn
-                    label="Batches(name, price, payment for)"
-                    value="BatchesNamePricePayment"
+                    label="Phone Number"
+                    value="PhoneNumber"
                   />
-                  <ExcelColumn label="Discount" value="Discount" />
-                  <ExcelColumn label="Pending" value="Pending" />
-                  <ExcelColumn label="Paid Amount /-" value="PaidAmount" />
+                  <ExcelColumn label="Payment Date" value="PaymentDate" />
+                  <ExcelColumn label="Payment Type" value="PaymentType" />
+                  <ExcelColumn label="Description" value="Description" />
+                  <ExcelColumn label="Total Amount /-" value="TotalAmount" />
                 </ExcelSheet>
               </ExcelFile>
               <Button
@@ -865,7 +941,8 @@ export default class OthersPaymentReporting extends Component {
                 }
               >
                 <ExcelSheet data={dataSet1} name="Employees">
-                  <ExcelColumn label="Student Id" value="id" />
+                  <ExcelColumn label="Driving License No." value="DrivingLicenseNumber" />
+                  <ExcelColumn label="Student Permanent Id" value="StudentPermanentId" />
                   <ExcelColumn label="Student Name" value="name" />
                   <ExcelColumn
                     label="Student Phone no."
@@ -876,10 +953,11 @@ export default class OthersPaymentReporting extends Component {
                     value="Guardian's Phone no"
                   />
                   <ExcelColumn
-                    label="Batches(name, price, Last Paid Date)"
-                    value="Batches(name, price, Last Paid Date)"
+                    label="EmailAddress"
+                    value="EmailAddress"
                   />
-                  <ExcelColumn label="Total Due /-" value="Total Due /-" />
+                  <ExcelColumn label="FathersName" value="FathersName" />
+                  <ExcelColumn label="School Name" value="SchoolName" />
                 </ExcelSheet>
               </ExcelFile>
               <Button
