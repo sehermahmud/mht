@@ -2046,7 +2046,7 @@ export function MiniDrawer(props) {
                       <ChevronLeftIcon style={{ marginLeft: '5.1em' }} />
                     </ListItemIcon>
                   </AccordionSummary>
-                  <Link>
+                  <Link to="/user/allUser">
                     <ListItem button>
                       <ListItemIcon>
                         <RadioButtonUncheckedIcon
@@ -2060,7 +2060,7 @@ export function MiniDrawer(props) {
                       </ListItemText>
                     </ListItem>
                   </Link>
-                  <Link>
+                  <Link to="/user/createUser">
                     <ListItem button>
                       <ListItemIcon>
                         <RadioButtonUncheckedIcon
@@ -2069,25 +2069,12 @@ export function MiniDrawer(props) {
                       </ListItemIcon>
                       <ListItemText>
                         <Typography style={{ color: 'white' }}>
-                          Add User
+                          Add New User
                         </Typography>
                       </ListItemText>
                     </ListItem>
                   </Link>
-                  <Link>
-                    <ListItem button>
-                      <ListItemIcon>
-                        <RadioButtonUncheckedIcon
-                          style={{ marginLeft: '0.7em' }}
-                        />
-                      </ListItemIcon>
-                      <ListItemText>
-                        <Typography style={{ color: 'white' }}>
-                          Edit User
-                        </Typography>
-                      </ListItemText>
-                    </ListItem>
-                  </Link>
+                  
                 </Accordion>
               </ListItem>
               <Link to="/sllabys">

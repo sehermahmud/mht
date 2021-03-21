@@ -29,6 +29,9 @@ import BatchPayments from './components/students/payment/batchPayments';
 import OtherPayments from './components/students/payment/otherPayments';
 import BatchPaymentReporting from './components/reporting/batchPaymentNav';
 import OthersPaymentReporting from './components/reporting/othersPaymentNav';
+import AllUser from './components/user/nav/alluser'
+import CreateUser from './components/user/nav/createuser'
+import EditUser from './components/user/nav/edituser'
 
 function App() {
   return (
@@ -114,6 +117,9 @@ function App() {
           <Route path="/reporting/otherspaymentreporting">
             <OthersPaymentReporting />
           </Route>
+          <Route path="/user/allUser"><AllUser /></Route>
+          <Route path="/user/createUser"><CreateUser /></Route>
+          <Route path="/user/editUser/:id"><EditUser /></Route>
         </Switch>
       </div>
     </Router>
