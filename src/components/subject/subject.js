@@ -178,7 +178,7 @@ export class CreateSubject extends Component {
     console.log(newSubject);
 
     axios
-      .post('https://mht-backend.herokuapp.com/subjects/add', newSubject)
+      .post('https://mht-backend-edu.herokuapp.com/subjects/add', newSubject)
       .then((res) => console.log(res.data));
 
     window.location.reload(true);
@@ -186,7 +186,7 @@ export class CreateSubject extends Component {
 
   componentDidMount() {
     axios
-      .get('https://mht-backend.herokuapp.com/subjects/')
+      .get('https://mht-backend-edu.herokuapp.com/subjects/')
       .then((response) => {
         this.setState({ subjects: response.data });
       })
@@ -197,7 +197,7 @@ export class CreateSubject extends Component {
 
   deleteSubject(id) {
     axios
-      .delete('https://mht-backend.herokuapp.com/subjects/' + id)
+      .delete('https://mht-backend-edu.herokuapp.com/subjects/' + id)
       .then((res) => console.log(res.data));
 
     this.setState({
@@ -1027,7 +1027,6 @@ export function MiniDrawer(props) {
                       </ListItemText>
                     </ListItem>
                   </Link>
-                  
                 </Accordion>
               </ListItem>
               <Link to="/sllabys">

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, Typography, Button } from '@material-ui/core';
-import './user.css'
+import './user.css';
 
 export default class AllUser extends Component {
   render() {
@@ -67,21 +67,21 @@ export default class AllUser extends Component {
               }}
             >
               <thead>
-                  <th scope="col" style={{ width: '3em' }}>
-                    sl
-                  </th>
-                  <th scope="col" style={{ width: '15em' }}>
-                    Fullname
-                  </th>
-                  <th scope="col" style={{ width: '15em' }}>
-                    Email
-                  </th>
-                  <th scope="col" style={{ width: '10em' }}>
-                    Role
-                  </th>
-                  <th scope="col" style={{ width: '10em' }}>
-                    Action
-                  </th>
+                <th scope="col" style={{ width: '3em' }}>
+                  sl
+                </th>
+                <th scope="col" style={{ width: '15em' }}>
+                  Fullname
+                </th>
+                <th scope="col" style={{ width: '15em' }}>
+                  Email
+                </th>
+                <th scope="col" style={{ width: '10em' }}>
+                  Role
+                </th>
+                <th scope="col" style={{ width: '10em' }}>
+                  Action
+                </th>
               </thead>
               <tbody>
                 <tr>
@@ -90,25 +90,25 @@ export default class AllUser extends Component {
                   <td></td>
                   <td></td>
                   <td>
-                  <Link
-                    style={{ color: 'white' }}
-                    className="text-decoration-none"
-                    to="/user/editUser/:id"
-                  >
-                    <Button
-                      style={{
-                        color: 'white',
-                        background:
-                          'linear-gradient(45deg, #e65100 30%, #ff9800 90%)',
-                        marginRight: '1em',
-                        marginLeft: '1em',
-                        marginBottom: '0.1em',
-                        marginTop: '0.1em',
-                      }}
+                    <Link
+                      style={{ color: 'white' }}
+                      className="text-decoration-none"
+                      to="/user/editUser/:id"
                     >
+                      <Button
+                        style={{
+                          color: 'white',
+                          background:
+                            'linear-gradient(45deg, #e65100 30%, #ff9800 90%)',
+                          marginRight: '1em',
+                          marginLeft: '1em',
+                          marginBottom: '0.1em',
+                          marginTop: '0.1em',
+                        }}
+                      >
                         edit
-                        </Button>
-                        </Link>{' '}
+                      </Button>
+                    </Link>{' '}
                     <Button
                       style={{
                         color: 'white',
@@ -137,4 +137,3 @@ export default class AllUser extends Component {
     );
   }
 }
-

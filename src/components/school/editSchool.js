@@ -44,7 +44,7 @@ export class EditSchool extends Component {
   componentDidMount() {
     axios
       .get(
-        'https://mht-backend.herokuapp.com/schools/' +
+        'https://mht-backend-edu.herokuapp.com/schools/' +
           this.props.match.params.id
       )
       .then((response) => {
@@ -90,7 +90,7 @@ export class EditSchool extends Component {
 
     axios
       .post(
-        'https://mht-backend.herokuapp.com/schools/update/' +
+        'https://mht-backend-edu.herokuapp.com/schools/update/' +
           this.props.match.params.id,
         school
       )
@@ -720,7 +720,6 @@ export function MiniDrawer(props) {
                       </ListItemText>
                     </ListItem>
                   </Link>
-                  
                 </Accordion>
               </ListItem>
               <Link to="/sllabys">

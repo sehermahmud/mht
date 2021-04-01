@@ -119,7 +119,7 @@ export class BatchWiseStudentDetails extends Component {
   componentDidMount(id) {
     axios
       .get(
-        'https://mht-backend.herokuapp.com/subjects/' +
+        'https://mht-backend-edu.herokuapp.com/subjects/' +
           '5f846ec167f0f40472a094ac/' +
           this.props.match.params.id
       )
@@ -881,7 +881,6 @@ export function MiniDrawer(props) {
                       </ListItemText>
                     </ListItem>
                   </Link>
-                  
                 </Accordion>
               </ListItem>
               <Link to="/sllabys">

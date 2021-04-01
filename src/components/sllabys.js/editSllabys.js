@@ -42,7 +42,7 @@ export class EditSllabys extends Component {
   componentDidMount() {
     axios
       .get(
-        'https://mht-backend.herokuapp.com/sllabys/' +
+        'https://mht-backend-edu.herokuapp.com/sllabys/' +
           this.props.match.params.id
       )
       .then((response) => {
@@ -80,7 +80,7 @@ export class EditSllabys extends Component {
 
     axios
       .post(
-        'https://mht-backend.herokuapp.com/sllabys/update/' +
+        'https://mht-backend-edu.herokuapp.com/sllabys/update/' +
           this.props.match.params.id,
         sllabys
       )
@@ -689,7 +689,6 @@ export function MiniDrawer(props) {
                       </ListItemText>
                     </ListItem>
                   </Link>
-                  
                 </Accordion>
               </ListItem>
               <Link to="/sllabys">

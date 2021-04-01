@@ -270,28 +270,32 @@ class AddStudents extends Component {
   }
 
   componentDidMount(id) {
-    axios.get('https://mht-backend.herokuapp.com/schools/').then((response) => {
-      if (response.data.length > 0) {
-        this.setState({
-          schools: response.data.map((school) => school.school),
-        });
-      }
+    axios
+      .get('https://mht-backend-edu.herokuapp.com/schools/')
+      .then((response) => {
+        if (response.data.length > 0) {
+          this.setState({
+            schools: response.data.map((school) => school.school),
+          });
+        }
 
-      console.log(this.state.schools);
-    });
-
-    axios.get('https://mht-backend.herokuapp.com/sllabys/').then((response) => {
-      if (response.data.length > 0) {
-        this.setState({
-          allsllabys: response.data.map((sllabys) => sllabys.sllabys),
-        });
-      }
-
-      console.log(this.state.allsllabys);
-    });
+        console.log(this.state.schools);
+      });
 
     axios
-      .get('https://mht-backend.herokuapp.com/subjects/')
+      .get('https://mht-backend-edu.herokuapp.com/sllabys/')
+      .then((response) => {
+        if (response.data.length > 0) {
+          this.setState({
+            allsllabys: response.data.map((sllabys) => sllabys.sllabys),
+          });
+        }
+
+        console.log(this.state.allsllabys);
+      });
+
+    axios
+      .get('https://mht-backend-edu.herokuapp.com/subjects/')
       .then((response) => {
         if (response.data.length > 0) {
           this.setState({
@@ -305,7 +309,7 @@ class AddStudents extends Component {
 
     axios
       .get(
-        `https://mht-backend.herokuapp.com/teachersBatch/5f90440a838fe20a3e1520d6/allTeacherBatch`
+        `https://mht-backend-edu.herokuapp.com/teachersBatch/5f90440a838fe20a3e1520d6/allTeacherBatch`
       )
       .then((response) => {
         if (response.data.teacher.teacherBatch.length > 0) {
@@ -375,7 +379,10 @@ class AddStudents extends Component {
     console.log(newStudent);
 
     axios
-      .post('https://mht-backend.herokuapp.com/students/addStudent', newStudent)
+      .post(
+        'https://mht-backend-edu.herokuapp.com/students/addStudent',
+        newStudent
+      )
       .then((res) => console.log(res.data));
   }
 
@@ -2003,7 +2010,6 @@ export default function MiniDrawer(props) {
                       </ListItemText>
                     </ListItem>
                   </Link>
-                  
                 </Accordion>
               </ListItem>
               <Link to="/sllabys">

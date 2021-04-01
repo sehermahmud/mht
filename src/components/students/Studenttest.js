@@ -65,7 +65,7 @@ class App extends Component {
     console.log(id + this.state.clicks4);
 
     // axios
-    //   .post('https://mht-backend.herokuapp.com/students/addStudent', newStudent)
+    //   .post('https://mht-backend-edu.herokuapp.com/students/addStudent', newStudent)
     //   .then((res) => console.log(res.data));
   }
 

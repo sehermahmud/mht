@@ -75,7 +75,7 @@ export class BatchPayments extends Component {
 
   componentDidMount() {
     axios
-      .get('https://mht-backend.herokuapp.com/students/')
+      .get('https://mht-backend-edu.herokuapp.com/students/')
       .then((response) => {
         this.setState({ students: response.data });
       })
@@ -986,7 +986,6 @@ export default function MiniDrawer(props) {
                       </ListItemText>
                     </ListItem>
                   </Link>
-                  
                 </Accordion>
               </ListItem>
               <Link to="/sllabys">

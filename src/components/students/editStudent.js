@@ -267,7 +267,7 @@ export class EditStudent extends Component {
   componentDidMount(id) {
     axios
       .get(
-        'https://mht-backend.herokuapp.com/students/' +
+        'https://mht-backend-edu.herokuapp.com/students/' +
           this.props.match.params.id
       )
       .then((response) => {
@@ -308,28 +308,32 @@ export class EditStudent extends Component {
         console.log(error);
       });
 
-    axios.get('https://mht-backend.herokuapp.com/schools/').then((response) => {
-      if (response.data.length > 0) {
-        this.setState({
-          schools: response.data.map((school) => school.school),
-        });
-      }
+    axios
+      .get('https://mht-backend-edu.herokuapp.com/schools/')
+      .then((response) => {
+        if (response.data.length > 0) {
+          this.setState({
+            schools: response.data.map((school) => school.school),
+          });
+        }
 
-      console.log(this.state.schools);
-    });
-
-    axios.get('https://mht-backend.herokuapp.com/sllabys/').then((response) => {
-      if (response.data.length > 0) {
-        this.setState({
-          allsllabys: response.data.map((sllabys) => sllabys.sllabys),
-        });
-      }
-
-      console.log(this.state.allsllabys);
-    });
+        console.log(this.state.schools);
+      });
 
     axios
-      .get('https://mht-backend.herokuapp.com/subjects/')
+      .get('https://mht-backend-edu.herokuapp.com/sllabys/')
+      .then((response) => {
+        if (response.data.length > 0) {
+          this.setState({
+            allsllabys: response.data.map((sllabys) => sllabys.sllabys),
+          });
+        }
+
+        console.log(this.state.allsllabys);
+      });
+
+    axios
+      .get('https://mht-backend-edu.herokuapp.com/subjects/')
       .then((response) => {
         if (response.data.length > 0) {
           this.setState({
@@ -340,7 +344,7 @@ export class EditStudent extends Component {
         console.log(this.state.subjects);
       });
 
-    // axios.get('https://mht-backend.herokuapp.com/subjects/').then((response) => {
+    // axios.get('https://mht-backend-edu.herokuapp.com/subjects/').then((response) => {
     //   if (response.data.length > 0) {
     //     this.setState({
     //       batchs: response.data.map(
@@ -376,7 +380,7 @@ export class EditStudent extends Component {
     // this.props.match.params.id
     axios
       .get(
-        `https://mht-backend.herokuapp.com/subjects/` +
+        `https://mht-backend-edu.herokuapp.com/subjects/` +
           this.props.match.params.id +
           '/batch'
       )
@@ -391,7 +395,7 @@ export class EditStudent extends Component {
       });
 
     axios
-      .get(`https://mht-backend.herokuapp.com/subject/batch`)
+      .get(`https://mht-backend-edu.herokuapp.com/subject/batch`)
       .then((response) => {
         if (response.data.length > 0) {
           this.setState({
@@ -439,7 +443,7 @@ export class EditStudent extends Component {
 
     axios
       .post(
-        'https://mht-backend.herokuapp.com/students/update/' +
+        'https://mht-backend-edu.herokuapp.com/students/update/' +
           this.props.match.params.id,
         student
       )
@@ -2074,7 +2078,6 @@ export function MiniDrawer(props) {
                       </ListItemText>
                     </ListItem>
                   </Link>
-                  
                 </Accordion>
               </ListItem>
               <Link to="/sllabys">

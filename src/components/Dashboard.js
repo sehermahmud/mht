@@ -42,7 +42,7 @@ export class Dashboard extends Component {
   componentDidMount(id) {
     axios
       .get(
-        `https://mht-backend.herokuapp.com/teachersBatch/5f90440a838fe20a3e1520d6/allTeacherBatch`
+        `https://mht-backend-edu.herokuapp.com/teachersBatch/5f90440a838fe20a3e1520d6/allTeacherBatch`
       )
       .then((response) => {
         if (response.data.teacher.teacherBatch.length > 0) {
@@ -878,7 +878,6 @@ export default function MiniDrawer(props) {
                       </ListItemText>
                     </ListItem>
                   </Link>
-                  
                 </Accordion>
               </ListItem>
               <Link to="/sllabys">

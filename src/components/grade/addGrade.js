@@ -183,7 +183,7 @@ export class CreateGrade extends Component {
     console.log(newGrade);
 
     axios
-      .post('https://mht-backend.herokuapp.com/grades/add', newGrade)
+      .post('https://mht-backend-edu.herokuapp.com/grades/add', newGrade)
       .then((res) => console.log(res.data));
 
     // window.location = '/grade';
@@ -192,7 +192,7 @@ export class CreateGrade extends Component {
 
   componentDidMount() {
     axios
-      .get('https://mht-backend.herokuapp.com/grades/')
+      .get('https://mht-backend-edu.herokuapp.com/grades/')
       .then((response) => {
         this.setState({ grades: response.data });
         console.log(this.state.grades);
@@ -204,7 +204,7 @@ export class CreateGrade extends Component {
 
   deleteGrade(id) {
     axios
-      .delete('https://mht-backend.herokuapp.com/grades/' + id)
+      .delete('https://mht-backend-edu.herokuapp.com/grades/' + id)
       .then((res) => console.log(res.data));
 
     this.setState({
@@ -963,7 +963,6 @@ export default function MiniDrawer(props) {
                       </ListItemText>
                     </ListItem>
                   </Link>
-                  
                 </Accordion>
               </ListItem>
               <Link to="/sllabys">

@@ -37,7 +37,7 @@ export class StudentDetails extends Component {
   componentDidMount() {
     axios
       .get(
-        'https://mht-backend.herokuapp.com/students/' +
+        'https://mht-backend-edu.herokuapp.com/students/' +
           this.props.match.params.id
       )
       .then((response) => {
@@ -50,7 +50,7 @@ export class StudentDetails extends Component {
 
     axios
       .get(
-        'https://mht-backend.herokuapp.com/teachersBatch/5f8c354dafee4d26e65c6720/5f8eacf21b7c8c0d074ae292'
+        'https://mht-backend-edu.herokuapp.com/teachersBatch/5f8c354dafee4d26e65c6720/5f8eacf21b7c8c0d074ae292'
       )
       .then((response) => {
         this.setState({ batch: response.data });
@@ -943,7 +943,6 @@ export function MiniDrawer(props) {
                       </ListItemText>
                     </ListItem>
                   </Link>
-                  
                 </Accordion>
               </ListItem>
               <Link to="/sllabys">

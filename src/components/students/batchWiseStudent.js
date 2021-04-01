@@ -50,7 +50,7 @@ export class BatchWiseStudent extends Component {
 
   componentDidMount(id) {
     axios
-      .get('https://mht-backend.herokuapp.com/subjects/')
+      .get('https://mht-backend-edu.herokuapp.com/subjects/')
       .then((response) => {
         if (response.data.length > 0) {
           this.setState({
@@ -69,7 +69,7 @@ export class BatchWiseStudent extends Component {
 
     axios
       .get(
-        'https://mht-backend.herokuapp.com/subjects/' +
+        'https://mht-backend-edu.herokuapp.com/subjects/' +
           '5f846ec167f0f40472a094ac' +
           '/batch'
       )
@@ -83,7 +83,7 @@ export class BatchWiseStudent extends Component {
       });
 
     axios
-      .get('https://mht-backend.herokuapp.com/teachers/')
+      .get('https://mht-backend-edu.herokuapp.com/teachers/')
       .then((response) => {
         this.setState({ Teachers: response.data });
       })
@@ -782,7 +782,6 @@ export default function MiniDrawer(props) {
                       </ListItemText>
                     </ListItem>
                   </Link>
-                  
                 </Accordion>
               </ListItem>
               <Link to="/sllabys">

@@ -162,7 +162,7 @@ class CreateSchool extends Component {
     console.log(newSchool);
 
     axios
-      .post('https://mht-backend.herokuapp.com/schools/add', newSchool)
+      .post('https://mht-backend-edu.herokuapp.com/schools/add', newSchool)
       .then((res) => console.log(res.data));
 
     window.location.reload(true);
@@ -170,7 +170,7 @@ class CreateSchool extends Component {
 
   componentDidMount() {
     axios
-      .get('https://mht-backend.herokuapp.com/schools/')
+      .get('https://mht-backend-edu.herokuapp.com/schools/')
       .then((response) => {
         this.setState({ schools: response.data });
 
@@ -183,7 +183,7 @@ class CreateSchool extends Component {
 
   deleteSchool(id) {
     axios
-      .delete('https://mht-backend.herokuapp.com/schools/' + id)
+      .delete('https://mht-backend-edu.herokuapp.com/schools/' + id)
       .then((res) => console.log(res.data));
 
     this.setState({
@@ -1036,7 +1036,6 @@ export function MiniDrawer(props) {
                       </ListItemText>
                     </ListItem>
                   </Link>
-                  
                 </Accordion>
               </ListItem>
               <Link to="/sllabys">

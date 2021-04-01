@@ -254,7 +254,7 @@ export class TeacherDetails extends Component {
   componentDidMount(id) {
     axios
       .get(
-        'https://mht-backend.herokuapp.com/teachers/' +
+        'https://mht-backend-edu.herokuapp.com/teachers/' +
           this.props.match.params.id
       )
       .then((response) => {
@@ -267,7 +267,7 @@ export class TeacherDetails extends Component {
 
     axios
       .get(
-        'https://mht-backend.herokuapp.com/teachersBatch/' +
+        'https://mht-backend-edu.herokuapp.com/teachersBatch/' +
           this.props.match.params.id +
           '/allTeacherBatch'
       )
@@ -281,17 +281,19 @@ export class TeacherDetails extends Component {
         console.log(error);
       });
 
-    axios.get('https://mht-backend.herokuapp.com/grades/').then((response) => {
-      if (response.data.length > 0) {
-        this.setState({
-          grades: response.data.map((grading) => grading.grade),
-          grade: response.data[0].grade,
-        });
-      }
-    });
+    axios
+      .get('https://mht-backend-edu.herokuapp.com/grades/')
+      .then((response) => {
+        if (response.data.length > 0) {
+          this.setState({
+            grades: response.data.map((grading) => grading.grade),
+            grade: response.data[0].grade,
+          });
+        }
+      });
 
     axios
-      .get('https://mht-backend.herokuapp.com/subjects/')
+      .get('https://mht-backend-edu.herokuapp.com/subjects/')
       .then((response) => {
         if (response.data.length > 0) {
           this.setState({
@@ -301,14 +303,16 @@ export class TeacherDetails extends Component {
         }
       });
 
-    axios.get('https://mht-backend.herokuapp.com/sllabys/').then((response) => {
-      if (response.data.length > 0) {
-        this.setState({
-          allsllabys: response.data.map((sllabys) => sllabys.sllabys),
-          sllabys: response.data[0].sllabys,
-        });
-      }
-    });
+    axios
+      .get('https://mht-backend-edu.herokuapp.com/sllabys/')
+      .then((response) => {
+        if (response.data.length > 0) {
+          this.setState({
+            allsllabys: response.data.map((sllabys) => sllabys.sllabys),
+            sllabys: response.data[0].sllabys,
+          });
+        }
+      });
   }
 
   onSubmit(e, teacherId, id) {
@@ -330,7 +334,7 @@ export class TeacherDetails extends Component {
 
     axios
       .post(
-        `https://mht-backend.herokuapp.com/teachersBatch/` +
+        `https://mht-backend-edu.herokuapp.com/teachersBatch/` +
           this.props.match.params.id +
           `/` +
           `5f846ec167f0f40472a094ac` +
@@ -344,7 +348,7 @@ export class TeacherDetails extends Component {
 
   deleteTeacher(id) {
     axios
-      .delete('https://mht-backend.herokuapp.com/teachersBatch/' + id)
+      .delete('https://mht-backend-edu.herokuapp.com/teachersBatch/' + id)
       .then((res) => console.log(res.data));
 
     this.setState({
@@ -1376,7 +1380,6 @@ export function MiniDrawer(props) {
                       </ListItemText>
                     </ListItem>
                   </Link>
-                  
                 </Accordion>
               </ListItem>
               <Link to="/sllabys">

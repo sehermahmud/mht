@@ -111,7 +111,7 @@ export default class CreateUser extends Component {
                 >
                   <Typography>Password*</Typography>
                   <input
-                    className="form-control"
+                    className="form-control"                                                      
                     placeholder="Enter password"
                     type="password"
                   />
@@ -133,12 +133,11 @@ export default class CreateUser extends Component {
               </Grid>
             </Grid>
             <hr />
-                <div
-                >
-                  <button type="submit" class="btn btn-primary">
-                    Submit
-                  </button>
-                </div>
+            <div>
+              <button type="submit" class="btn btn-primary">
+                Submit
+              </button>
+            </div>
           </CardContent>
         </Card>
       </div>

@@ -232,7 +232,7 @@ export class CreateTeacher extends Component {
     console.log(newTeacher);
 
     axios
-      .post('https://mht-backend.herokuapp.com/teachers/add', newTeacher)
+      .post('https://mht-backend-edu.herokuapp.com/teachers/add', newTeacher)
       .then((res) => console.log(res.data));
 
     window.location.reload(true);
@@ -240,7 +240,7 @@ export class CreateTeacher extends Component {
 
   componentDidMount() {
     axios
-      .get('https://mht-backend.herokuapp.com/teachers/')
+      .get('https://mht-backend-edu.herokuapp.com/teachers/')
       .then((response) => {
         this.setState({ teachers: response.data });
       })
@@ -251,7 +251,7 @@ export class CreateTeacher extends Component {
 
   deleteTeacher(id) {
     axios
-      .delete('https://mht-backend.herokuapp.com/teachers/' + id)
+      .delete('https://mht-backend-edu.herokuapp.com/teachers/' + id)
       .then((res) => console.log(res.data));
 
     this.setState({
@@ -1035,7 +1035,6 @@ export function MiniDrawer(props) {
                       </ListItemText>
                     </ListItem>
                   </Link>
-                  
                 </Accordion>
               </ListItem>
               <Link to="/sllabys">

@@ -64,7 +64,7 @@ export class EditBatchTeacher extends Component {
   componentDidMount() {
     axios
       .get(
-        'https://mht-backend.herokuapp.com/teachersBatch/' +
+        'https://mht-backend-edu.herokuapp.com/teachersBatch/' +
           this.props.match.params.id +
           '/' +
           this.props.match.params.id
@@ -87,7 +87,7 @@ export class EditBatchTeacher extends Component {
       });
 
     axios
-      .get('https://mht-backend.herokuapp.com/grades/')
+      .get('https://mht-backend-edu.herokuapp.com/grades/')
       .then((response) => {
         if (response.data.length > 0) {
           this.setState({
@@ -100,7 +100,7 @@ export class EditBatchTeacher extends Component {
       });
 
     axios
-      .get('https://mht-backend.herokuapp.com/subjects/')
+      .get('https://mht-backend-edu.herokuapp.com/subjects/')
       .then((response) => {
         if (response.data.length > 0) {
           this.setState({
@@ -109,13 +109,15 @@ export class EditBatchTeacher extends Component {
         }
       });
 
-    axios.get('https://mht-backend.herokuapp.com/sllabys/').then((response) => {
-      if (response.data.length > 0) {
-        this.setState({
-          allsllabys: response.data.map((sllabys) => sllabys.sllabys),
-        });
-      }
-    });
+    axios
+      .get('https://mht-backend-edu.herokuapp.com/sllabys/')
+      .then((response) => {
+        if (response.data.length > 0) {
+          this.setState({
+            allsllabys: response.data.map((sllabys) => sllabys.sllabys),
+          });
+        }
+      });
   }
 
   onChangeBatch(e) {
@@ -173,7 +175,7 @@ export class EditBatchTeacher extends Component {
 
     axios
       .post(
-        'https://mht-backend.herokuapp.com/teachersBatch/update/' +
+        'https://mht-backend-edu.herokuapp.com/teachersBatch/update/' +
           this.props.match.params.id,
         teacher
       )
@@ -181,7 +183,7 @@ export class EditBatchTeacher extends Component {
 
     axios
       .post(
-        'https://mht-backend.herokuapp.com/batchs/update/' +
+        'https://mht-backend-edu.herokuapp.com/batchs/update/' +
           this.props.match.params.id,
         teacher
       )
@@ -863,7 +865,6 @@ export function MiniDrawer(props) {
                       </ListItemText>
                     </ListItem>
                   </Link>
-                  
                 </Accordion>
               </ListItem>
               <Link to="/sllabys">
