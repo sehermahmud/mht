@@ -256,8 +256,10 @@ export class Dashboard extends Component {
                 </div>
                 <div className="col-md-8">
                   <div className="card-body">
-                    <p>TOTAL NUMBER OF ACTIVE STUDENTS: 0</p>
-                    <p>TOTAL NUMBER OF ENGAGED STUDENTS: 0</p>
+                    <p>ACTIVE STUDENTS</p>
+                    <p>0</p>
+                    <p>ENGAGED STUDENTS</p>
+                    <p>0</p>
                   </div>
                 </div>
               </div>
@@ -289,7 +291,8 @@ export class Dashboard extends Component {
                 </div>
                 <div className="col-md-8">
                   <div className="card-body">
-                    <p>TOTAL EXPECTED AMOUNT: 0</p>
+                    <p>EXPECTED AMOUNT</p>
+                    <p>0</p>
                   </div>
                 </div>
               </div>
@@ -321,8 +324,10 @@ export class Dashboard extends Component {
                 </div>
                 <div className="col-md-8">
                   <div className="card-body">
-                    <p>TOTAL PAID AMOUNT: 0</p>
-                    <p>TOTAL DISCOUNT AMOUNT: 0</p>
+                    <p>PAID AMOUNT</p>
+                    <p>0</p>
+                    <p>DISCOUNT AMOUNT</p>
+                    <p>0</p>
                   </div>
                 </div>
               </div>
@@ -354,7 +359,8 @@ export class Dashboard extends Component {
                 </div>
                 <div className="col-md-8">
                   <div className="card-body">
-                    <p>TOTAL DUE AMOUNT: 0</p>
+                    <p>TOTAL DUE AMOUNT</p>
+                    <p>0</p>
                   </div>
                 </div>
               </div>
