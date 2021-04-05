@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -17,387 +17,22 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
+import { Button } from '@material-ui/core';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Grid from '@material-ui/core/Grid';
-import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
-import LocalAtmIcon from '@material-ui/icons/LocalAtm';
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
-import { Button } from '@material-ui/core';
-import { MDBDataTable } from 'mdbreact';
-import axios from 'axios';
-
-export class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      batchs: [],
-    };
-  }
-
-  componentDidMount(id) {
-    axios
-      .get(
-        `https://mht-backend-edu.herokuapp.com/teachersBatch/5f90440a838fe20a3e1520d6/allTeacherBatch`
-      )
-      .then((response) => {
-        if (response.data.teacher.teacherBatch.length > 0) {
-          this.setState({
-            batchs: response.data.teacher.teacherBatch.map((batch) => batch),
-          });
-        }
-
-        console.log(this.state.batchs);
-      });
-  }
-
-  render() {
-    // const userAttributes = [];
-    // this.state.grades.forEach((el, order) => {
-    //   userAttributes.push({
-    //     sl: order + 1,
-    //     Grade: el.grade,
-    //     Description: el.description,
-    //     Action: (
-    //       <React.Fragment>
-    //         <Button
-    //           style={{
-    //             color: 'white',
-    //             background: 'linear-gradient(45deg, #e65100 30%, #ff9800 90%)',
-    //             marginRight: '1em',
-    //             marginLeft: '1em',
-    //             marginBottom: '0.1em',
-    //             marginTop: '0.1em',
-    //           }}
-    //         >
-    //           <Link
-    //             style={{ color: 'white' }}
-    //             className="text-decoration-none"
-    //             to={'/edit/' + el._id}
-    //           >
-    //             edit
-    //           </Link>{' '}
-    //         </Button>
-    //         <Button
-    //           style={{
-    //             color: 'white',
-    //             background: 'linear-gradient(45deg, #b71c1c 30%, #f44336 90%)',
-    //             marginRight: '1em',
-    //             marginLeft: '1em',
-    //             marginBottom: '0.1em',
-    //             marginTop: '0.1em',
-    //           }}
-    //           data-toggle="modal"
-    //           data-target="#exampleModal"
-    //         >
-    //           <Typography
-    //             className="text-decoration-none"
-    //             data-toggle="modal"
-    //             data-id="props.grade._id"
-    //             data-target="#exampleModal"
-    //             style={{ color: 'white' }}
-    //           >
-    //             delete{' '}
-    //           </Typography>
-    //         </Button>
-    //       </React.Fragment>
-    //     ),
-    //   });
-    // });
-
-    const data = {
-      columns: [
-        {
-          label: 'Batch Name',
-          field: 'BatchName',
-          sort: 'asc',
-          width: 150,
-        },
-        {
-          label: 'Schedule',
-          field: 'Schedule',
-          sort: 'asc',
-          width: 270,
-        },
-        {
-          label: 'Total number of Active students',
-          field: 'ActiveStudents',
-          sort: 'asc',
-          width: 200,
-        },
-        {
-          label: 'Number of Paid students',
-          field: 'PaidStudents',
-          sort: 'asc',
-          width: 100,
-        },
-        {
-          label: 'Number of Due students',
-          field: 'DueStudents',
-          sort: 'asc',
-          width: 150,
-        },
-        {
-          label: 'Total Expected Amount /-',
-          field: 'ExpectedAmount',
-          sort: 'asc',
-          width: 270,
-        },
-        {
-          label: 'Total Paid Amount /-',
-          field: 'PaidAmount',
-          sort: 'asc',
-          width: 200,
-        },
-        {
-          label: 'Total Due Amount /-',
-          field: 'DueAmount',
-          sort: 'asc',
-          width: 100,
-        },
-        {
-          label: 'Actions',
-          field: 'Actions',
-          sort: 'asc',
-          width: 100,
-        },
-      ],
-      rows: [
-        {
-          BatchName: '',
-          Schedule: '',
-          ActiveStudents: '',
-          PaidStudents: '',
-          DueStudents: '',
-          ExpectedAmount: '',
-          PaidAmount: '',
-          DueAmount: '',
-          Actions: (
-            <Button
-              style={{
-                color: 'white',
-                background: 'linear-gradient(45deg, #311b92 30%, #673ab7 90%)',
-                marginLeft: '0.5em',
-                marginRight: '0.5em',
-                marginTop: '0.3em',
-                marginBottom: '0.3em',
-                textTransform: 'none',
-                fontSize: '0.9em',
-              }}
-            >
-              <Link
-                style={{
-                  color: 'white',
-                }}
-                className="text-decoration-none"
-              >
-                Details
-              </Link>
-            </Button>
-          ),
-        },
-      ],
-    };
-
-    return (
-      <div style={{ marginTop: '5em' }}>
-        <Typography
-          variant="h5"
-          style={{
-            marginLeft: '1rem',
-            textAlign: 'left',
-            float: 'left',
-            color: 'white',
-          }}
-        >
-          Dashboard
-        </Typography>
-        <Typography
-          style={{
-            marginLeft: '1rem',
-            textAlign: 'right',
-            float: 'right',
-            marginRight: '1rem',
-            color: 'white',
-          }}
-        >
-          Home-Dashboard
-        </Typography>
-        <br />
-        <br />
-        <br />
-        <Grid container direction="row">
-          <Grid
-            item
-            container
-            direction="column"
-            sm
-            style={{ marginLeft: '0.9em', marginRight: '0.9em' }}
-          >
-            <div className="card mb-3" style={{ maxWidth: '340px' }}>
-              <div className="row no-gutters">
-                <div className="col-md-4">
-                  <div style={{ backgroundColor: '#001f3f' }}>
-                    <PeopleOutlineIcon
-                      style={{
-                        height: '3em',
-                        width: '3em',
-                        color: 'white',
-                        display: 'block',
-                        marginLeft: 'auto',
-                        marginRight: 'auto',
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="col-md-8">
-                  <div className="card-body">
-                    <p>ACTIVE STUDENTS</p>
-                    <p>0</p>
-                    <p>ENGAGED STUDENTS</p>
-                    <p>0</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Grid>
-          <Grid
-            item
-            container
-            direction="column"
-            sm
-            style={{ marginLeft: '0.9em', marginRight: '0.9em' }}
-          >
-            <div className="card mb-3" style={{ maxWidth: '340px' }}>
-              <div className="row no-gutters">
-                <div className="col-md-4">
-                  <div style={{ backgroundColor: '#f39c12' }}>
-                    <LocalAtmIcon
-                      style={{
-                        height: '3em',
-                        width: '3em',
-                        color: 'white',
-                        alignItems: 'center',
-                        display: 'block',
-                        marginLeft: 'auto',
-                        marginRight: 'auto',
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="col-md-8">
-                  <div className="card-body">
-                    <p>EXPECTED AMOUNT</p>
-                    <p>0</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Grid>
-          <Grid
-            item
-            container
-            direction="column"
-            sm
-            style={{ marginLeft: '0.9em', marginRight: '0.9em' }}
-          >
-            <div className="card mb-3" style={{ maxWidth: '340px' }}>
-              <div className="row no-gutters">
-                <div className="col-md-4">
-                  <div style={{ backgroundColor: '#00a65a' }}>
-                    <AttachMoneyIcon
-                      style={{
-                        height: '3em',
-                        width: '3em',
-                        color: 'white',
-                        alignItems: 'center',
-                        display: 'block',
-                        marginLeft: 'auto',
-                        marginRight: 'auto',
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="col-md-8">
-                  <div className="card-body">
-                    <p>PAID AMOUNT</p>
-                    <p>0</p>
-                    <p>DISCOUNT AMOUNT</p>
-                    <p>0</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Grid>
-          <Grid
-            item
-            container
-            direction="column"
-            sm
-            style={{ marginLeft: '0.9em', marginRight: '0.9em' }}
-          >
-            <div className="card mb-3" style={{ maxWidth: '340px' }}>
-              <div className="row no-gutters">
-                <div className="col-md-4">
-                  <div style={{ backgroundColor: '#dd4b39' }}>
-                    <AttachMoneyIcon
-                      style={{
-                        height: '3em',
-                        width: '3em',
-                        color: 'white',
-                        alignItems: 'center',
-                        display: 'block',
-                        marginLeft: 'auto',
-                        marginRight: 'auto',
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="col-md-8">
-                  <div className="card-body">
-                    <p>TOTAL DUE AMOUNT</p>
-                    <p>0</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Grid>
-        </Grid>
-        <hr
-          style={{
-            clear: 'both',
-            marginBottom: '1em',
-            marginTop: '1rem',
-            border: '3px solid #00796b',
-            background: '#00796b',
-          }}
-        />
-        <Card
-          style={{ marginRight: '1rem', marginLeft: '1rem', borderRadius: 0 }}
-        >
-          <CardContent elevation={3}>
-            <Typography variant="h6">Batch List</Typography>
-            <hr
-              style={{
-                marginRight: '0rem',
-                marginLeft: '0rem',
-                marginTop: '0',
-                marginBottom: '1em',
-                border: '1px solid #b2dfdb',
-                background: '#b2dfdb',
-              }}
-            />
-            <MDBDataTable striped bordered data={data} />
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
-}
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from '../../../redux/user/user.selectors';
+import { signOutStart } from '../../../redux/user/user.actions';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { EditSubject } from '../editSubject';
 
 const drawerWidth = 300;
 
@@ -411,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    background: 'linear-gradient(45deg, #1565c0 30%, #ffffff 50%, #6a1b9a 90%)',
+    background: 'linear-gradient(45deg, #1565c0 30%, #ec407a 50%, #6a1b9a 90%)',
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -420,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    background: 'linear-gradient(45deg, #1565c0 30%, #ffffff 50%, #6a1b9a 90%)',
+    backgroundColor: '#004d40',
   },
   menuButton: {
     marginRight: 36,
@@ -464,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(0),
+    padding: theme.spacing(3),
   },
   link: {
     fontFamily: 'Handlee',
@@ -520,30 +155,62 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '2.5em',
     fontFamily: 'Merienda One',
     marginRight: '1.5em',
+    flex: 1,
   },
 }));
 
-export default function MiniDrawer(props) {
+const MiniDrawer = ({ props, currentUser, signOutStart }) => {
   const classes = useStyles();
   const theme = useTheme();
+  const [openDrawer, setOpenDrawer] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  function handleListKeyDown(event) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
+
+  // return focus to the button when we transitioned from !open -> open
+  const prevOpen = React.useRef(open);
+  React.useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setOpenDrawer(true);
   };
 
   const handleDrawerClose = () => {
-    setOpen(false);
+    setOpenDrawer(false);
   };
 
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        style={{ color: '#004d40' }}
         position="fixed"
+        style={{ color: '#004d40' }}
         className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
+          [classes.appBarShift]: openDrawer,
         })}
       >
         <Toolbar>
@@ -553,19 +220,73 @@ export default function MiniDrawer(props) {
             onClick={handleDrawerOpen}
             edge="start"
             className={clsx(classes.menuButton, {
-              [classes.hide]: open,
+              [classes.hide]: openDrawer,
             })}
           >
             <MenuIcon style={{ color: 'white' }} />
           </IconButton>
           <Typography
             variant="h6"
-            noWrap
             className={classes.MHT}
             style={{ color: 'black' }}
           >
             MHT
           </Typography>
+          {currentUser ? (
+            <Typography as="div" style={{ color: 'white' }}>
+              sign in: {currentUser.email}
+            </Typography>
+          ) : null}
+
+          <div>
+            <Button
+              ref={anchorRef}
+              aria-controls={open ? 'menu-list-grow' : undefined}
+              aria-haspopup="true"
+              onClick={handleToggle}
+            >
+              <MoreVertIcon style={{ color: 'white' }} />
+            </Button>
+            <Popper
+              open={open}
+              anchorEl={anchorRef.current}
+              role={undefined}
+              transition
+              disablePortal
+            >
+              {({ TransitionProps, placement }) => (
+                <Grow
+                  {...TransitionProps}
+                  style={{
+                    transformOrigin:
+                      placement === 'bottom' ? 'center top' : 'center bottom',
+                  }}
+                >
+                  <Paper>
+                    <ClickAwayListener onClickAway={handleClose}>
+                      <MenuList
+                        autoFocusItem={open}
+                        id="menu-list-grow"
+                        onKeyDown={handleListKeyDown}
+                      >
+                        <MenuItem onClick={handleClose}>
+                          {currentUser ? (
+                            <Button
+                              as="div"
+                              onClick={signOutStart}
+                              style={{ color: 'red' }}
+                            >
+                              SIGN OUT
+                            </Button>
+                          ) : null}
+                        </MenuItem>
+                      </MenuList>
+                    </ClickAwayListener>
+                  </Paper>
+                </Grow>
+              )}
+            </Popper>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -574,13 +295,13 @@ export default function MiniDrawer(props) {
         style={{ background: 'red' }}
         variant="permanent"
         className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
+          [classes.drawerOpen]: openDrawer,
+          [classes.drawerClose]: !openDrawer,
         })}
         classes={{
           paper: clsx({
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
+            [classes.drawerOpen]: openDrawer,
+            [classes.drawerClose]: !openDrawer,
           }),
           // paper: classes.drawerPaper,
         }}
@@ -937,8 +658,20 @@ export default function MiniDrawer(props) {
         </List>
       </Drawer>
       <main className={classes.content}>
-        <Dashboard {...props} />
+        <EditSubject {...props} />
       </main>
     </div>
   );
-}
+};
+
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  signOutStart: () => dispatch(signOutStart()),
+});
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(MiniDrawer)
+);

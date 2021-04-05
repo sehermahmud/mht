@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -17,10 +17,22 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
+import { Button } from '@material-ui/core';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import BatchPaymentReporting from './batchPaymentreporting';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { signOutStart } from '../../redux/user/user.actions';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import BatchPaymentreporting from './batchPaymentreporting';
 
 const drawerWidth = 300;
 
@@ -34,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    background: 'linear-gradient(45deg, #1565c0 30%, #ffffff 50%, #6a1b9a 90%)',
+    background: 'linear-gradient(45deg, #1565c0 30%, #ec407a 50%, #6a1b9a 90%)',
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -43,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    background: 'linear-gradient(45deg, #1565c0 30%, #ffffff 50%, #6a1b9a 90%)',
+    backgroundColor: '#004d40',
   },
   menuButton: {
     marginRight: 36,
@@ -87,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(0),
+    padding: theme.spacing(3),
   },
   link: {
     fontFamily: 'Handlee',
@@ -143,30 +155,62 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '2.5em',
     fontFamily: 'Merienda One',
     marginRight: '1.5em',
+    flex: 1,
   },
 }));
 
-export default function MiniDrawer(props) {
+const MiniDrawer = ({ props, currentUser, signOutStart }) => {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = useState(false);
+  const [openDrawer, setOpenDrawer] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  function handleListKeyDown(event) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
+
+  // return focus to the button when we transitioned from !open -> open
+  const prevOpen = React.useRef(open);
+  React.useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setOpenDrawer(true);
   };
 
   const handleDrawerClose = () => {
-    setOpen(false);
+    setOpenDrawer(false);
   };
 
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        style={{ color: '#004d40' }}
         position="fixed"
+        style={{ color: '#004d40' }}
         className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
+          [classes.appBarShift]: openDrawer,
         })}
       >
         <Toolbar>
@@ -176,19 +220,73 @@ export default function MiniDrawer(props) {
             onClick={handleDrawerOpen}
             edge="start"
             className={clsx(classes.menuButton, {
-              [classes.hide]: open,
+              [classes.hide]: openDrawer,
             })}
           >
             <MenuIcon style={{ color: 'white' }} />
           </IconButton>
           <Typography
             variant="h6"
-            noWrap
             className={classes.MHT}
             style={{ color: 'black' }}
           >
             MHT
           </Typography>
+          {currentUser ? (
+            <Typography as="div" style={{ color: 'white' }}>
+              sign in: {currentUser.email}
+            </Typography>
+          ) : null}
+
+          <div>
+            <Button
+              ref={anchorRef}
+              aria-controls={open ? 'menu-list-grow' : undefined}
+              aria-haspopup="true"
+              onClick={handleToggle}
+            >
+              <MoreVertIcon style={{ color: 'white' }} />
+            </Button>
+            <Popper
+              open={open}
+              anchorEl={anchorRef.current}
+              role={undefined}
+              transition
+              disablePortal
+            >
+              {({ TransitionProps, placement }) => (
+                <Grow
+                  {...TransitionProps}
+                  style={{
+                    transformOrigin:
+                      placement === 'bottom' ? 'center top' : 'center bottom',
+                  }}
+                >
+                  <Paper>
+                    <ClickAwayListener onClickAway={handleClose}>
+                      <MenuList
+                        autoFocusItem={open}
+                        id="menu-list-grow"
+                        onKeyDown={handleListKeyDown}
+                      >
+                        <MenuItem onClick={handleClose}>
+                          {currentUser ? (
+                            <Button
+                              as="div"
+                              onClick={signOutStart}
+                              style={{ color: 'red' }}
+                            >
+                              SIGN OUT
+                            </Button>
+                          ) : null}
+                        </MenuItem>
+                      </MenuList>
+                    </ClickAwayListener>
+                  </Paper>
+                </Grow>
+              )}
+            </Popper>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -197,13 +295,13 @@ export default function MiniDrawer(props) {
         style={{ background: 'red' }}
         variant="permanent"
         className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
+          [classes.drawerOpen]: openDrawer,
+          [classes.drawerClose]: !openDrawer,
         })}
         classes={{
           paper: clsx({
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
+            [classes.drawerOpen]: openDrawer,
+            [classes.drawerClose]: !openDrawer,
           }),
           // paper: classes.drawerPaper,
         }}
@@ -507,7 +605,6 @@ export default function MiniDrawer(props) {
                       </ListItemText>
                     </ListItem>
                   </Link>
-                  
                 </Accordion>
               </ListItem>
               <Link to="/sllabys">
@@ -561,8 +658,20 @@ export default function MiniDrawer(props) {
         </List>
       </Drawer>
       <main className={classes.content}>
-        <BatchPaymentReporting {...props} />
+        <BatchPaymentreporting {...props} />
       </main>
     </div>
   );
-}
+};
+
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  signOutStart: () => dispatch(signOutStart()),
+});
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(MiniDrawer)
+);

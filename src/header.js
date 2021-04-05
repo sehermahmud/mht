@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -164,30 +164,62 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '2.5em',
     fontFamily: 'Merienda One',
     marginRight: '1.5em',
+    flex: 1,
   },
 }));
 
 export default function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
+  const [openDrawer, setOpenDrawer] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  function handleListKeyDown(event) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
+
+  // return focus to the button when we transitioned from !open -> open
+  const prevOpen = React.useRef(open);
+  React.useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setOpenDrawer(true);
   };
 
   const handleDrawerClose = () => {
-    setOpen(false);
+    setOpenDrawer(false);
   };
 
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        style={{ color: '#004d40' }}
         position="fixed"
+        style={{ color: '#004d40' }}
         className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
+          [classes.appBarShift]: openDrawer,
         })}
       >
         <Toolbar>
@@ -197,19 +229,73 @@ export default function MiniDrawer() {
             onClick={handleDrawerOpen}
             edge="start"
             className={clsx(classes.menuButton, {
-              [classes.hide]: open,
+              [classes.hide]: openDrawer,
             })}
           >
             <MenuIcon style={{ color: 'white' }} />
           </IconButton>
           <Typography
             variant="h6"
-            noWrap
             className={classes.MHT}
             style={{ color: 'black' }}
           >
             MHT
           </Typography>
+          {currentUser ? (
+            <Typography as="div" style={{ color: 'white' }}>
+              sign in: {currentUser.email}
+            </Typography>
+          ) : null}
+
+          <div>
+            <Button
+              ref={anchorRef}
+              aria-controls={open ? 'menu-list-grow' : undefined}
+              aria-haspopup="true"
+              onClick={handleToggle}
+            >
+              <MoreVertIcon style={{ color: 'white' }} />
+            </Button>
+            <Popper
+              open={open}
+              anchorEl={anchorRef.current}
+              role={undefined}
+              transition
+              disablePortal
+            >
+              {({ TransitionProps, placement }) => (
+                <Grow
+                  {...TransitionProps}
+                  style={{
+                    transformOrigin:
+                      placement === 'bottom' ? 'center top' : 'center bottom',
+                  }}
+                >
+                  <Paper>
+                    <ClickAwayListener onClickAway={handleClose}>
+                      <MenuList
+                        autoFocusItem={open}
+                        id="menu-list-grow"
+                        onKeyDown={handleListKeyDown}
+                      >
+                        <MenuItem onClick={handleClose}>
+                          {currentUser ? (
+                            <Button
+                              as="div"
+                              onClick={signOutStart}
+                              style={{ color: 'red' }}
+                            >
+                              SIGN OUT
+                            </Button>
+                          ) : null}
+                        </MenuItem>
+                      </MenuList>
+                    </ClickAwayListener>
+                  </Paper>
+                </Grow>
+              )}
+            </Popper>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -218,13 +304,13 @@ export default function MiniDrawer() {
         style={{ background: 'red' }}
         variant="permanent"
         className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
+          [classes.drawerOpen]: openDrawer,
+          [classes.drawerClose]: !openDrawer,
         })}
         classes={{
           paper: clsx({
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
+            [classes.drawerOpen]: openDrawer,
+            [classes.drawerClose]: !openDrawer,
           }),
           // paper: classes.drawerPaper,
         }}
