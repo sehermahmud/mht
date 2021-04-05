@@ -46,104 +46,104 @@ const App = ({ checkUserSession, currentUser }) => {
   }, [checkUserSession]);
 
   return (
-    <div>
-      <Switch>
-        {currentUser ? (
-          <div>
-            <Route exact path="/">
-              <Dashboard />
-            </Route>
-            <Route path="/grade">
-              <CreateGrade />
-            </Route>
-            <Route path="/edit/:id" component={EditGrade} />
-            <Route path="/subject">
-              <CreateSubject />
-            </Route>
-            <Route path="/editSubject/:id">
-              <EditSubject />
-            </Route>
-            <Route path="/sllabys">
-              <CreateSllabys />
-            </Route>
-            <Route path="/editSllabys/:id">
-              <EditSllabys />
-            </Route>
-            <Route path="/school">
-              <CreateSchool />
-            </Route>
-            <Route path="/editSchool/:id">
-              <EditSchool />
-            </Route>
-            <Route path="/teacher">
-              <CreateTeacher />
-            </Route>
-            <Route path="/editTeacher/:id">
-              <EditTeacher />
-            </Route>
-            <Route path="/teacherdetails/:id">
-              <TeacherDetails />
-            </Route>
-            <Route path="/editTeacherBatch/:id">
-              <EditTeacherBatch />
-            </Route>
-            <Route path="/students/addStudent">
-              <AddStudents />
-            </Route>
-            <Route path="/students/allStudents">
-              <AllStudents />
-            </Route>
-            <Route path="/students/activeStudents">
-              <ActiveStudents />
-            </Route>
-            <Route path="/students/StudentDetails/:id">
-              <StudentDetails />
-            </Route>
-            <Route path="/editStudent/:id">
-              <EditStudent />
-            </Route>
-            <Route path="/students/batchwise">
-              <BatchWiseStudents />
-            </Route>
-            <Route path="/students/batchDetails/:id">
-              <BatchWiseStudentDetails />
-            </Route>
-            <Route path="/teachers/teacherPayment">
-              <TeacherPayment />
-            </Route>
-            <Route path="/teachers/teacherPaymentDetails">
-              <TeacherPaymentDetails />
-            </Route>
-            <Route path="/teststudents">
-              <StudentTest />
-            </Route>
-            <Route path="/students/payments/batchPayment">
-              <BatchPayments />
-            </Route>
-            <Route path="/students/payments/otherspaymentreporting">
-              <OtherPayments />
-            </Route>
-            <Route path="/reporting/batchpaymentreporting">
-              <BatchPaymentReporting />
-            </Route>
-            <Route path="/reporting/otherspaymentreporting">
-              <OthersPaymentReporting />
-            </Route>
-            <Route path="/user/allUser">
-              <AllUser />
-            </Route>
-            <Route path="/user/createUser">
-              <CreateUser />
-            </Route>
-            <Route path="/user/editUser/:id">
-              <EditUser />
-            </Route>
-          </div>
-        ) : (
+    <React.Fragment>
+      {currentUser ? (
+        <Switch>
+          <Route exact path="/">
+            <Dashboard />
+          </Route>
+          <Route path="/grade">
+            <CreateGrade />
+          </Route>
+          <Route path="/edit/:id" component={EditGrade} />
+          <Route path="/subject">
+            <CreateSubject />
+          </Route>
+          <Route path="/editSubject/:id">
+            <EditSubject />
+          </Route>
+          <Route path="/sllabys">
+            <CreateSllabys />
+          </Route>
+          <Route path="/editSllabys/:id">
+            <EditSllabys />
+          </Route>
+          <Route path="/school">
+            <CreateSchool />
+          </Route>
+          <Route path="/editSchool/:id">
+            <EditSchool />
+          </Route>
+          <Route path="/teacher">
+            <CreateTeacher />
+          </Route>
+          <Route path="/editTeacher/:id">
+            <EditTeacher />
+          </Route>
+          <Route path="/teacherdetails/:id">
+            <TeacherDetails />
+          </Route>
+          <Route path="/editTeacherBatch/:id">
+            <EditTeacherBatch />
+          </Route>
+          <Route path="/students/addStudent">
+            <AddStudents />
+          </Route>
+          <Route path="/students/allStudents">
+            <AllStudents />
+          </Route>
+          <Route path="/students/activeStudents">
+            <ActiveStudents />
+          </Route>
+          <Route path="/students/StudentDetails/:id">
+            <StudentDetails />
+          </Route>
+          <Route path="/editStudent/:id">
+            <EditStudent />
+          </Route>
+          <Route path="/students/batchwise">
+            <BatchWiseStudents />
+          </Route>
+          <Route path="/students/batchDetails/:id">
+            <BatchWiseStudentDetails />
+          </Route>
+          <Route path="/teachers/teacherPayment">
+            <TeacherPayment />
+          </Route>
+          <Route path="/teachers/teacherPaymentDetails">
+            <TeacherPaymentDetails />
+          </Route>
+          <Route path="/teststudents">
+            <StudentTest />
+          </Route>
+          <Route path="/students/payments/batchPayment">
+            <BatchPayments />
+          </Route>
+          <Route path="/students/payments/otherspaymentreporting">
+            <OtherPayments />
+          </Route>
+          <Route path="/reporting/batchpaymentreporting">
+            <BatchPaymentReporting />
+          </Route>
+          <Route path="/reporting/otherspaymentreporting">
+            <OthersPaymentReporting />
+          </Route>
+          <Route path="/user/allUser">
+            <AllUser />
+          </Route>
+          <Route path="/user/createUser">
+            <CreateUser />
+          </Route>
+          <Route path="/user/editUser/:id">
+            <EditUser />
+          </Route>
+        </Switch>
+      ) : (
+        <Switch>
           <Loginpage />
-        )}
-      </Switch>
-    </div>
+        </Switch>
+      )}
+    </React.Fragment>
   );
 };
 

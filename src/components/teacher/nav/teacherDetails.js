@@ -270,13 +270,15 @@ export function MiniDrawer(props, currentUser, signOutStart) {
                       >
                         <MenuItem onClick={handleClose}>
                           {currentUser ? (
-                            <Button
-                              as="div"
-                              onClick={signOutStart}
-                              style={{ color: 'red' }}
-                            >
-                              SIGN OUT
-                            </Button>
+                            <Link to="/">
+                              <Button
+                                as="div"
+                                onClick={signOutStart}
+                                style={{ color: 'red' }}
+                              >
+                                SIGN OUT
+                              </Button>
+                            </Link>
                           ) : null}
                         </MenuItem>
                       </MenuList>
