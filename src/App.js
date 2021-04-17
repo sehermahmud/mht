@@ -6,7 +6,6 @@ import { createStructuredSelector } from 'reselect';
 
 import { selectCurrentUser } from './redux/user/user.selectors';
 import { checkUserSession } from './redux/user/user.actions';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CreateGrade from './components/grade/nav/addGradenav';
 import EditGrade from './components/grade/nav/editGrade';

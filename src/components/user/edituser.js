@@ -1,8 +1,71 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Card, CardContent, Typography, Grid, Button } from '@material-ui/core';
+import { withRouter } from 'react-router-dom';
+import { Card, CardContent, Typography, Grid } from '@material-ui/core';
+import firebase from '../../firebase/firebase.utils';
 
-export default class EditUser extends Component {
+class UserEdit extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      key: '',
+      displayName: '',
+      email: '',
+    };
+  }
+
+  componentDidMount() {
+    const ref = firebase
+      .firestore()
+      .collection('users')
+      .doc(this.props.match.params.id);
+    ref.get().then((doc) => {
+      if (doc.exists) {
+        const user = doc.data();
+        this.setState({
+          key: doc.id,
+          displayName: user.displayName,
+          email: user.email,
+        });
+      } else {
+        console.log('No such document!');
+      }
+    });
+  }
+
+  onChange = (e) => {
+    const state = this.state;
+    state[e.target.name] = e.target.value;
+    this.setState({ user: state });
+  };
+
+  onSubmit = (e) => {
+    e.preventDefault();
+
+    const { displayName, email } = this.state;
+    const createdAt = new Date();
+    const updateRef = firebase
+      .firestore()
+      .collection('users')
+      .doc(this.state.key);
+    updateRef
+      .set({
+        displayName,
+        email,
+        createdAt,
+      })
+      .then((docRef) => {
+        this.setState({
+          key: '',
+          displayName: '',
+          email: '',
+        });
+        this.props.history.push('/user/allUser');
+      })
+      .catch((error) => {
+        console.error('Error adding document: ', error);
+      });
+  };
+
   render() {
     return (
       <div style={{ marginTop: '5em' }}>
@@ -14,7 +77,7 @@ export default class EditUser extends Component {
             color: 'white',
           }}
         >
-          <strong>Edit User</strong>
+          <strong>User Module</strong> <span>it all starts here</span>
         </Typography>
         <Typography
           style={{
@@ -25,7 +88,7 @@ export default class EditUser extends Component {
             color: 'white',
           }}
         >
-          Home-Settings-User-edit User
+          Home-Settings-User-Create User
         </Typography>
         <hr
           style={{
@@ -45,7 +108,7 @@ export default class EditUser extends Component {
           }}
         >
           <CardContent elevation={3}>
-            <Typography variant="h6">Edit User</Typography>
+            <Typography variant="h6">User Create Page</Typography>
             <hr
               style={{
                 marginRight: '0rem',
@@ -67,7 +130,12 @@ export default class EditUser extends Component {
                   <Typography>Fullname*</Typography>
                   <input
                     className="form-control"
-                    placeholder="Enter fullname"
+                    type="text"
+                    name="displayName"
+                    value={this.state.displayName}
+                    onChange={this.onChange}
+                    label="Name"
+                    required
                   />
                 </div>
                 <div
@@ -80,120 +148,32 @@ export default class EditUser extends Component {
                   <Typography>Email*</Typography>
                   <input
                     className="form-control"
-                    placeholder="Enter Email"
                     type="email"
-                  />
-                </div>
-                <div
-                  style={{
-                    marginRight: '50px',
-                    marginBottom: '1em',
-                    marginTop: '1em',
-                  }}
-                >
-                  <Typography>Role*</Typography>
-                  <select class="form-control" placeholder="Select Role">
-                    <option value="">Select Role</option>
-                    <option id="25" value="Admin">
-                      Admin
-                    </option>
-                    <option id="50" value="Teacher">
-                      Teacher
-                    </option>
-                  </select>
-                </div>
-              </Grid>
-              <Grid item container direction="column" sm>
-                <div
-                  style={{
-                    marginRight: '50px',
-                    marginBottom: '1em',
-                  }}
-                >
-                  <Typography>Password*</Typography>
-                  <input
-                    className="form-control"
-                    placeholder="Enter password"
-                    type="password"
-                  />
-                </div>
-                <div
-                  style={{
-                    marginRight: '50px',
-                    marginBottom: '1em',
-                    marginTop: '1em',
-                  }}
-                >
-                  <Typography>Confirm Password*</Typography>
-                  <input
-                    className="form-control"
-                    placeholder="Enter password again"
-                    type="password"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.onChange}
+                    label="Enter Email"
+                    required
                   />
                 </div>
               </Grid>
+              <Grid item container direction="column" sm></Grid>
             </Grid>
             <hr />
-            <Grid container direction="row">
-              <Grid item container direction="column" sm>
-                <Link to="/user/allUser">
-                  <Button
-                    className="btn"
-                    style={{
-                      color: '#2196f3',
-                      border: '1px solid #2196f3',
-                      textTransform: 'none',
-                      textAlign: 'left',
-                      float: 'left',
-                    }}
-                  >
-                    Cancel
-                  </Button>
-                </Link>
-              </Grid>
-              <Grid item container direction="column" sm>
-                <Link>
-                  <Button
-                    className="btn"
-                    style={{
-                      background: '#00e676',
-                      color: 'white',
-                      textTransform: 'none',
-                      marginLeft: '1rem',
-                      textAlign: 'right',
-                      float: 'right',
-                      marginRight: '1rem',
-                    }}
-                  >
-                    Update
-                  </Button>
-                </Link>
-              </Grid>
-            </Grid>
-            {/* <Grid
-                item
-                container
-                direction="column"
-                sm
+            <div>
+              <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={this.onSubmit}
               >
-                <Button
-                  className="btn"
-                  style={{
-                    background: '#00e676',
-                    color: 'white',
-                    textTransform: 'none',
-                    marginLeft: '1rem',
-            textAlign: 'right',
-            float: 'right',
-            marginRight: '1rem',
-                  }}
-                >
-                  Update
-                </Button>
-              </Grid> */}
+                Submit
+              </button>
+            </div>
           </CardContent>
         </Card>
       </div>
     );
   }
 }
+
+export default withRouter(UserEdit);

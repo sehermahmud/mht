@@ -38,6 +38,23 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
+export const EditUserProfileDocument = async (userAuth, additionalData) => {
+  if (!userAuth) return;
+
+  firebase
+    .firestore()
+    .collection('users')
+    .where('uid', '==', userAuth.uid)
+    .get()
+    .then(function (querySnapshot) {
+      const { displayName, email } = userAuth;
+      querySnapshot.forEach(function (doc) {
+        console.log(doc.id, ' => ', doc.data());
+        doc.update({ displayName, email });
+      });
+    });
+};
+
 export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
     const unsubscribe = auth.onAuthStateChanged((userAuth) => {
@@ -49,5 +66,6 @@ export const getCurrentUser = () => {
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+export const db = firebase.firestore();
 
 export default firebase;

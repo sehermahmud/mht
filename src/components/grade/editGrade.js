@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { Card, CardContent } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { Button, Grid } from '@material-ui/core';
 
-export default class EditGrade extends Component {
+class EditGrade extends Component {
   constructor(props) {
     super(props);
 
@@ -188,3 +188,5 @@ export default class EditGrade extends Component {
     );
   }
 }
+
+export default withRouter(EditGrade);

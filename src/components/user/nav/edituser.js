@@ -33,6 +33,7 @@ import { selectCurrentUser } from '../../../redux/user/user.selectors';
 import { signOutStart } from '../../../redux/user/user.actions';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Edituser from '../edituser';
+import { compose } from 'redux';
 
 const drawerWidth = 300;
 
@@ -674,6 +675,11 @@ const mapDispatchToProps = (dispatch) => ({
   signOutStart: () => dispatch(signOutStart()),
 });
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(MiniDrawer)
-);
+// export default withRouter(
+//   connect(mapStateToProps, mapDispatchToProps)(MiniDrawer)
+// );
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(MiniDrawer);

@@ -120,24 +120,6 @@ const SignUp = ({ signUpStart }) => {
                   required
                 />
               </div>
-              <div
-                style={{
-                  marginRight: '50px',
-                  marginBottom: '1em',
-                  marginTop: '1em',
-                }}
-              >
-                <Typography>Role*</Typography>
-                <select class="form-control" placeholder="Select Role">
-                  <option value="">Select Role</option>
-                  <option id="25" value="Admin">
-                    Admin
-                  </option>
-                  <option id="50" value="Teacher">
-                    Teacher
-                  </option>
-                </select>
-              </div>
             </Grid>
             <Grid item container direction="column" sm>
               <div
