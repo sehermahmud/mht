@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import {
   Button,
@@ -479,3 +480,5 @@ export class BatchPayments extends Component {
     );
   }
 }
+
+export default withRouter(BatchPayments);

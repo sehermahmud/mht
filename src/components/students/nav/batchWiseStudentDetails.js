@@ -32,7 +32,7 @@ import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../../../redux/user/user.selectors';
 import { signOutStart } from '../../../redux/user/user.actions';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { BatchWiseStudentDetails } from '../batchWiseStudentDetails';
+import BatchWiseStudentDetails from '../batchWiseStudentDetails';
 
 const drawerWidth = 300;
 

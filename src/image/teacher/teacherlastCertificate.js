@@ -36,6 +36,7 @@ class TeacherLastCertificate extends Component {
     profileImg:
       'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
   };
+
   imageHandler = (e) => {
     const reader = new FileReader();
     reader.onload = () => {
@@ -47,6 +48,7 @@ class TeacherLastCertificate extends Component {
       reader.readAsDataURL(e.target.files[0]);
     }
   };
+
   render() {
     const { classes } = this.props;
     const { profileImg } = this.state;

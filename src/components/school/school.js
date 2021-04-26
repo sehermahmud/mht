@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { Card, CardContent } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
@@ -94,7 +94,7 @@ const School = (props) => (
   </tr>
 );
 
-export class CreateSchool extends Component {
+class CreateSchool extends Component {
   constructor(props) {
     super(props);
 
@@ -530,3 +530,5 @@ export class CreateSchool extends Component {
     );
   }
 }
+
+export default withRouter(CreateSchool);

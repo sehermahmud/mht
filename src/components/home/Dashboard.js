@@ -171,6 +171,7 @@ export class Dashboard extends Component {
               }}
             >
               <Link
+                to="#"
                 style={{
                   color: 'white',
                 }}

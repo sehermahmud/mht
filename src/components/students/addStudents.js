@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { Card, CardContent } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
@@ -11,7 +12,7 @@ import {
 
 import StudentPhoto from '../../image/student/StudentPhoto';
 
-export class AddStudents extends Component {
+class AddStudents extends Component {
   constructor(props) {
     super(props);
 
@@ -1503,3 +1504,5 @@ export class AddStudents extends Component {
     );
   }
 }
+
+export default withRouter(AddStudents);

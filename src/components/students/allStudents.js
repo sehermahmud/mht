@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import { Button, Card, CardContent } from '@material-ui/core';
 import axios from 'axios';
@@ -414,3 +414,5 @@ export class AllStudents extends Component {
     );
   }
 }
+
+export default withRouter(AllStudents);

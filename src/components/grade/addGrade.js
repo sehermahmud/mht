@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 import { Card, CardContent } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { Button, Grid } from '@material-ui/core';
@@ -104,7 +103,7 @@ const Grade = (props) => (
   </tr>
 );
 
-export default class CreateGrade extends Component {
+class CreateGrade extends Component {
   constructor(props) {
     super(props);
 
@@ -454,6 +453,4 @@ export default class CreateGrade extends Component {
   }
 }
 
-CreateGrade.propTypes = {
-  width: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']).isRequired,
-};
+export default withRouter(CreateGrade);

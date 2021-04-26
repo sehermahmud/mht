@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { Card, CardContent } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { Button, Grid } from '@material-ui/core';
 
-export class TeacherPaymentDetails extends Component {
+class TeacherPaymentDetails extends Component {
   render() {
     return (
       <div style={{ marginTop: '5em' }}>
@@ -331,3 +332,5 @@ export class TeacherPaymentDetails extends Component {
     );
   }
 }
+
+export default withRouter(TeacherPaymentDetails);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { Card, CardContent } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
@@ -93,7 +93,7 @@ const Sllabys = (props) => (
   </tr>
 );
 
-export class CreateSllabys extends Component {
+class CreateSllabys extends Component {
   constructor(props) {
     super(props);
 
@@ -344,3 +344,5 @@ export class CreateSllabys extends Component {
     );
   }
 }
+
+export default withRouter(CreateSllabys);

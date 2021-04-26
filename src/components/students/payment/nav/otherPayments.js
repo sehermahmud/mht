@@ -32,7 +32,7 @@ import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../../../../redux/user/user.selectors';
 import { signOutStart } from '../../../../redux/user/user.actions';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { OtherPayments } from '../otherPayments';
+import OtherPayments from '../otherPayments';
 
 const drawerWidth = 300;
 

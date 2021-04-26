@@ -32,7 +32,7 @@ import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../../../redux/user/user.selectors';
 import { signOutStart } from '../../../redux/user/user.actions';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { CreateSllabys } from '../sllabys';
+import CreateSllabys from '../sllabys';
 
 const drawerWidth = 300;
 

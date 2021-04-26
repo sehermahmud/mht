@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { Card, CardContent } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
@@ -529,3 +529,5 @@ export class CreateTeacher extends Component {
     );
   }
 }
+
+export default withRouter(CreateTeacher);

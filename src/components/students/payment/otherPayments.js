@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import { Card, CardContent, Grid } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -317,3 +318,5 @@ export class OtherPayments extends Component {
     );
   }
 }
+
+export default withRouter(OtherPayments);

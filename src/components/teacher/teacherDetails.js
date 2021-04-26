@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { Card, CardContent } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
@@ -120,7 +120,7 @@ const TeacherBatchDelete = (props) => (
   </Button>
 );
 
-export class TeacherDetails extends Component {
+class TeacherDetails extends Component {
   constructor(props) {
     super(props);
     this.onChangeBatch = this.onChangeBatch.bind(this);
@@ -874,3 +874,5 @@ export class TeacherDetails extends Component {
     );
   }
 }
+
+export default withRouter(TeacherDetails);

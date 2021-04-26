@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import { Button, Card, CardContent, Grid } from '@material-ui/core';
 import axios from 'axios';
@@ -62,7 +63,7 @@ export class ComponentToPrint extends React.Component {
   }
 }
 
-export class BatchWiseStudentDetails extends Component {
+class BatchWiseStudentDetails extends Component {
   constructor(props) {
     super(props);
 
@@ -374,3 +375,5 @@ export class BatchWiseStudentDetails extends Component {
     );
   }
 }
+
+export default withRouter(BatchWiseStudentDetails);

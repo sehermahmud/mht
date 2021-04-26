@@ -7,10 +7,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { emailSignInStart } from '../../redux/user/user.actions';
+import { emailSignInStart, signInFailure } from '../../redux/user/user.actions';
 import { CircularProgress } from '@material-ui/core';
 
-const SignIn = ({ emailSignInStart }) => {
+const SignIn = ({ emailSignInStart, signInFailure }) => {
   const [loading, setLoading] = useState(false);
   const [userCredentials, setCredentials] = useState({
     email: '',
@@ -109,6 +109,7 @@ const SignIn = ({ emailSignInStart }) => {
 const mapDispatchToProps = (dispatch) => ({
   emailSignInStart: (email, password) =>
     dispatch(emailSignInStart({ email, password })),
+  signInFailure: (error) => dispatch(signInFailure({ error })),
 });
 
 export default connect(null, mapDispatchToProps)(SignIn);
