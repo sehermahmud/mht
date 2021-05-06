@@ -4,19 +4,20 @@ import axios from 'axios';
 import { Card, CardContent } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { Button, Grid } from '@material-ui/core';
-
 import { MDBDataTable } from 'mdbreact';
 
-const Subject = (props) => (
+import './grade.css';
+
+const Grade = (props) => (
   <tr>
     <td></td>
-    <td>{props.subject.subject}</td>
-    <td>{props.subject.description}</td>
+    <td>{props.grade.grade}</td>
+    <td>{props.grade.description}</td>
     <td>
       <Button
         style={{
           color: 'white',
-          background: '#fdd835',
+          background: 'linear-gradient(45deg, #e65100 30%, #ff9800 90%)',
           marginRight: '1em',
           marginLeft: '1em',
           marginBottom: '0.1em',
@@ -24,9 +25,9 @@ const Subject = (props) => (
         }}
       >
         <Link
-          style={{ color: 'white', background: '#fdd835' }}
+          style={{ color: 'white' }}
           className="text-decoration-none"
-          to={'/editSubject/' + props.subject._id}
+          to={'/edit/' + props.grade._id}
         >
           edit
         </Link>{' '}
@@ -34,27 +35,23 @@ const Subject = (props) => (
       <Button
         style={{
           color: 'white',
-          background: '#f44336',
+          background: 'linear-gradient(45deg, #b71c1c 30%, #f44336 90%)',
           marginRight: '1em',
           marginLeft: '1em',
           marginBottom: '0.1em',
           marginTop: '0.1em',
         }}
         data-toggle="modal"
+        data-id={props.grade._id}
         data-target="#exampleModal"
       >
-        <Typography
-          className="text-decoration-none"
-          href="#"
-          data-toggle="modal"
-          data-target="#exampleModal"
-          style={{ color: 'white', background: '#f44336' }}
-        >
+        <Typography className="text-decoration-none" style={{ color: 'white' }}>
           delete{' '}
         </Typography>
       </Button>
     </td>
     <div
+      data-id={props.grade._id}
       className="modal fade"
       id="exampleModal"
       tabIndex="-1"
@@ -65,8 +62,8 @@ const Subject = (props) => (
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLabel">
-              Are you sure you want to delete the Subject? After that you can
-              not get it back!
+              Are you sure you want to delete? After that you can not get it
+              back!
             </h5>
           </div>
           <div className="modal-footer">
@@ -76,8 +73,8 @@ const Subject = (props) => (
               style={{
                 margin: '0.5em',
                 marginRight: '20em',
-                color: '#2196f3',
                 border: '1px solid #2196f3',
+                color: '#2196f3',
               }}
             >
               Cancel
@@ -85,13 +82,14 @@ const Subject = (props) => (
             <Button
               autoFocus
               style={{
-                color: 'white',
-                background: '#f44336',
                 margin: '0.5em',
+                background: 'linear-gradient(45deg, #b71c1c 30%, #f44336 90%)',
               }}
+              // onClick={props.deleteGrade(props.grade._id)}
               onClick={() => {
-                props.deleteSubject(props.subject._id);
+                console.log(`delete: ${props.grade._id}`);
               }}
+              data-dismiss="modal"
             >
               Delete
             </Button>
@@ -102,50 +100,45 @@ const Subject = (props) => (
   </tr>
 );
 
-export class CreateSubject extends Component {
+class CreateGrade extends Component {
   constructor(props) {
     super(props);
 
-    this.onChangeSubject = this.onChangeSubject.bind(this);
+    this.onOpen = this.onOpen.bind(this);
+    this.onChangeGrade = this.onChangeGrade.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
-    this.onChangeRowsPerPage = this.onChangeRowsPerPage.bind(this);
-    this.onChangePage = this.onChangePage.bind(this);
+    this.onChangeSearch = this.onChangeSearch.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.deleteSubject = this.deleteSubject.bind(this);
-    this.onChangePassword = this.onChangePassword.bind(this);
+    this.deleteGrade = this.deleteGrade.bind(this);
+    this.onChangepage = this.onChangepage.bind(this);
+    this.onChangerowPage = this.onChangerowPage.bind(this);
 
     this.state = {
-      subject: '',
+      grade: '',
       description: '',
-      rowsPerPage: 10,
+      grades: [],
+      open: false,
+      search: '',
       page: 0,
-      subjects: [],
-      columns: [],
-      password: '',
+      rowPage: '',
     };
   }
 
-  onChangePassword(e) {
+  onChangeSearch(e) {
     this.setState({
-      password: e.target.value,
+      search: e.target.value,
     });
   }
 
-  onChangeRowsPerPage(e) {
+  onOpen(e) {
     this.setState({
-      rowsPerPage: e.target.value,
+      open: e.target.value,
     });
   }
 
-  onChangePage(e) {
+  onChangeGrade(e) {
     this.setState({
-      page: e.target.value,
-    });
-  }
-
-  onChangeSubject(e) {
-    this.setState({
-      subject: e.target.value,
+      grade: e.target.value,
     });
   }
 
@@ -158,50 +151,60 @@ export class CreateSubject extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const newSubject = {
-      subject: this.state.subject,
+    const newGrade = {
+      grade: this.state.grade,
       description: this.state.description,
     };
 
-    console.log(newSubject);
+    console.log(newGrade);
 
     axios
-      .post('https://mht-backend-edu.herokuapp.com/subjects/add', newSubject)
+      .post('https://mht-backend-edu.herokuapp.com/grades/add', newGrade)
       .then((res) => console.log(res.data));
 
-    window.location.reload(true);
+    // window.location = '/grade';
   }
 
   componentDidMount() {
     axios
-      .get('https://mht-backend-edu.herokuapp.com/subjects/')
+      .get('https://mht-backend-edu.herokuapp.com/grades/')
       .then((response) => {
-        this.setState({ subjects: response.data });
+        this.setState({ grades: response.data });
+        console.log(this.state.grades);
       })
       .catch((error) => {
         console.log(error);
       });
   }
 
-  deleteSubject(id) {
+  deleteGrade(id) {
     axios
-      .delete('https://mht-backend-edu.herokuapp.com/subjects/' + id)
+      .delete('https://mht-backend-edu.herokuapp.com/grades/' + id)
       .then((res) => console.log(res.data));
 
     this.setState({
-      subjects: this.state.subjects.filter((el) => el._id !== id),
+      grades: this.state.grades.filter((el) => el._id !== id),
     });
-
-    window.location.reload(true);
   }
 
-  subjectlist() {
-    return this.state.subjects.map((currentsubject) => {
+  onChangepage(e) {
+    this.setState({
+      page: 0,
+    });
+  }
+  onChangerowPage(e) {
+    this.setState({
+      rowPage: +e.target.value,
+    });
+  }
+
+  gradelist() {
+    return this.state.grades.map((currentgrade) => {
       return (
-        <Subject
-          subject={currentsubject}
-          deleteSubject={this.deleteSubject}
-          key={currentsubject._id}
+        <Grade
+          grade={currentgrade}
+          deleteGrade={this.deleteGrade}
+          key={currentgrade._id}
         />
       );
     });
@@ -209,12 +212,12 @@ export class CreateSubject extends Component {
 
   render() {
     const userAttributes = [];
-    this.state.subjects.forEach((el, order) => {
+    this.state.grades.forEach((el, order) => {
       userAttributes.push({
         sl: order + 1,
-        subject: el.subject,
-        description: el.description,
-        action: (
+        Grade: el.grade,
+        Description: el.description,
+        Action: (
           <React.Fragment>
             <Button
               style={{
@@ -229,7 +232,7 @@ export class CreateSubject extends Component {
               <Link
                 style={{ color: 'white' }}
                 className="text-decoration-none"
-                to={'/editSubject/' + el._id}
+                to={'/edit/' + el._id}
               >
                 edit
               </Link>{' '}
@@ -248,9 +251,8 @@ export class CreateSubject extends Component {
             >
               <Typography
                 className="text-decoration-none"
-                href="#"
                 data-toggle="modal"
-                data-id="id"
+                data-id="props.grade._id"
                 data-target="#exampleModal"
                 style={{ color: 'white' }}
               >
@@ -258,78 +260,47 @@ export class CreateSubject extends Component {
               </Typography>
             </Button>
             <div
+              data-id="props.grade._id"
               className="modal fade"
               id="exampleModal"
-              // id={firebase.firestore().collection('users').doc(id)}
               tabIndex="-1"
               aria-labelledby="exampleModalLabel"
               aria-hidden="true"
-              style={{ marginTop: '10em' }}
             >
-              <div className="modal-dialog">
+              <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                   <div className="modal-header">
-                    <h5
-                      className="modal-title"
-                      id="exampleModalLabel"
-                      style={{ color: 'red' }}
-                    >
-                      Are you sure you want to delete this subject
+                    <h5 className="modal-title" id="exampleModalLabel">
+                      Are you sure you want to delete? After that you can not
+                      get it back!
                     </h5>
-                    <button
-                      type="button"
-                      className="close"
-                      data-dismiss="modal"
-                      aria-label="Close"
-                    >
-                      <span aria-hidden="true">&times;</span>
-                    </button>
                   </div>
-                  <br />
-                  <h5
-                    className="modal-title"
-                    id="exampleModalLabel"
-                    style={{
-                      marginLeft: '50px',
-                    }}
-                  >
-                    Enter Password:
-                  </h5>
-                  <div
-                    style={{
-                      marginRight: '50px',
-                      marginLeft: '50px',
-                    }}
-                  >
-                    <input
-                      className="form-control"
-                      type="text"
-                      name="password"
-                      label="enter password for deleting"
-                      value={this.state.password}
-                      onChange={this.onChangePassword}
-                      required
-                    />
-                  </div>
-                  <br />
                   <div className="modal-footer">
-                    <button
-                      type="button"
-                      className="btn btn-secondary"
+                    <Button
                       data-dismiss="modal"
-                      style={{ marginRight: '18em' }}
+                      color="primary"
+                      style={{
+                        margin: '0.5em',
+                        marginRight: '20em',
+                        border: '1px solid #2196f3',
+                        color: '#2196f3',
+                      }}
                     >
                       Cancel
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-primary"
-                      data-toggle="modal"
-                      data-target="#exampleModal1"
-                      disabled={this.state.password.length !== 5}
+                    </Button>
+                    <Button
+                      autoFocus
+                      style={{
+                        margin: '0.5em',
+                        background:
+                          'linear-gradient(45deg, #b71c1c 30%, #f44336 90%)',
+                      }}
+                      onClick={() => {
+                        el.deleteGrade(el._id);
+                      }}
                     >
                       Delete
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -345,30 +316,29 @@ export class CreateSubject extends Component {
           label: 'sl',
           field: 'sl',
           sort: 'asc',
-          width: 5,
+          width: 150,
         },
         {
-          label: 'subject',
-          field: 'subject',
+          label: 'Grade',
+          field: 'Grade',
           sort: 'asc',
-          width: 5,
+          width: 270,
         },
         {
-          label: 'description',
-          field: 'description',
+          label: 'Description',
+          field: 'Description',
           sort: 'asc',
-          width: 5,
+          width: 200,
         },
         {
-          label: 'action',
-          field: 'action',
+          label: 'Action',
+          field: 'Action',
           sort: 'asc',
-          width: 5,
+          width: 100,
         },
       ],
       rows: userAttributes,
     };
-
     return (
       <div style={{ marginTop: '3em' }}>
         <Typography
@@ -379,7 +349,7 @@ export class CreateSubject extends Component {
             color: 'white',
           }}
         >
-          Subject Module
+          Grade Module
         </Typography>
         <Typography
           style={{
@@ -390,7 +360,7 @@ export class CreateSubject extends Component {
             color: 'white',
           }}
         >
-          Home-Subject
+          Home-Grade
         </Typography>
         <hr
           style={{
@@ -410,7 +380,7 @@ export class CreateSubject extends Component {
           }}
         >
           <CardContent elevation={3}>
-            <Typography variant="h6">Create New Subject</Typography>
+            <Typography variant="h6">Create New Grade</Typography>
             <hr
               style={{
                 marginRight: '0rem',
@@ -425,7 +395,7 @@ export class CreateSubject extends Component {
               <Grid item container direction="column" sm>
                 <div className="form-group">
                   <label style={{ marginLeft: '3em', marginRight: '3em' }}>
-                    Write Subject Name:{' '}
+                    Write Grade Name:{' '}
                   </label>
                   <input
                     style={{
@@ -435,17 +405,17 @@ export class CreateSubject extends Component {
                     }}
                     type="text"
                     required
-                    placeholder="Subject"
+                    placeholder="Grade"
                     className="form-control"
-                    value={this.state.subject}
-                    onChange={this.onChangeSubject}
+                    value={this.state.grade}
+                    onChange={this.onChangeGrade}
                   />
                 </div>
               </Grid>
               <Grid item container direction="column" sm>
                 <div className="form-group">
                   <label style={{ marginLeft: '3em' }}>
-                    Write Subject Description:{' '}
+                    Write Grade Description:{' '}
                   </label>
                   <input
                     style={{
@@ -454,7 +424,7 @@ export class CreateSubject extends Component {
                     }}
                     type="text"
                     required
-                    placeholder="Subject Description"
+                    placeholder="Grade Description"
                     className="form-control"
                     value={this.state.description}
                     onChange={this.onChangeDescription}
@@ -474,7 +444,8 @@ export class CreateSubject extends Component {
                   className="btn btn-danger"
                   onClick={this.onSubmit}
                   style={{
-                    background: '#4a148c',
+                    background:
+                      'linear-gradient(45deg, #1b5e20 30%, #4caf50 90%)',
                     color: 'white',
                     textTransform: 'none',
                     fontSize: 18,
@@ -502,7 +473,7 @@ export class CreateSubject extends Component {
         >
           <CardContent elevation={3}>
             <Typography variant="h6" style={{}}>
-              Subject List
+              Grade List
             </Typography>
             <hr
               style={{
@@ -514,92 +485,32 @@ export class CreateSubject extends Component {
                 background: '#b2dfdb',
               }}
             />
-            {/* <Grid container direction="row">
-              <Grid item container direction="column" sm>
-                <section id="search_processes" class="center">
-                  <div id="filter_content">
-                    <table id="table_filters">
-                      <tr id="row_special">
-                        {/* <label style={{ marginRight: '0.5em' }}>
-                            Show entries of
-                          </label> */}
-            {/* <select class="form-control" id="records_comboBox">
-                          <option id="10" value="10">
-                            10
-                          </option>
-                          <option id="25" value="25">
-                            25
-                          </option>
-                          <option id="50" value="50">
-                            50
-                          </option>
-                        </select>
-                      </tr>
-                    </table>
-                  </div>
-                </section>
-              </Grid>
-              <Grid
-                item
-                container
-                direction="column"
-                sm
-                style={{ marginLeft: '40em', marginTop: '0.5em' }}
-              >
-                <Paper
-                  elevation={0}
-                  component="form"
-                  style={{
-                    padding: '2px 3px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    width: 400,
-                    border: '1px solid black',
-                  }}
-                >
-                  <InputBase
-                    style={{
-                      marginLeft: '1em',
-                      flex: 1,
-                    }}
-                    placeholder="Search"
-                    inputProps={{ 'aria-label': 'Search' }}
-                  />
-                  <IconButton
-                    type="submit"
-                    style={{ padding: 10 }}
-                    aria-label="search"
-                  >
-                    <SearchIcon />
-                  </IconButton>
-                </Paper>
-              </Grid> */}
-            {/* </Grid> */}
-            <br />
-            {/* <table
+            {/* <MDBDataTable striped bordered data={data} /> */}
+            <table
               id="team-list"
               className="table table-striped table-bordered"
-              cellspacing="0"
               width="100%"
+              style={{
+                marginTop: '0.5em',
+                marginBottom: '0.5em',
+              }}
             >
-              <thead className="">
-                <th scope="col" style={{ width: '4em' }}>
+              <thead>
+                <th scope="col" style={{ width: '3em' }}>
                   sl
                 </th>
-                <th scope="col" style={{ width: '15em' }}>
-                  Subject
+                <th scope="col" style={{ width: '5em' }}>
+                  Grade
                 </th>
-                <th scope="col" style={{ width: '30em' }}>
+                <th scope="col" style={{ width: '5em' }}>
                   Description
                 </th>
-                <th scope="col" style={{ width: '20em' }}>
-                  Actions
+                <th scope="col" style={{ width: '10em' }}>
+                  Action
                 </th>
               </thead>
-              <tbody>{this.subjectlist()}</tbody>
-            </table> */}
-            <br />
-            <MDBDataTable striped bordered data={data} />
+              <tbody>{this.gradelist()}</tbody>
+            </table>
           </CardContent>
         </Card>
       </div>
@@ -607,4 +518,4 @@ export class CreateSubject extends Component {
   }
 }
 
-export default withRouter(CreateSubject);
+export default withRouter(CreateGrade);

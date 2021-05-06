@@ -374,6 +374,169 @@ class TeacherDetails extends Component {
       teacherLastCertificatePhoto,
     } = this.state.teachers;
 
+    // const userAttributes = [];
+    // this.state.Batchsteacher.forEach((el, order) => {
+    //   userAttributes.push({
+    //     sl: order + 1,
+    //     BatchSchedule: el.batchSchedule,
+    //     BatchName:
+    //       el.batchSubject &&
+    //       el.sllabys &&
+    //       el.grade &&
+    //       el.EndDate &&
+    //       el.EndDate.substring(2, 4) &&
+    //       el.Batch,
+    //     Price: el.batchPrice,
+    //     ExpectedStudents: el.expectedStudents,
+    //     ActiveStudents: 'AS',
+    //     StartDate: el.StartDate && el.StartDate.substring(2, 4),
+    //     EndDate: el,
+    //     Action: (
+    //       <React.Fragment>
+    //         <Button
+    //           style={{
+    //             color: 'white',
+    //             background: '#66bb6a',
+    //             marginLeft: '1em',
+    //             marginRight: '1em',
+    //             marginTop: '0.5em',
+    //             marginBottom: '0.5em',
+    //           }}
+    //         >
+    //           <Link
+    //             style={{
+    //               color: 'white',
+    //             }}
+    //             className="text-decoration-none"
+    //             to={'/editTeacherBatch/' + el._id}
+    //           >
+    //             edit
+    //           </Link>
+    //         </Button>
+    //         <Button
+    //           style={{
+    //             color: 'white',
+    //             background: '#ef5350',
+    //             marginLeft: '1em',
+    //             marginRight: '1em',
+    //             marginTop: '0.5em',
+    //             marginBottom: '0.5em',
+    //           }}
+    //         >
+    //           <Typography
+    //             className="text-decoration-none"
+    //             data-toggle="modal"
+    //             data-target="#exampleModal"
+    //             style={{
+    //               color: 'white',
+    //             }}
+    //           >
+    //             delete{' '}
+    //           </Typography>
+    //         </Button>
+    //         <div
+    //           className="modal fade"
+    //           id="exampleModal"
+    //           tabIndex="-1"
+    //           aria-labelledby="exampleModalLabel"
+    //           aria-hidden="true"
+    //           style={{ marginTop: '10em' }}
+    //         >
+    //           <div className="modal-dialog">
+    //             <div className="modal-content">
+    //               <div className="modal-header">
+    //                 <h5
+    //                   className="modal-title"
+    //                   id="exampleModalLabel"
+    //                   style={{ color: 'red' }}
+    //                 >
+    //                   Are you sure you want to delete this Teacher
+    //                 </h5>
+    //                 <button
+    //                   type="button"
+    //                   className="close"
+    //                   data-dismiss="modal"
+    //                   aria-label="Close"
+    //                 >
+    //                   <span aria-hidden="true">&times;</span>
+    //                 </button>
+    //               </div>
+    //               <br />
+    //               <h5
+    //                 className="modal-title"
+    //                 id="exampleModalLabel"
+    //                 style={{
+    //                   marginLeft: '50px',
+    //                 }}
+    //               >
+    //                 Enter Password:
+    //               </h5>
+    //               <div
+    //                 style={{
+    //                   marginRight: '50px',
+    //                   marginLeft: '50px',
+    //                 }}
+    //               >
+    //                 <input
+    //                   className="form-control"
+    //                   type="text"
+    //                   name="password"
+    //                   label="enter password for deleting"
+    //                   value={this.state.password}
+    //                   onChange={this.onChangePassword}
+    //                   required
+    //                 />
+    //               </div>
+    //               <br />
+    //               <div className="modal-footer">
+    //                 <button
+    //                   type="button"
+    //                   className="btn btn-secondary"
+    //                   data-dismiss="modal"
+    //                   style={{ marginRight: '18em' }}
+    //                 >
+    //                   Cancel
+    //                 </button>
+    //                 <button
+    //                   type="button"
+    //                   className="btn btn-primary"
+    //                   data-toggle="modal"
+    //                   data-target="#exampleModal1"
+    //                   disabled={this.state.password.length !== 5}
+    //                 >
+    //                   Delete
+    //                 </button>
+    //               </div>
+    //             </div>
+    //           </div>
+    //         </div>
+    //       </React.Fragment>
+    //     ),
+    //   });
+    // });
+
+    // const data = {
+    //   columns: [
+    //     {
+    //       label: 'sl',
+    //       field: 'sl',
+    //       sort: 'asc',
+    //     },
+    //     {
+    //       label: 'Batch Schedule',
+    //       field: 'BatchSchedule',
+    //     },
+    //     { label: 'Batch Name', field: 'BatchName' },
+    //     { label: 'Price TK/=', field: 'Price' },
+    //     { label: 'Expected Students', field: 'ExpectedStudents' },
+    //     { label: 'Active Students', field: 'ActiveStudents' },
+    //     { label: 'Start Date', field: 'StartDate' },
+    //     { label: 'End Date', field: 'EndDate' },
+    //     { label: 'Actions', field: 'Action' },
+    //   ],
+    //   rows: userAttributes,
+    // };
+
     return (
       <Grid style={{ marginTop: '3em' }}>
         <Typography variant="h5" style={{ marginLeft: '1em', color: 'white' }}>
@@ -743,6 +906,7 @@ class TeacherDetails extends Component {
               }}
             />
             <br />
+            {/* <MDBDataTable striped bordered data={data} /> */}
             <table
               id="dtBasicExample"
               className="table table-striped table-bordered"
@@ -782,7 +946,7 @@ class TeacherDetails extends Component {
           </CardContent>
         </Card>
 
-        <div
+        {/* <div
           className="modal fade"
           id="exampleModal"
           tabIndex="-1"
@@ -812,16 +976,93 @@ class TeacherDetails extends Component {
                   //   props.deleteTeacher(props.TeacherBatchActions._id);
                   // }}
                   data-toggle="modal"
-                  data-target="#passwordModal"
+                  data-id="props.grade._id"
+                  data-target="#exampleModal"
                 >
                   Delete
                 </Button>
               </div>
             </div>
           </div>
-        </div>
-
+        </div> */}
         <div
+          className="modal fade"
+          id="exampleModal"
+          tabIndex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+          style={{ marginTop: '10em' }}
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5
+                  className="modal-title"
+                  id="exampleModalLabel"
+                  style={{ color: 'red' }}
+                >
+                  Are you sure you want to delete the the Batch? After that you
+                  can not get it back!
+                </h5>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <br />
+              <h5
+                className="modal-title"
+                id="exampleModalLabel"
+                style={{
+                  marginLeft: '50px',
+                }}
+              >
+                Enter Password:
+              </h5>
+              <div
+                style={{
+                  marginRight: '50px',
+                  marginLeft: '50px',
+                }}
+              >
+                <input
+                  className="form-control"
+                  type="text"
+                  name="password"
+                  label="enter password for deleting"
+                  value={this.state.password}
+                  onChange={this.onChangePassword}
+                  required
+                />
+              </div>
+              <br />
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-dismiss="modal"
+                  style={{ marginRight: '18em' }}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  data-toggle="modal"
+                  data-target="#exampleModal1"
+                  disabled={this.state.password.length !== 5}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <div
           className="modal fade"
           id="passwordModal"
           tabIndex="-1"
@@ -843,7 +1084,7 @@ class TeacherDetails extends Component {
                   placeholder="password"
                 />
               </div>
-              <div className="modal-header">{/* <Modalform /> */}</div>
+              <div className="modal-header"></div>
               <div className="modal-footer">
                 <Button
                   data-dismiss="modal"
@@ -869,7 +1110,7 @@ class TeacherDetails extends Component {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </Grid>
     );
   }

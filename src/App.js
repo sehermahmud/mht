@@ -38,6 +38,7 @@ import CreateUser from './components/user/nav/createuser';
 import EditUser from './components/user/nav/edituser';
 import Loginpage from './components/user/loginpage';
 import Dashboard from './components/home/DashboardNav';
+import Home from './testbrowser/home';
 
 const App = ({ checkUserSession, currentUser }) => {
   useEffect(() => {
@@ -46,6 +47,11 @@ const App = ({ checkUserSession, currentUser }) => {
 
   return (
     <React.Fragment>
+      <Switch>
+        <Route path="/home">
+          <Home />
+        </Route>
+      </Switch>
       {currentUser ? (
         <Switch>
           <Route exact path="/">

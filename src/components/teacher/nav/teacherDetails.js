@@ -155,10 +155,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '2.5em',
     fontFamily: 'Merienda One',
     marginRight: '1.5em',
+    flex: 1,
   },
 }));
 
-export function MiniDrawer(props, currentUser, signOutStart) {
+const MiniDrawer = ({ props, currentUser, signOutStart }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [openDrawer, setOpenDrawer] = React.useState(false);
@@ -663,7 +664,7 @@ export function MiniDrawer(props, currentUser, signOutStart) {
       </main>
     </div>
   );
-}
+};
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,

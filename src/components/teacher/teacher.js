@@ -133,6 +133,7 @@ export class CreateTeacher extends Component {
     this.onChangeSubject = this.onChangeSubject.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.deleteTeacher = this.deleteTeacher.bind(this);
+    this.onChangePassword = this.onChangePassword.bind(this);
 
     this.state = {
       teacherName: '',
@@ -144,7 +145,14 @@ export class CreateTeacher extends Component {
       teacherNIDPhoto: '',
       teacherLastCertificatePhoto: '',
       teachers: [],
+      password: '',
     };
+  }
+
+  onChangePassword(e) {
+    this.setState({
+      password: e.target.value,
+    });
   }
 
   onChangeTeacherName(e) {
@@ -309,6 +317,7 @@ export class CreateTeacher extends Component {
               <Typography
                 className="text-decoration-none"
                 data-toggle="modal"
+                data-id="props.grade._id"
                 data-target="#exampleModal"
                 style={{
                   color: 'white',
@@ -317,6 +326,82 @@ export class CreateTeacher extends Component {
                 delete{' '}
               </Typography>
             </Button>
+            <div
+              className="modal fade"
+              id="exampleModal"
+              tabIndex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+              style={{ marginTop: '10em' }}
+            >
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5
+                      className="modal-title"
+                      id="exampleModalLabel"
+                      style={{ color: 'red' }}
+                    >
+                      Are you sure you want to delete this Teacher
+                    </h5>
+                    <button
+                      type="button"
+                      className="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <br />
+                  <h5
+                    className="modal-title"
+                    id="exampleModalLabel"
+                    style={{
+                      marginLeft: '50px',
+                    }}
+                  >
+                    Enter Password:
+                  </h5>
+                  <div
+                    style={{
+                      marginRight: '50px',
+                      marginLeft: '50px',
+                    }}
+                  >
+                    <input
+                      className="form-control"
+                      type="text"
+                      name="password"
+                      label="enter password for deleting"
+                      value={this.state.password}
+                      onChange={this.onChangePassword}
+                      required
+                    />
+                  </div>
+                  <br />
+                  <div className="modal-footer">
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      data-dismiss="modal"
+                      style={{ marginRight: '18em' }}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      data-toggle="modal"
+                      data-target="#exampleModal1"
+                      disabled={this.state.password.length !== 5}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </React.Fragment>
         ),
       });
