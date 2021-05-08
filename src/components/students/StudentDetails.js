@@ -11,6 +11,7 @@ export class StudentDetails extends Component {
     this.state = {
       students: [],
       batch: [],
+      teachers: [],
     };
   }
 
@@ -30,11 +31,23 @@ export class StudentDetails extends Component {
 
     axios
       .get(
-        'https://mht-backend-edu.herokuapp.com/teachersBatch/5f8c354dafee4d26e65c6720/5f8eacf21b7c8c0d074ae292'
+        'https://mht-backend-edu.herokuapp.com/teachersBatch/5f90440a838fe20a3e1520d6/5f9047de838fe20a3e1520db'
       )
       .then((response) => {
         this.setState({ batch: response.data });
         console.log('student: ', this.state.batch);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    axios
+      .get(
+        'https://mht-backend-edu.herokuapp.com/teachers/5f90440a838fe20a3e1520d6'
+      )
+      .then((response) => {
+        this.setState({ teachers: response.data });
+        console.log('teacher: ', this.state.teachers);
       })
       .catch(function (error) {
         console.log(error);
@@ -54,7 +67,11 @@ export class StudentDetails extends Component {
       sllabys,
       specialNote,
       studentPermentId,
+      checked,
+      checked2,
     } = this.state.students;
+
+    const { batchPrice } = this.state.batch;
 
     return (
       <div style={{ marginTop: '4em' }}>
@@ -315,7 +332,7 @@ export class StudentDetails extends Component {
             <table
               id="dtBasicExample"
               className="table table-striped table-bordered"
-              cellspacing="0"
+              cellSpacing="0"
               width="100%"
             >
               <thead>
@@ -326,7 +343,17 @@ export class StudentDetails extends Component {
                 </tr>
               </thead>
               <tbody>
-                <tr></tr>
+                <tr>
+                  <td>
+                    <div>{checked}</div>
+                    <div>{checked2}</div>
+                  </td>
+                  <td>
+                    <div>{batchPrice}</div>
+                    <div>{batchPrice}</div>
+                  </td>
+                  <td></td>
+                </tr>
               </tbody>
             </table>
           </CardContent>

@@ -380,6 +380,20 @@ class EditStudent extends Component {
           });
         }
       });
+
+    axios
+      .get(
+        `https://mht-backend-edu.herokuapp.com/teachersBatch/5f90440a838fe20a3e1520d6/allTeacherBatch`
+      )
+      .then((response) => {
+        if (response.data.teacher.teacherBatch.length > 0) {
+          this.setState({
+            batchs: response.data.teacher.teacherBatch.map((batch) => batch),
+          });
+        }
+
+        console.log(this.state.batchs);
+      });
   }
 
   onSubmit(e) {
@@ -430,6 +444,8 @@ class EditStudent extends Component {
   }
 
   render() {
+    const { batchSubject, sllabys, grade, EndDate, Batch } = this.state.batchs;
+
     const content = this.state.checked ? (
       <div>
         <div
@@ -527,10 +543,23 @@ class EditStudent extends Component {
           <select
             className="custom-select mr-sm-2"
             id="inlineFormCustomSelect"
-            // value={this.state.subject}
-            // onChange={this.onChangeStudentSubject}
+            value={this.state.subject}
+            onChange={this.onChangeStudentSubject}
           >
-            <option>Phy-Ede-A2-Level-21-2</option>
+            {this.state.batchs.map((batch) => {
+              return (
+                <option
+                  key={batchSubject}
+                  value={
+                    batchSubject - sllabys - grade - EndDate &&
+                    EndDate.substring(2, 4) - Batch
+                  }
+                >
+                  {batch.batchSubject}-{batch.sllabys}-{batch.grade}-
+                  {batch.EndDate && batch.EndDate.substring(2, 4)}-{batch.Batch}
+                </option>
+              );
+            })}
           </select>
         </div>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>

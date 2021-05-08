@@ -483,6 +483,7 @@ class AddStudents extends Component {
               );
             })}
           </select>
+          Physics
         </div>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
