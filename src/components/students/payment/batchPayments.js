@@ -14,27 +14,27 @@ import axios from 'axios';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Tooltip from '@material-ui/core/Tooltip';
 import AsyncSelect from 'react-select/async';
-import { stateOptions } from './docs/data';
+// import { stateOptions } from './docs/data';
 
-const LoadingIndicator = (props) => {
-  return (
-    <Tooltip content={'Custom Loader'}>
-      <CircularProgress {...props} delay={0} />
-    </Tooltip>
-  );
-};
+// const LoadingIndicator = (props) => {
+//   return (
+//     <Tooltip content={'Custom Loader'}>
+//       <CircularProgress {...props} delay={0} />
+//     </Tooltip>
+//   );
+// };
 
-const filterColors = (inputValue) =>
-  stateOptions.filter((i) =>
-    i.label.toLowerCase().includes(inputValue.toLowerCase())
-  );
+// const filterColors = (inputValue, props) =>
+//   props.student.studentFullName.filter((i) =>
+//     i.label.toLowerCase().includes(inputValue.toLowerCase())
+//   );
 
-const promiseOptions = (inputValue) =>
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(filterColors(inputValue));
-    }, 1000);
-  });
+// const promiseOptions = (inputValue, props) =>
+//   new Promise((resolve) => {
+//     setTimeout(() => {
+//       resolve(filterColors(inputValue, props));
+//     }, 1000);
+//   });
 
 export class BatchPayments extends Component {
   constructor(props) {
@@ -44,6 +44,7 @@ export class BatchPayments extends Component {
 
     this.state = {
       value: '',
+      students: [],
     };
   }
 
@@ -56,15 +57,55 @@ export class BatchPayments extends Component {
       .get('https://mht-backend-edu.herokuapp.com/students/')
       .then((response) => {
         this.setState({ students: response.data });
+
+        console.log(this.state.students);
       })
       .catch((error) => {
         console.log(error);
       });
-
-    console.log(this.state);
   }
 
   render() {
+    const LoadingIndicator = (props) => {
+      return (
+        <Tooltip content={'Custom Loader'}>
+          <CircularProgress {...props} delay={0} />
+          {console.log(this.state.students)}
+        </Tooltip>
+      );
+    };
+
+    // const filterColors = (inputValue, props) => {
+    //   this.state.students.map((student) => {
+    //     student.filter((i) =>
+    //     i.studentFullName.toLowerCase().includes(inputValue.toLowerCase()))
+    //     );
+    //   });
+    // };
+
+    const filterColors = (inputValue) =>
+      this.state.students.filter((i) =>
+        i.studentFullName.toLowerCase().includes(inputValue.toLowerCase())
+      );
+
+    // const filterColors = (inputValue) =>
+    //   this.state.students.filter((i) =>
+    //     i.studentFullName.toLowerCase().includes(inputValue.toLowerCase())
+    //   );
+
+    // const hello = () => {
+    //   this.state.students.map((currentstudents) => {
+    //     filterColors(inputValue);
+    //   });
+    // };
+
+    const promiseOptions = (inputValue) =>
+      new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(filterColors(inputValue));
+        }, 1000);
+      });
+
     return (
       <div style={{ marginTop: '5em' }}>
         <Typography
@@ -75,6 +116,7 @@ export class BatchPayments extends Component {
             color: 'white',
           }}
         >
+          {console.log(filterColors)}
           Batch Payment Dashboard
         </Typography>
         <Typography
@@ -112,13 +154,19 @@ export class BatchPayments extends Component {
                 // style={{ zIndex: 1302 }}
                 style={{ marginRight: '1em' }}
               >
+                {/*
+                {this.state.students.map((student) => {
+                    return <div>{student.studentFullName}</div>;
+                  })}
+                  */}
+
                 <label for="exampleInputEmail1">Student</label>
                 <AsyncSelect
                   menuPortalTarget={document.querySelector('body')}
                   cacheOptions
                   defaultOptions
                   loadOptions={promiseOptions}
-                  components={{ LoadingIndicator }}
+                  components={LoadingIndicator}
                 />
               </Grid>
               <Grid
