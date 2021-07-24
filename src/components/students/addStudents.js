@@ -698,16 +698,6 @@ class AddStudents extends Component {
       StartDate14: this.state.StartDate14,
     };
 
-    Array.prototype.clean = function (deleteValue) {
-      for (var i = 0; i < this.length; i++) {
-        if (this[i] === deleteValue) {
-          this.splice(i, 1);
-          i--;
-        }
-      }
-      return this;
-    };
-
     const newStudent = {
       studentPermentId: id + this.state.clicks,
       studentFullName: this.state.studentFullName,
