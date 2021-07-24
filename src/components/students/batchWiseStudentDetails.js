@@ -97,7 +97,7 @@ class BatchWiseStudentDetails extends Component {
   componentDidMount(id) {
     axios
       .get(
-        'https://mht-backend-edu.herokuapp.com/subjects/' +
+        'https://mht-backend-1.herokuapp.com/subjects/' +
           '5f846ec167f0f40472a094ac/' +
           this.props.match.params.id
       )
@@ -333,7 +333,7 @@ class BatchWiseStudentDetails extends Component {
             <table
               id="dtBasicExample"
               className="table table-striped table-bordered"
-              cellspacing="0"
+              cellSpacing="0"
               width="100%"
             >
               <thead>

@@ -100,7 +100,7 @@ class CreateSllabys extends Component {
     console.log(newSllabys);
 
     axios
-      .post('https://mht-backend-edu.herokuapp.com/sllabys/add', newSllabys)
+      .post('https://mht-backend-1.herokuapp.com/sllabys/add', newSllabys)
       .then((res) => console.log(res.data));
 
     window.location.reload(true);
@@ -108,7 +108,7 @@ class CreateSllabys extends Component {
 
   componentDidMount() {
     axios
-      .get('https://mht-backend-edu.herokuapp.com/sllabys/')
+      .get('https://mht-backend-1.herokuapp.com/sllabys/')
       .then((response) => {
         this.setState({ allSllabys: response.data });
       })
@@ -119,7 +119,7 @@ class CreateSllabys extends Component {
 
   deleteSllabys(id) {
     axios
-      .delete('https://mht-backend-edu.herokuapp.com/sllabys/' + id)
+      .delete('https://mht-backend-1.herokuapp.com/sllabys/' + id)
       .then((res) => console.log(res.data));
 
     this.setState({
@@ -588,7 +588,7 @@ export default withRouter(CreateSllabys);
 //     console.log(newSllabys);
 
 //     axios
-//       .post('https://mht-backend-edu.herokuapp.com/sllabys/add', newSllabys)
+//       .post('https://mht-backend-1.herokuapp.com/sllabys/add', newSllabys)
 //       .then((res) => console.log(res.data));
 
 //     window.location.reload(true);
@@ -596,7 +596,7 @@ export default withRouter(CreateSllabys);
 
 //   componentDidMount() {
 //     axios
-//       .get('https://mht-backend-edu.herokuapp.com/sllabys/')
+//       .get('https://mht-backend-1.herokuapp.com/sllabys/')
 //       .then((response) => {
 //         this.setState({ tasks: response.data });
 //       })
@@ -623,7 +623,7 @@ export default withRouter(CreateSllabys);
 
 //   // deleteGrade(id) {
 //   //   axios
-//   //     .delete('https://mht-backend-edu.herokuapp.com/grades/' + id)
+//   //     .delete('https://mht-backend-1.herokuapp.com/grades/' + id)
 //   //     .then((res) => console.log(res.data));
 
 //   //   this.setState({

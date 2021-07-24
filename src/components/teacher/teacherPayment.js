@@ -8,9 +8,318 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import axios from 'axios';
 
 export class TeacherPayment extends Component {
+  constructor(props) {
+    super(props);
+
+    this.onChangeStudentSchool = this.onChangeStudentSchool.bind(this);
+
+    this.state = {
+      teachers: [],
+      studentSchool: '',
+      Arraychecked0: [],
+      Arraychecked1: [],
+      Arraychecked2: [],
+      Arraychecked3: [],
+      Arraychecked4: [],
+      Arraychecked5: [],
+      Arraychecked6: [],
+      Arraychecked7: [],
+      Arraychecked8: [],
+      Arraychecked9: [],
+      Arraychecked10: [],
+      Arraychecked11: [],
+      Arraychecked12: [],
+      Arraychecked13: [],
+      Arraychecked14: [],
+    };
+  }
+
+  onChangeStudentSchool(e) {
+    this.setState({ studentSchool: e.target.value });
+  }
+
+  componentDidMount() {
+    axios
+      .get('https://mht-backend-1.herokuapp.com/teachers/')
+      .then((response) => {
+        this.setState({ teachers: response.data });
+        console.log(this.state.teachers);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    axios
+      .get(
+        `https://mht-backend-1.herokuapp.com/teachersBatch/5f90440a838fe20a3e1520d6/allTeacherBatch`
+      )
+      .then((response) => {
+        if (response.data.teacher.teacherBatch.length > 0) {
+          this.setState({
+            Arraychecked0: response.data.teacher.teacherBatch.map(
+              (batch) => batch
+            ),
+          });
+        }
+
+        console.log(this.state.Arraychecked0);
+      });
+    // Batch Biology
+    axios
+      .get(
+        `https://mht-backend-1.herokuapp.com/teachersBatch/5f904557838fe20a3e1520d9/allTeacherBatch`
+      )
+      .then((response) => {
+        if (response.data.teacher.teacherBatch.length > 0) {
+          this.setState({
+            Arraychecked3: response.data.teacher.teacherBatch.map(
+              (batch) => batch
+            ),
+          });
+        }
+
+        console.log(this.state.Arraychecked3);
+      });
+    // Batch Chemistry
+    axios
+      .get(
+        `https://mht-backend-1.herokuapp.com/teachersBatch/5f90448a838fe20a3e1520d7/allTeacherBatch `
+      )
+      .then((response) => {
+        if (response.data.teacher.teacherBatch.length > 0) {
+          this.setState({
+            Arraychecked4: response.data.teacher.teacherBatch.map(
+              (batch) => batch
+            ),
+          });
+        }
+
+        console.log(this.state.Arraychecked4);
+      });
+
+    // Batch Math
+    axios
+      .get(
+        `https://mht-backend-1.herokuapp.com/teachersBatch/5f9045af838fe20a3e1520da/allTeacherBatch`
+      )
+      .then((response) => {
+        if (response.data.teacher.teacherBatch.length > 0) {
+          this.setState({
+            Arraychecked9: response.data.teacher.teacherBatch.map(
+              (batch) => batch
+            ),
+          });
+        }
+        console.log(this.state.Arraychecked9);
+      });
+
+    axios
+      .get(
+        `https://mht-backend-1.herokuapp.com/teachersBatch/5f9045af838fe20a3e1520da/allTeacherBatch`
+      )
+      .then((response) => {
+        if (response.data.teacher.teacherBatch.length > 0) {
+          this.setState({
+            Arraychecked10: response.data.teacher.teacherBatch.map(
+              (batch) => batch
+            ),
+          });
+        }
+
+        console.log(this.state.Arraychecked10);
+      });
+
+    axios
+      .get(
+        `https://mht-backend-1.herokuapp.com/teachersBatch/5f9045af838fe20a3e1520da/allTeacherBatch`
+      )
+      .then((response) => {
+        if (response.data.teacher.teacherBatch.length > 0) {
+          this.setState({
+            Arraychecked11: response.data.teacher.teacherBatch.map(
+              (batch) => batch
+            ),
+          });
+        }
+
+        console.log(this.state.Arraychecked11);
+      });
+
+    axios
+      .get(
+        `https://mht-backend-1.herokuapp.com/teachersBatch/5f9045af838fe20a3e1520da/allTeacherBatch`
+      )
+      .then((response) => {
+        if (response.data.teacher.teacherBatch.length > 0) {
+          this.setState({
+            Arraychecked12: response.data.teacher.teacherBatch.map(
+              (batch) => batch
+            ),
+          });
+        }
+
+        console.log(this.state.Arraychecked12);
+      });
+  }
+
   render() {
+    const popup =
+      this.state.studentSchool === 'Mir Zahidur Reza' ? (
+        <React.Fragment>
+          {this.state.Arraychecked0.map((students) => (
+            <tr>
+              <td>{students.batches2}</td>
+              <td>{students.batchSchedule}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>{students.batchPrice}</td>
+              <td></td>
+              <td></td>
+              <td>
+                {' '}
+                <Link
+                  to={'/teachers/teacherPaymentDetails/' + students._id}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Button
+                    style={{
+                      color: 'white',
+                      background:
+                        'linear-gradient(45deg, #b39ddb 30%, #673ab7 90%)',
+                      textTransform: 'none',
+                    }}
+                  >
+                    Details
+                  </Button>{' '}
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </React.Fragment>
+      ) : (
+        <div></div>
+      );
+
+    const popup2 =
+      this.state.studentSchool === 'Brendan Atkinson' ? (
+        <React.Fragment>
+          {this.state.Arraychecked4.map((students) => (
+            <tr>
+              <td>{students.batches2}</td>
+              <td>{students.batchSchedule}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>{students.batchPrice}</td>
+              <td></td>
+              <td></td>
+              <td>
+                {' '}
+                <Link
+                  to={'/teachers/teacherPaymentDetails/' + students._id}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Button
+                    style={{
+                      color: 'white',
+                      background:
+                        'linear-gradient(45deg, #b39ddb 30%, #673ab7 90%)',
+                      textTransform: 'none',
+                    }}
+                  >
+                    Details
+                  </Button>{' '}
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </React.Fragment>
+      ) : (
+        // console.log(this.state.teachers)
+        <div></div>
+      );
+
+    const popup3 =
+      this.state.studentSchool === 'Md. Akramuzzaman Akram' ? (
+        <React.Fragment>
+          {this.state.Arraychecked3.map((students) => (
+            <tr>
+              <td>{students.batches2}</td>
+              <td>{students.batchSchedule}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>{students.batchPrice}</td>
+              <td></td>
+              <td></td>
+              <td>
+                {' '}
+                <Link
+                  to={'/teachers/teacherPaymentDetails/' + students._id}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Button
+                    style={{
+                      color: 'white',
+                      background:
+                        'linear-gradient(45deg, #b39ddb 30%, #673ab7 90%)',
+                      textTransform: 'none',
+                    }}
+                  >
+                    Details
+                  </Button>{' '}
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </React.Fragment>
+      ) : (
+        // console.log(this.state.teachers)
+        <div></div>
+      );
+
+    const popup4 =
+      this.state.studentSchool === 'Dewan Rahul Ahmed' ? (
+        <React.Fragment>
+          {this.state.Arraychecked9.map((students) => (
+            <tr>
+              <td>{students.batches2}</td>
+              <td>{students.batchSchedule}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>{students.batchPrice}</td>
+              <td></td>
+              <td></td>
+              <td>
+                {' '}
+                <Link
+                  to={'/teachers/teacherPaymentDetails/' + students._id}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Button
+                    style={{
+                      color: 'white',
+                      background:
+                        'linear-gradient(45deg, #b39ddb 30%, #673ab7 90%)',
+                      textTransform: 'none',
+                    }}
+                  >
+                    Details
+                  </Button>{' '}
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </React.Fragment>
+      ) : (
+        // console.log(this.state.teachers)
+        <div></div>
+      );
     return (
       <div style={{ marginTop: '5em' }}>
         <Typography
@@ -77,17 +386,17 @@ export class TeacherPayment extends Component {
                 <select
                   className="custom-select mr-sm-2"
                   id="inlineFormCustomSelect"
-                  // value={this.state.studentSchool}
-                  // onChange={this.onChangeStudentSchool}
+                  value={this.state.studentSchool}
+                  onChange={this.onChangeStudentSchool}
                 >
-                  {/* {this.state.schools.map(function (school) {
-                      return (
-                        <option key={school} value={school}>
-                          {school}
-                        </option>
-                      );
-                    })} */}
                   <option>Select Teacher</option>
+                  {this.state.teachers.map(function (teacher) {
+                    return (
+                      <option key={teacher._id} value={teacher.teacherName}>
+                        {teacher.teacherName}
+                      </option>
+                    );
+                  })}
                 </select>
               </Grid>
               <Grid item container direction="column" sm>
@@ -188,7 +497,7 @@ export class TeacherPayment extends Component {
             <table
               id="dtBasicExample"
               className="table table-striped table-bordered"
-              cellspacing="0"
+              cellSpacing="0"
               width="100%"
             >
               <thead>
@@ -222,36 +531,18 @@ export class TeacherPayment extends Component {
                   </th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    {' '}
-                    <Link
-                      to="/teachers/teacherPaymentDetails"
-                      style={{ textDecoration: 'none' }}
-                    >
-                      <Button
-                        style={{
-                          color: 'white',
-                          background:
-                            'linear-gradient(45deg, #b39ddb 30%, #673ab7 90%)',
-                          textTransform: 'none',
-                        }}
-                      >
-                        Details
-                      </Button>{' '}
-                    </Link>
-                  </td>
-                </tr>
-              </tbody>
+              {this.state.studentSchool === 'Mir Zahidur Reza' ? (
+                <tbody>{popup}</tbody>
+              ) : null}
+              {this.state.studentSchool === 'Brendan Atkinson' ? (
+                <tbody>{popup2}</tbody>
+              ) : null}
+              {this.state.studentSchool === 'Md. Akramuzzaman Akram' ? (
+                <tbody>{popup3}</tbody>
+              ) : null}
+              {this.state.studentSchool === 'Dewan Rahul Ahmed' ? (
+                <tbody>{popup4}</tbody>
+              ) : null}
             </table>
           </CardContent>
         </Card>

@@ -12,17 +12,25 @@ export class StudentDetails extends Component {
       students: [],
       batch: [],
       teachers: [],
+      hello: 'hello',
+      we: '',
+      alina: '',
+      hellose: 'mina',
     };
   }
 
   componentDidMount() {
     axios
       .get(
-        'https://mht-backend-edu.herokuapp.com/students/' +
+        'https://mht-backend-1.herokuapp.com/students/' +
           this.props.match.params.id
       )
       .then((response) => {
-        this.setState({ students: response.data });
+        this.setState({
+          students: response.data,
+          // batch: response.data.Batch.map((batch) => batch),
+          // // batch: response.data.Batch[0],
+        });
         console.log('student: ', this.state.students);
       })
       .catch(function (error) {
@@ -31,32 +39,25 @@ export class StudentDetails extends Component {
 
     axios
       .get(
-        'https://mht-backend-edu.herokuapp.com/teachersBatch/5f90440a838fe20a3e1520d6/5f9047de838fe20a3e1520db'
+        'https://mht-backend-1.herokuapp.com/students/' +
+          this.props.match.params.id
       )
       .then((response) => {
-        this.setState({ batch: response.data });
-        console.log('student: ', this.state.batch);
+        if (response.data.Batch.length > 0) {
+          this.setState({
+            batch: response.data.Batch.map((batch) => batch),
+          });
+        }
+        console.log('studentBatch: ', this.state.batch);
       })
-      .catch(function (error) {
-        console.log(error);
-      });
-
-    axios
-      .get(
-        'https://mht-backend-edu.herokuapp.com/teachers/5f90440a838fe20a3e1520d6'
-      )
-      .then((response) => {
-        this.setState({ teachers: response.data });
-        console.log('teacher: ', this.state.teachers);
-      })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   }
 
   render() {
     const {
-      studentPhoto,
+      // studentPhoto,
       studentFullName,
       fatherName,
       motherName,
@@ -67,11 +68,7 @@ export class StudentDetails extends Component {
       sllabys,
       specialNote,
       studentPermentId,
-      checked,
-      checked2,
     } = this.state.students;
-
-    const { batchPrice } = this.state.batch;
 
     return (
       <div style={{ marginTop: '4em' }}>
@@ -133,7 +130,7 @@ export class StudentDetails extends Component {
                   }}
                 >
                   <img
-                    src={studentPhoto}
+                    // src={studentPhoto}
                     alt="student"
                     style={{
                       border: '1px solid black',
@@ -343,21 +340,29 @@ export class StudentDetails extends Component {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>
-                    <div>{checked}</div>
-                    <div>{checked2}</div>
-                  </td>
-                  <td>
-                    <div>{batchPrice}</div>
-                    <div>{batchPrice}</div>
-                  </td>
-                  <td></td>
-                </tr>
+                {this.state.batch.map(function (thebatch) {
+                  return (
+                    <tr>
+                      <td key={thebatch} value={thebatch}>
+                        {thebatch}
+                      </td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </CardContent>
         </Card>
+        <hr
+          style={{
+            clear: 'both',
+            marginBottom: '1em',
+            marginTop: '0.1rem',
+            border: '3px solid',
+          }}
+        />
         <hr
           style={{
             clear: 'both',
@@ -385,7 +390,7 @@ export class StudentDetails extends Component {
             <table
               id="dtBasicExample"
               className="table table-striped table-bordered"
-              cellspacing="0"
+              cellSpacing="0"
               width="100%"
             >
               <thead>
@@ -436,7 +441,7 @@ export class StudentDetails extends Component {
             <table
               id="dtBasicExample"
               className="table table-striped table-bordered"
-              cellspacing="0"
+              cellSpacing="0"
               width="100%"
             >
               <thead>

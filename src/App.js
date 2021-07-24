@@ -115,7 +115,7 @@ const App = ({ checkUserSession, currentUser }) => {
           <Route path="/teachers/teacherPayment">
             <TeacherPayment />
           </Route>
-          <Route path="/teachers/teacherPaymentDetails">
+          <Route path="/teachers/teacherPaymentDetails/:id">
             <TeacherPaymentDetails />
           </Route>
           <Route path="/teststudents">
@@ -124,6 +124,9 @@ const App = ({ checkUserSession, currentUser }) => {
           <Route path="/students/payments/batchPayment">
             <BatchPayments />
           </Route>
+          {/* <Route path="/students/payments/batchPayment/:id">
+            <BatchPaymentsStudentId />
+          </Route> */}
           <Route path="/students/payments/otherspaymentreporting">
             <OtherPayments />
           </Route>

@@ -44,7 +44,7 @@ class EditBatchTeacher extends Component {
   componentDidMount() {
     axios
       .get(
-        'https://mht-backend-edu.herokuapp.com/teachersBatch/' +
+        'https://mht-backend-1.herokuapp.com/teachersBatch/' +
           this.props.match.params.id +
           '/' +
           this.props.match.params.id
@@ -67,7 +67,7 @@ class EditBatchTeacher extends Component {
       });
 
     axios
-      .get('https://mht-backend-edu.herokuapp.com/grades/')
+      .get('https://mht-backend-1.herokuapp.com/grades/')
       .then((response) => {
         if (response.data.length > 0) {
           this.setState({
@@ -80,7 +80,7 @@ class EditBatchTeacher extends Component {
       });
 
     axios
-      .get('https://mht-backend-edu.herokuapp.com/subjects/')
+      .get('https://mht-backend-1.herokuapp.com/subjects/')
       .then((response) => {
         if (response.data.length > 0) {
           this.setState({
@@ -90,7 +90,7 @@ class EditBatchTeacher extends Component {
       });
 
     axios
-      .get('https://mht-backend-edu.herokuapp.com/sllabys/')
+      .get('https://mht-backend-1.herokuapp.com/sllabys/')
       .then((response) => {
         if (response.data.length > 0) {
           this.setState({
@@ -155,7 +155,7 @@ class EditBatchTeacher extends Component {
 
     axios
       .post(
-        'https://mht-backend-edu.herokuapp.com/teachersBatch/update/' +
+        'https://mht-backend-1.herokuapp.com/teachersBatch/update/' +
           this.props.match.params.id,
         teacher
       )
@@ -163,7 +163,7 @@ class EditBatchTeacher extends Component {
 
     axios
       .post(
-        'https://mht-backend-edu.herokuapp.com/batchs/update/' +
+        'https://mht-backend-1.herokuapp.com/batchs/update/' +
           this.props.match.params.id,
         teacher
       )

@@ -127,9 +127,8 @@ export class CreateTeacher extends Component {
     this.onChangePercentage = this.onChangePercentage.bind(this);
     this.onChangeTeacherPhoto = this.onChangeTeacherPhoto.bind(this);
     this.onChangeTeacherNIDPhoto = this.onChangeTeacherNIDPhoto.bind(this);
-    this.onChangeTeacherLastCertificatePhoto = this.onChangeTeacherLastCertificatePhoto.bind(
-      this
-    );
+    this.onChangeTeacherLastCertificatePhoto =
+      this.onChangeTeacherLastCertificatePhoto.bind(this);
     this.onChangeSubject = this.onChangeSubject.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.deleteTeacher = this.deleteTeacher.bind(this);
@@ -220,7 +219,7 @@ export class CreateTeacher extends Component {
     console.log(newTeacher);
 
     axios
-      .post('https://mht-backend-edu.herokuapp.com/teachers/add', newTeacher)
+      .post('https://mht-backend-1.herokuapp.com/teachers/add', newTeacher)
       .then((res) => console.log(res.data));
 
     window.location.reload(true);
@@ -228,7 +227,7 @@ export class CreateTeacher extends Component {
 
   componentDidMount() {
     axios
-      .get('https://mht-backend-edu.herokuapp.com/teachers/')
+      .get('https://mht-backend-1.herokuapp.com/teachers/')
       .then((response) => {
         this.setState({ teachers: response.data });
       })
@@ -239,7 +238,7 @@ export class CreateTeacher extends Component {
 
   deleteTeacher(id) {
     axios
-      .delete('https://mht-backend-edu.herokuapp.com/teachers/' + id)
+      .delete('https://mht-backend-1.herokuapp.com/teachers/' + id)
       .then((res) => console.log(res.data));
 
     this.setState({

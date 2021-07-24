@@ -22,7 +22,7 @@ class EditSubject extends Component {
   componentDidMount(id) {
     axios
       .get(
-        'https://mht-backend-edu.herokuapp.com/subjects/' +
+        'https://mht-backend-1.herokuapp.com/subjects/' +
           this.props.match.params.id
       )
       .then((response) => {
@@ -60,7 +60,7 @@ class EditSubject extends Component {
 
     axios
       .post(
-        'https://mht-backend-edu.herokuapp.com/subjects/update/' +
+        'https://mht-backend-1.herokuapp.com/subjects/update/' +
           this.props.match.params.id,
         subject
       )

@@ -22,73 +22,56 @@ export class Dashboard extends Component {
 
   componentDidMount(id) {
     axios
-      .get(
-        `https://mht-backend-edu.herokuapp.com/teachersBatch/5f90440a838fe20a3e1520d6/allTeacherBatch`
-      )
+      .get(`https://mht-backend-1.herokuapp.com/teachersBatch/allTeacherBatch`)
       .then((response) => {
-        if (response.data.teacher.teacherBatch.length > 0) {
-          this.setState({
-            batchs: response.data.teacher.teacherBatch.map((batch) => batch),
-          });
-        }
+        this.setState({
+          batchs: response.data,
+        });
 
         console.log(this.state.batchs);
       });
   }
 
   render() {
-    // const userAttributes = [];
-    // this.state.grades.forEach((el, order) => {
-    //   userAttributes.push({
-    //     sl: order + 1,
-    //     Grade: el.grade,
-    //     Description: el.description,
-    //     Action: (
-    //       <React.Fragment>
-    //         <Button
-    //           style={{
-    //             color: 'white',
-    //             background: 'linear-gradient(45deg, #e65100 30%, #ff9800 90%)',
-    //             marginRight: '1em',
-    //             marginLeft: '1em',
-    //             marginBottom: '0.1em',
-    //             marginTop: '0.1em',
-    //           }}
-    //         >
-    //           <Link
-    //             style={{ color: 'white' }}
-    //             className="text-decoration-none"
-    //             to={'/edit/' + el._id}
-    //           >
-    //             edit
-    //           </Link>{' '}
-    //         </Button>
-    //         <Button
-    //           style={{
-    //             color: 'white',
-    //             background: 'linear-gradient(45deg, #b71c1c 30%, #f44336 90%)',
-    //             marginRight: '1em',
-    //             marginLeft: '1em',
-    //             marginBottom: '0.1em',
-    //             marginTop: '0.1em',
-    //           }}
-    //           data-toggle="modal"
-    //           data-target="#exampleModal"
-    //         >
-    //           <Typography
-    //             className="text-decoration-none"
-    //             data-toggle="modal"
-    //             data-id="props.grade._id"
-    //             data-target="#exampleModal"
-    //             style={{ color: 'white' }}
-    //           >
-    //             delete{' '}
-    //           </Typography>
-    //         </Button>
-    //       </React.Fragment>
-    //     ),
-    //   });
-    // });
+    const userAttributes = [];
+    this.state.batchs.forEach((el, order) => {
+      userAttributes.push({
+        BatchName: el.batches2,
+        Schedule: el.batchSchedule,
+        ActiveStudents: '',
+        PaidStudents: '',
+        DueStudents: '',
+        ExpectedAmount: '',
+        PaidAmount: '',
+        DueAmount: '',
+        Actions: (
+          <React.Fragment>
+            <Button
+              style={{
+                color: 'white',
+                background: 'linear-gradient(45deg, #311b92 30%, #673ab7 90%)',
+                marginLeft: '0.5em',
+                marginRight: '0.5em',
+                marginTop: '0.3em',
+                marginBottom: '0.3em',
+                textTransform: 'none',
+                fontSize: '0.9em',
+              }}
+            >
+              <Link
+                to="#"
+                style={{
+                  color: 'white',
+                }}
+                className="text-decoration-none"
+              >
+                Details
+              </Link>
+            </Button>
+          </React.Fragment>
+        ),
+      });
+    });
 
     const data = {
       columns: [
@@ -147,42 +130,7 @@ export class Dashboard extends Component {
           width: 100,
         },
       ],
-      rows: [
-        {
-          BatchName: '',
-          Schedule: '',
-          ActiveStudents: '',
-          PaidStudents: '',
-          DueStudents: '',
-          ExpectedAmount: '',
-          PaidAmount: '',
-          DueAmount: '',
-          Actions: (
-            <Button
-              style={{
-                color: 'white',
-                background: 'linear-gradient(45deg, #311b92 30%, #673ab7 90%)',
-                marginLeft: '0.5em',
-                marginRight: '0.5em',
-                marginTop: '0.3em',
-                marginBottom: '0.3em',
-                textTransform: 'none',
-                fontSize: '0.9em',
-              }}
-            >
-              <Link
-                to="#"
-                style={{
-                  color: 'white',
-                }}
-                className="text-decoration-none"
-              >
-                Details
-              </Link>
-            </Button>
-          ),
-        },
-      ],
+      rows: userAttributes,
     };
 
     return (

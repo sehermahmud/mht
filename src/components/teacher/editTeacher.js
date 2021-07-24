@@ -19,9 +19,8 @@ export class EditTeacher extends Component {
     this.onChangePercentage = this.onChangePercentage.bind(this);
     this.onChangeTeacherPhoto = this.onChangeTeacherPhoto.bind(this);
     this.onChangeTeacherNIDPhoto = this.onChangeTeacherNIDPhoto.bind(this);
-    this.onChangeTeacherLastCertificatePhoto = this.onChangeTeacherLastCertificatePhoto.bind(
-      this
-    );
+    this.onChangeTeacherLastCertificatePhoto =
+      this.onChangeTeacherLastCertificatePhoto.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
@@ -39,7 +38,7 @@ export class EditTeacher extends Component {
   componentDidMount() {
     axios
       .get(
-        'https://mht-backend-edu.herokuapp.com/teachers/' +
+        'https://mht-backend-1.herokuapp.com/teachers/' +
           this.props.match.params.id
       )
       .then((response) => {
@@ -126,7 +125,7 @@ export class EditTeacher extends Component {
 
     axios
       .post(
-        'https://mht-backend-edu.herokuapp.com/teachers/update/' +
+        'https://mht-backend-1.herokuapp.com/teachers/update/' +
           this.props.match.params.id,
         teacher
       )

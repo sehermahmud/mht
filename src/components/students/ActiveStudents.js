@@ -8,8 +8,8 @@ import { Grid } from '@material-ui/core';
 
 const Students = (props) => (
   <React.Fragment>
-    {props.student.checked === '' ? (
-      props.show === false
+    {!props.student.Batch.length ? (
+      <div></div>
     ) : (
       <tr>
         <td>{props.student.studentFullName}</td>
@@ -17,9 +17,11 @@ const Students = (props) => (
         <td>{props.student.guardianPhoneNumber}</td>
         <td>{props.student.specialNote}</td>
         <td>
-          <div>{props.student.checked},</div>
-          <div>{props.student.checked2}</div>
+          {props.student.Batch.map((item) => (
+            <div>{item}</div>
+          ))}
         </td>
+        {/* <td>{props.student.Batch}</td> */}
         <td></td>
         <td>
           <Button
@@ -81,12 +83,10 @@ export class ActiveStudents extends Component {
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangeFatherName = this.onChangeFatherName.bind(this);
     this.onChangeMotherName = this.onChangeMotherName.bind(this);
-    this.onChangeStudentPhoneNumber = this.onChangeStudentPhoneNumber.bind(
-      this
-    );
-    this.onChangeGuardianPhoneNumber = this.onChangeGuardianPhoneNumber.bind(
-      this
-    );
+    this.onChangeStudentPhoneNumber =
+      this.onChangeStudentPhoneNumber.bind(this);
+    this.onChangeGuardianPhoneNumber =
+      this.onChangeGuardianPhoneNumber.bind(this);
     this.onChangeSpecialNote = this.onChangeSpecialNote.bind(this);
     this.onChangeStudentPhoto = this.onChangeStudentPhoto.bind(this);
     this.onChangeStudentSchool = this.onChangeStudentSchool.bind(this);
@@ -224,7 +224,7 @@ export class ActiveStudents extends Component {
   // && student.specialNote
 
   getData = () => {
-    fetch('https://mht-backend-edu.herokuapp.com/students/')
+    fetch('https://mht-backend-1.herokuapp.com/students/')
       .then((response) => response.json())
       .then((students) => {
         const { query } = this.state;
@@ -251,7 +251,7 @@ export class ActiveStudents extends Component {
   };
 
   componentDidMount(getData) {
-    fetch('https://mht-backend-edu.herokuapp.com/students/')
+    fetch('https://mht-backend-1.herokuapp.com/students/')
       .then((response) => response.json())
       .then((students) => {
         const { query } = this.state;
@@ -275,6 +275,8 @@ export class ActiveStudents extends Component {
           filteredData,
         });
       });
+
+    console.log(this.state.students);
   }
 
   studentList() {
@@ -290,7 +292,15 @@ export class ActiveStudents extends Component {
       // ) {
       //   return <div>{currentstudents === null}</div>;
       // }
-
+      // if (
+      //   currentstudents.Batch.length ===
+      //   ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+      // ) {
+      //   console.log('I am empty');
+      // } else {
+      //   // console.log('I am not empty');
+      //   return <div>hello</div>;
+      // }
       return (
         <Students
           student={currentstudents}
@@ -302,111 +312,6 @@ export class ActiveStudents extends Component {
   }
 
   render() {
-    // const userAttributes = [];
-    // this.state.students.forEach((el) => {
-    //   userAttributes.push({
-    //     StudentName: el.studentFullName,
-    //     StudentNumber: el.studentPhoneNumber,
-    //     GuardianNumber: el.guardianPhoneNumber,
-    //     SpecialNote: el.specialNote,
-    //     Batch: el.checked,
-    //     TotalPayableAmount: '',
-    //     Actions: (
-    //       <React.Fragment>
-    //         <Button
-    //           style={{
-    //             color: 'white',
-    //             background: 'linear-gradient(45deg, #311b92 30%, #673ab7 90%)',
-    //             marginLeft: '0.5em',
-    //             marginRight: '0.5em',
-    //             marginTop: '0.3em',
-    //             marginBottom: '0.3em',
-    //             textTransform: 'none',
-    //             fontSize: '0.9em',
-    //           }}
-    //         >
-    //           <Link
-    //             style={{
-    //               color: 'white',
-    //             }}
-    //             className="text-decoration-none"
-    //             to={'/students/StudentDetails/' + el._id}
-    //           >
-    //             Details
-    //           </Link>
-    //         </Button>
-    //         <Button
-    //           style={{
-    //             color: 'white',
-    //             marginLeft: '0.5em',
-    //             marginRight: '0.5em',
-    //             marginTop: '0.3em',
-    //             marginBottom: '0.3em',
-    //             background: 'linear-gradient(45deg, #e65100 30%, #ff9800 90%)',
-    //             textTransform: 'none',
-    //             fontSize: '0.9em',
-    //           }}
-    //         >
-    //           <Link
-    //             style={{
-    //               color: 'white',
-    //             }}
-    //             className="text-decoration-none"
-    //             to={'/editStudent/' + el._id}
-    //           >
-    //             Edit
-    //           </Link>
-    //         </Button>
-    //       </React.Fragment>
-    //     ),
-    //   });
-    // });
-
-    // const data = {
-    //   columns: [
-    //     {
-    //       label: 'Student Name',
-    //       field: 'StudentName',
-    //       sort: 'asc',
-    //       width: '20em',
-    //     },
-    //     {
-    //       label: 'Student Number',
-    //       field: 'StudentNumber',
-    //       sort: 'asc',
-    //       width: '11em',
-    //     },
-    //     {
-    //       label: 'Guardian Number',
-    //       field: 'GuardianNumber',
-    //       sort: 'asc',
-    //       width: '11em',
-    //     },
-    //     {
-    //       label: 'Special Note',
-    //       field: 'SpecialNote',
-    //       sort: 'asc',
-    //       width: '15em',
-    //     },
-    //     {
-    //       label: 'Batch',
-    //       field: 'Batch',
-    //       width: '18em',
-    //     },
-    //     {
-    //       label: 'Total Payable amount/=',
-    //       field: 'TotalPayableAmount',
-    //       sort: 'asc',
-    //       width: '18em',
-    //     },
-    //     {
-    //       label: 'Actions',
-    //       field: 'Actions',
-    //       maxWidth: '10em',
-    //     },
-    //   ],
-    //   rows: userAttributes,
-    // };
     return (
       <div style={{ marginTop: '5em' }}>
         <Typography
@@ -496,25 +401,25 @@ export class ActiveStudents extends Component {
               }}
             >
               <thead>
-                <th scope="col" style={{ width: '3em' }}>
+                <th scope="col" style={{ width: '10em' }}>
                   StudentName
                 </th>
-                <th scope="col" style={{ width: '5em' }}>
-                  StudentNumber
+                <th scope="col" style={{ width: '8em' }}>
+                  Student Number
                 </th>
-                <th scope="col" style={{ width: '5em' }}>
+                <th scope="col" style={{ width: '8em' }}>
                   Guardian Number
                 </th>
                 <th scope="col" style={{ width: '10em' }}>
                   Special Note
                 </th>
-                <th scope="col" style={{ width: '10em' }}>
+                <th scope="col" style={{ width: '12em' }}>
                   Batch
                 </th>
-                <th scope="col" style={{ width: '10em' }}>
+                <th scope="col" style={{ width: '5em' }}>
                   Total Payable amount/=
                 </th>
-                <th scope="col" style={{ width: '10em' }}>
+                <th scope="col" style={{ width: '8em' }}>
                   Action
                 </th>
               </thead>

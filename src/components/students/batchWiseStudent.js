@@ -28,7 +28,7 @@ export class BatchWiseStudent extends Component {
 
   componentDidMount(id) {
     axios
-      .get('https://mht-backend-edu.herokuapp.com/subjects/')
+      .get('https://mht-backend-1.herokuapp.com/subjects/')
       .then((response) => {
         if (response.data.length > 0) {
           this.setState({
@@ -47,7 +47,7 @@ export class BatchWiseStudent extends Component {
 
     axios
       .get(
-        'https://mht-backend-edu.herokuapp.com/subjects/' +
+        'https://mht-backend-1.herokuapp.com/subjects/' +
           '5f846ec167f0f40472a094ac' +
           '/batch'
       )
@@ -61,7 +61,7 @@ export class BatchWiseStudent extends Component {
       });
 
     axios
-      .get('https://mht-backend-edu.herokuapp.com/teachers/')
+      .get('https://mht-backend-1.herokuapp.com/teachers/')
       .then((response) => {
         this.setState({ Teachers: response.data });
       })

@@ -13,13 +13,14 @@ import {
 const TeacherBatchlist = (props) => (
   <tr>
     <td>{props.TeacherBatchActions.batchSchedule}</td>
-    <td>
+    {/* <td>
       {props.TeacherBatchActions.batchSubject}-
       {props.TeacherBatchActions.sllabys}-{props.TeacherBatchActions.grade}-
       {props.TeacherBatchActions.EndDate &&
         props.TeacherBatchActions.EndDate.substring(2, 4)}
       -{props.TeacherBatchActions.Batch}
-    </td>
+    </td> */}
+    <td>{props.TeacherBatchActions.batches2}</td>
     <td>{props.TeacherBatchActions.batchPrice}</td>
     <td>{props.TeacherBatchActions.expectedStudents}</td>
     <td>AS</td>
@@ -156,6 +157,7 @@ class TeacherDetails extends Component {
       Batchsteacher: [],
       password: '',
       errors: {},
+      batch2: '',
     };
   }
 
@@ -206,6 +208,7 @@ class TeacherDetails extends Component {
       batchSubject: e.target.value,
     });
   }
+  4;
 
   onChangeBatchSchedule(e) {
     this.setState({
@@ -234,7 +237,7 @@ class TeacherDetails extends Component {
   componentDidMount(id) {
     axios
       .get(
-        'https://mht-backend-edu.herokuapp.com/teachers/' +
+        'https://mht-backend-1.herokuapp.com/teachers/' +
           this.props.match.params.id
       )
       .then((response) => {
@@ -247,7 +250,7 @@ class TeacherDetails extends Component {
 
     axios
       .get(
-        'https://mht-backend-edu.herokuapp.com/teachersBatch/' +
+        'https://mht-backend-1.herokuapp.com/teachersBatch/' +
           this.props.match.params.id +
           '/allTeacherBatch'
       )
@@ -262,34 +265,31 @@ class TeacherDetails extends Component {
       });
 
     axios
-      .get('https://mht-backend-edu.herokuapp.com/grades/')
+      .get('https://mht-backend-1.herokuapp.com/grades/')
       .then((response) => {
         if (response.data.length > 0) {
           this.setState({
             grades: response.data.map((grading) => grading.grade),
-            grade: response.data[0].grade,
           });
         }
       });
 
     axios
-      .get('https://mht-backend-edu.herokuapp.com/subjects/')
+      .get('https://mht-backend-1.herokuapp.com/subjects/')
       .then((response) => {
         if (response.data.length > 0) {
           this.setState({
             subjects: response.data.map((subject) => subject.subject),
-            subject: response.data[0].subject,
           });
         }
       });
 
     axios
-      .get('https://mht-backend-edu.herokuapp.com/sllabys/')
+      .get('https://mht-backend-1.herokuapp.com/sllabys/')
       .then((response) => {
         if (response.data.length > 0) {
           this.setState({
             allsllabys: response.data.map((sllabys) => sllabys.sllabys),
-            sllabys: response.data[0].sllabys,
           });
         }
       });
@@ -300,35 +300,47 @@ class TeacherDetails extends Component {
 
     const teacher = {
       Batch: this.state.Batch,
-      batchPrice: this.state.batchPrice,
       sllabys: this.state.sllabys.substring(0, 3),
       batchSubject: this.state.batchSubject.substring(0, 3),
+      EndDate: this.state.EndDate.toString().substring(13, 15),
       grade: this.state.grade,
+    };
+
+    const teacherBatch = {
+      batches2:
+        teacher.batchSubject +
+        '-' +
+        teacher.sllabys +
+        '-' +
+        teacher.grade +
+        '-' +
+        teacher.EndDate +
+        '-' +
+        teacher.Batch,
+      batchPrice: this.state.batchPrice,
       batchSchedule: this.state.batchSchedule,
       expectedStudents: this.state.expectedStudents,
       StartDate: this.state.StartDate,
       EndDate: this.state.EndDate,
     };
 
+    console.log(teacherBatch);
+
     console.log(teacher);
 
     axios
       .post(
-        `https://mht-backend-edu.herokuapp.com/teachersBatch/` +
+        `https://mht-backend-1.herokuapp.com/teachersBatch/` +
           this.props.match.params.id +
-          `/` +
-          `5f846ec167f0f40472a094ac` +
           `/addBatch`,
-        teacher
+        teacherBatch
       )
       .then((res) => console.log(res.data));
-
-    window.location.reload(true);
   }
 
   deleteTeacher(id) {
     axios
-      .delete('https://mht-backend-edu.herokuapp.com/teachersBatch/' + id)
+      .delete('https://mht-backend-1.herokuapp.com/teachersBatch/' + id)
       .then((res) => console.log(res.data));
 
     this.setState({
@@ -373,169 +385,6 @@ class TeacherDetails extends Component {
       teacherNID,
       teacherLastCertificatePhoto,
     } = this.state.teachers;
-
-    // const userAttributes = [];
-    // this.state.Batchsteacher.forEach((el, order) => {
-    //   userAttributes.push({
-    //     sl: order + 1,
-    //     BatchSchedule: el.batchSchedule,
-    //     BatchName:
-    //       el.batchSubject &&
-    //       el.sllabys &&
-    //       el.grade &&
-    //       el.EndDate &&
-    //       el.EndDate.substring(2, 4) &&
-    //       el.Batch,
-    //     Price: el.batchPrice,
-    //     ExpectedStudents: el.expectedStudents,
-    //     ActiveStudents: 'AS',
-    //     StartDate: el.StartDate && el.StartDate.substring(2, 4),
-    //     EndDate: el,
-    //     Action: (
-    //       <React.Fragment>
-    //         <Button
-    //           style={{
-    //             color: 'white',
-    //             background: '#66bb6a',
-    //             marginLeft: '1em',
-    //             marginRight: '1em',
-    //             marginTop: '0.5em',
-    //             marginBottom: '0.5em',
-    //           }}
-    //         >
-    //           <Link
-    //             style={{
-    //               color: 'white',
-    //             }}
-    //             className="text-decoration-none"
-    //             to={'/editTeacherBatch/' + el._id}
-    //           >
-    //             edit
-    //           </Link>
-    //         </Button>
-    //         <Button
-    //           style={{
-    //             color: 'white',
-    //             background: '#ef5350',
-    //             marginLeft: '1em',
-    //             marginRight: '1em',
-    //             marginTop: '0.5em',
-    //             marginBottom: '0.5em',
-    //           }}
-    //         >
-    //           <Typography
-    //             className="text-decoration-none"
-    //             data-toggle="modal"
-    //             data-target="#exampleModal"
-    //             style={{
-    //               color: 'white',
-    //             }}
-    //           >
-    //             delete{' '}
-    //           </Typography>
-    //         </Button>
-    //         <div
-    //           className="modal fade"
-    //           id="exampleModal"
-    //           tabIndex="-1"
-    //           aria-labelledby="exampleModalLabel"
-    //           aria-hidden="true"
-    //           style={{ marginTop: '10em' }}
-    //         >
-    //           <div className="modal-dialog">
-    //             <div className="modal-content">
-    //               <div className="modal-header">
-    //                 <h5
-    //                   className="modal-title"
-    //                   id="exampleModalLabel"
-    //                   style={{ color: 'red' }}
-    //                 >
-    //                   Are you sure you want to delete this Teacher
-    //                 </h5>
-    //                 <button
-    //                   type="button"
-    //                   className="close"
-    //                   data-dismiss="modal"
-    //                   aria-label="Close"
-    //                 >
-    //                   <span aria-hidden="true">&times;</span>
-    //                 </button>
-    //               </div>
-    //               <br />
-    //               <h5
-    //                 className="modal-title"
-    //                 id="exampleModalLabel"
-    //                 style={{
-    //                   marginLeft: '50px',
-    //                 }}
-    //               >
-    //                 Enter Password:
-    //               </h5>
-    //               <div
-    //                 style={{
-    //                   marginRight: '50px',
-    //                   marginLeft: '50px',
-    //                 }}
-    //               >
-    //                 <input
-    //                   className="form-control"
-    //                   type="text"
-    //                   name="password"
-    //                   label="enter password for deleting"
-    //                   value={this.state.password}
-    //                   onChange={this.onChangePassword}
-    //                   required
-    //                 />
-    //               </div>
-    //               <br />
-    //               <div className="modal-footer">
-    //                 <button
-    //                   type="button"
-    //                   className="btn btn-secondary"
-    //                   data-dismiss="modal"
-    //                   style={{ marginRight: '18em' }}
-    //                 >
-    //                   Cancel
-    //                 </button>
-    //                 <button
-    //                   type="button"
-    //                   className="btn btn-primary"
-    //                   data-toggle="modal"
-    //                   data-target="#exampleModal1"
-    //                   disabled={this.state.password.length !== 5}
-    //                 >
-    //                   Delete
-    //                 </button>
-    //               </div>
-    //             </div>
-    //           </div>
-    //         </div>
-    //       </React.Fragment>
-    //     ),
-    //   });
-    // });
-
-    // const data = {
-    //   columns: [
-    //     {
-    //       label: 'sl',
-    //       field: 'sl',
-    //       sort: 'asc',
-    //     },
-    //     {
-    //       label: 'Batch Schedule',
-    //       field: 'BatchSchedule',
-    //     },
-    //     { label: 'Batch Name', field: 'BatchName' },
-    //     { label: 'Price TK/=', field: 'Price' },
-    //     { label: 'Expected Students', field: 'ExpectedStudents' },
-    //     { label: 'Active Students', field: 'ActiveStudents' },
-    //     { label: 'Start Date', field: 'StartDate' },
-    //     { label: 'End Date', field: 'EndDate' },
-    //     { label: 'Actions', field: 'Action' },
-    //   ],
-    //   rows: userAttributes,
-    // };
 
     return (
       <Grid style={{ marginTop: '3em' }}>
@@ -734,7 +583,7 @@ class TeacherDetails extends Component {
           elevation={1}
         >
           <CardContent>
-            <from>
+            <form>
               <Typography variant="h5" style={{ margin: '2px' }}>
                 Create New Batch
               </Typography>
@@ -769,6 +618,7 @@ class TeacherDetails extends Component {
                     value={this.state.sllabys}
                     onChange={this.onChangeSllabys}
                   >
+                    <option>Choose...</option>
                     {this.state.allsllabys.map(function (sllabys) {
                       return (
                         <option key={sllabys} value={sllabys}>
@@ -786,6 +636,7 @@ class TeacherDetails extends Component {
                     value={this.state.grade}
                     onChange={this.onChangeGrade}
                   >
+                    <option>Choose...</option>
                     {this.state.grades.map(function (grade) {
                       return (
                         <option key={grade} value={grade}>
@@ -803,6 +654,7 @@ class TeacherDetails extends Component {
                     value={this.state.batchSubject}
                     onChange={this.onChangeSubject}
                   >
+                    <option>Choose...</option>
                     {this.state.subjects.map(function (subject) {
                       return (
                         <option key={subject} value={subject}>
@@ -877,7 +729,7 @@ class TeacherDetails extends Component {
                   Submit
                 </Button>
               </div>
-            </from>
+            </form>
           </CardContent>
         </Card>
         <hr
@@ -910,7 +762,7 @@ class TeacherDetails extends Component {
             <table
               id="dtBasicExample"
               className="table table-striped table-bordered"
-              cellspacing="0"
+              cellSpacing="0"
               width="100%"
             >
               <thead>

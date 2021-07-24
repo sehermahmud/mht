@@ -167,7 +167,7 @@ class CreateGrade extends Component {
     console.log(newGrade);
 
     axios
-      .post('https://mht-backend-edu.herokuapp.com/grades/add', newGrade)
+      .post('https://mht-backend-1.herokuapp.com/grades/add', newGrade)
       .then((res) => console.log(res.data));
 
     // window.location = '/grade';
@@ -175,7 +175,7 @@ class CreateGrade extends Component {
 
   componentDidMount() {
     axios
-      .get('https://mht-backend-edu.herokuapp.com/grades/')
+      .get('https://mht-backend-1.herokuapp.com/grades/')
       .then((response) => {
         this.setState({ grades: response.data });
         console.log(this.state.grades);
@@ -187,7 +187,7 @@ class CreateGrade extends Component {
 
   deleteGrade(id) {
     axios
-      .delete('https://mht-backend-edu.herokuapp.com/grades/' + id)
+      .delete('https://mht-backend-1.herokuapp.com/grades/' + id)
       .then((res) => console.log(res.data));
 
     this.setState({
@@ -742,7 +742,7 @@ export default withRouter(CreateGrade);
 //     console.log(newGrade);
 
 //     axios
-//       .post('https://mht-backend-edu.herokuapp.com/grades/add', newGrade)
+//       .post('https://mht-backend-1.herokuapp.com/grades/add', newGrade)
 //       .then((res) => console.log(res.data));
 
 //     // window.location = '/grade';
@@ -750,7 +750,7 @@ export default withRouter(CreateGrade);
 
 //   componentDidMount() {
 //     axios
-//       .get('https://mht-backend-edu.herokuapp.com/grades/')
+//       .get('https://mht-backend-1.herokuapp.com/grades/')
 //       .then((response) => {
 //         this.setState({ tasks: response.data });
 //         console.log(this.state.tasks);
@@ -775,7 +775,7 @@ export default withRouter(CreateGrade);
 //   //   //   ],
 //   //   // });
 //   //   axios
-//   //     .delete('https://mht-backend-edu.herokuapp.com/grades/' + id)
+//   //     .delete('https://mht-backend-1.herokuapp.com/grades/' + id)
 //   //     .then((res) => console.log(res.data));
 
 //   //   this.setState({
@@ -786,7 +786,7 @@ export default withRouter(CreateGrade);
 
 //   removeTask(id) {
 //     axios
-//       .delete('https://mht-backend-edu.herokuapp.com/grades/' + id)
+//       .delete('https://mht-backend-1.herokuapp.com/grades/' + id)
 //       .then((res) => console.log(res.data));
 
 //     this.setState({
@@ -797,7 +797,7 @@ export default withRouter(CreateGrade);
 
 //   // deleteGrade(id) {
 //   //   axios
-//   //     .delete('https://mht-backend-edu.herokuapp.com/grades/' + id)
+//   //     .delete('https://mht-backend-1.herokuapp.com/grades/' + id)
 //   //     .then((res) => console.log(res.data));
 
 //   //   this.setState({

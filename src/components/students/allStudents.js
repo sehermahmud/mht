@@ -14,12 +14,10 @@ export class AllStudents extends Component {
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangeFatherName = this.onChangeFatherName.bind(this);
     this.onChangeMotherName = this.onChangeMotherName.bind(this);
-    this.onChangeStudentPhoneNumber = this.onChangeStudentPhoneNumber.bind(
-      this
-    );
-    this.onChangeGuardianPhoneNumber = this.onChangeGuardianPhoneNumber.bind(
-      this
-    );
+    this.onChangeStudentPhoneNumber =
+      this.onChangeStudentPhoneNumber.bind(this);
+    this.onChangeGuardianPhoneNumber =
+      this.onChangeGuardianPhoneNumber.bind(this);
     this.onChangeSpecialNote = this.onChangeSpecialNote.bind(this);
     this.onChangeStudentPhoto = this.onChangeStudentPhoto.bind(this);
     this.onChangeStudentSchool = this.onChangeStudentSchool.bind(this);
@@ -153,7 +151,7 @@ export class AllStudents extends Component {
   };
 
   getData = () => {
-    fetch('https://mht-backend-edu.herokuapp.com/students/')
+    fetch('https://mht-backend-1.herokuapp.com/students/')
       .then((response) => response.json())
       .then((students) => {
         const { query } = this.state;
@@ -182,7 +180,7 @@ export class AllStudents extends Component {
 
   componentDidMount() {
     axios
-      .get('https://mht-backend-edu.herokuapp.com/students/')
+      .get('https://mht-backend-1.herokuapp.com/students/')
       .then((response) => {
         this.setState({ students: response.data });
       })

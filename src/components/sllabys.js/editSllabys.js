@@ -22,7 +22,7 @@ class EditSllabys extends Component {
   componentDidMount() {
     axios
       .get(
-        'https://mht-backend-edu.herokuapp.com/sllabys/' +
+        'https://mht-backend-1.herokuapp.com/sllabys/' +
           this.props.match.params.id
       )
       .then((response) => {
@@ -60,7 +60,7 @@ class EditSllabys extends Component {
 
     axios
       .post(
-        'https://mht-backend-edu.herokuapp.com/sllabys/update/' +
+        'https://mht-backend-1.herokuapp.com/sllabys/update/' +
           this.props.match.params.id,
         sllabys
       )

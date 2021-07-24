@@ -320,3 +320,115 @@ export class OtherPayments extends Component {
 }
 
 export default withRouter(OtherPayments);
+
+// // import React, { Component } from 'react';
+// // import { withRouter } from 'react-router-dom';
+// // import axios from 'axios';
+
+// // const options = [];
+
+// // class OtherPayments extends Component {
+// //   state = {
+// //     options,
+// //     selected: Object.keys(options)[0],
+// //   };
+
+// //   onChange = (event) => {
+// //     this.setState({ selected: event.target.value });
+// //   };
+
+// //   componentDidMount() {
+// //     axios
+// //       .get('https://mht-backend-1.herokuapp.com/students/')
+// //       .then((response) => {
+// //         this.setState({
+// //           options: response.data,
+// //         });
+// //         console.log(this.state.options);
+// //       })
+// //       .catch((error) => {
+// //         console.log(error);
+// //       });
+// //   }
+
+// //   render() {
+// //     const { options, selected } = this.state;
+
+// //     return (
+// //       <div style={{ marginTop: '8em' }}>
+// //         <select onChange={this.onChange}>
+// //           {Object.keys(options).map((key) => (
+// //             <option key={key} value={key}>
+// //               {options[key].studentFullName}
+// //             </option>
+// //           ))}
+// //         </select>
+// //         {/* <span>{options[selected].studentFullName}</span> */}
+// //         {/* <span>{options[selected].email}</span> */}
+// //         {console.log(options[selected].studentFullName)}
+// //       </div>
+// //     );
+// //   }
+// // }
+
+// // export default withRouter(OtherPayments);
+
+// import React, { Component } from 'react';
+// import { withRouter } from 'react-router-dom';
+// import axios from 'axios';
+
+// class OtherPayments extends Component {
+//   constructor() {
+//     super();
+//     this.state = {
+//       optionsdata: [
+//         // { key: '101', value: 'Lion' },
+//         // { key: '102', value: 'Giraffe' },
+//         // { key: '103', value: 'Zebra' },
+//         // { key: '104', value: 'Hippo' },
+//         // { key: '105', value: 'Penguin' },
+//       ],
+//     };
+//   }
+//   handleChange = (e) => {
+//     console.log(e.target.value);
+//     var value = this.state.optionsdata.filter(function (item) {
+//       return item.key === e.target.value;
+//     });
+//     console.log(value[0].studentSchool);
+//   };
+
+//   componentDidMount() {
+//     axios
+//       .get('https://mht-backend-1.herokuapp.com/students/')
+//       .then((response) => {
+//         this.setState({
+//           optionsdata: response.data,
+//         });
+//         console.log(this.state.optionsdata);
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   }
+
+//   render() {
+//     return (
+//       <div style={{ marginTop: '8em' }}>
+//         <select onChange={this.handleChange}>
+//           {this.state.optionsdata.map(function (data, key) {
+//             return (
+//               <option key={key} value={data.key}>
+//                 {data.studentFullName}
+//               </option>
+//             );
+//           })}
+//         </select>
+//         <br />
+//         {/* <span>{value[0].value}</span> */}
+//       </div>
+//     );
+//   }
+// }
+
+// export default withRouter(OtherPayments);

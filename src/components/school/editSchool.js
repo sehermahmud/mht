@@ -24,7 +24,7 @@ class EditSchool extends Component {
   componentDidMount() {
     axios
       .get(
-        'https://mht-backend-edu.herokuapp.com/schools/' +
+        'https://mht-backend-1.herokuapp.com/schools/' +
           this.props.match.params.id
       )
       .then((response) => {
@@ -70,7 +70,7 @@ class EditSchool extends Component {
 
     axios
       .post(
-        'https://mht-backend-edu.herokuapp.com/schools/update/' +
+        'https://mht-backend-1.herokuapp.com/schools/update/' +
           this.props.match.params.id,
         school
       )

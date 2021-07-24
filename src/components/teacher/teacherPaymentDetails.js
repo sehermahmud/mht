@@ -3,8 +3,32 @@ import { withRouter } from 'react-router-dom';
 import { Card, CardContent } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { Button, Grid } from '@material-ui/core';
+import axios from 'axios';
 
 class TeacherPaymentDetails extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      teachers: [],
+    };
+  }
+
+  componentDidMount(id) {
+    axios
+      .get(
+        'https://mht-backend-1.herokuapp.com/teachersBatch/' +
+          this.props.match.params.id
+      )
+      .then((response) => {
+        this.setState({ teachers: response.data });
+        console.log('teacher: ', this.state.teachers);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   render() {
     return (
       <div style={{ marginTop: '5em' }}>
@@ -43,14 +67,13 @@ class TeacherPaymentDetails extends Component {
           <CardContent>
             <Grid container direction="row">
               <Grid item container direction="column" sm>
-                <Typography variant="h6">Teacher Name: </Typography>
-              </Grid>
-              <Grid item container direction="column" sm>
-                <Typography variant="h6">Batch Name: </Typography>
+                <Typography variant="h6">
+                  Batch Name: {this.state.teachers.batches2}
+                </Typography>
               </Grid>
               <Grid item container direction="column" sm>
                 <Typography variant="h6" style={{ marginLeft: '8em' }}>
-                  Month:{' '}
+                  Month:
                 </Typography>
               </Grid>
             </Grid>
@@ -169,7 +192,7 @@ class TeacherPaymentDetails extends Component {
                 <table
                   id="dtBasicExample"
                   className="table table-striped table-bordered"
-                  cellspacing="0"
+                  cellSpacing="0"
                   width="100%"
                 >
                   <thead>
@@ -292,7 +315,7 @@ class TeacherPaymentDetails extends Component {
                 <table
                   id="dtBasicExample"
                   className="table table-striped table-bordered"
-                  cellspacing="0"
+                  cellSpacing="0"
                   width="100%"
                 >
                   <thead>
