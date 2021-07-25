@@ -726,7 +726,7 @@ class AddStudents extends Component {
         newStudentMid.checked12,
         newStudentMid.checked13,
         newStudentMid.checked14,
-      ].clean(''),
+      ].filter(Boolean),
       Batch: [
         newStudentMid.Batch0,
         newStudentMid.Batch1,
@@ -743,7 +743,7 @@ class AddStudents extends Component {
         newStudentMid.Batch12,
         newStudentMid.Batch13,
         newStudentMid.Batch14,
-      ].clean(''),
+      ].filter(Boolean),
       StartDate: [
         newStudentMid.StartDate,
         newStudentMid.StartDate1,

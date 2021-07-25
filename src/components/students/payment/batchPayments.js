@@ -254,8 +254,8 @@ export class BatchPayments extends Component {
                                   color: '#4B8DF8',
                                 },
                               }}
-                              control={<Radio disableRipple />}
                               value="reguler1"
+                              control={<Radio disableRipple />}
                             />
                           </td>
                           <td>
