@@ -208,7 +208,6 @@ class TeacherDetails extends Component {
       batchSubject: e.target.value,
     });
   }
-  4;
 
   onChangeBatchSchedule(e) {
     this.setState({

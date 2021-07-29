@@ -13,6 +13,8 @@ import {
 import axios from 'axios';
 // import Select from 'react-select';
 
+const allStudent = [];
+
 export class BatchPayments extends Component {
   constructor(props) {
     super(props);
@@ -31,8 +33,14 @@ export class BatchPayments extends Component {
       studentDetails: [],
       showInfoButton: false,
       batch: [],
+      selected: Object.keys(allStudent)[0],
+      allStudent,
     };
   }
+
+  onChange = (event) => {
+    this.setState({ selected: event.target.value });
+  };
 
   onChangestudent(e) {
     this.setState({ students: e.target.value });
@@ -69,487 +77,20 @@ export class BatchPayments extends Component {
       .catch((error) => {
         console.log(error);
       });
+
+    axios
+      .get('https://mht-backend-1.herokuapp.com/students')
+      .then((response) => {
+        this.setState({ allStudent: response.data });
+        console.log('allStudent: ', this.state.allStudent);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   render() {
-    const popup =
-      this.state.students === 'shamila nuzrat khan' ? (
-        <React.Fragment>
-          <Card elevation={0} style={{ margin: '1em', borderRadius: 0 }}>
-            <CardContent>
-              <Typography variant="h6">Student Information</Typography>
-              <hr />
-              <br />
-              <Grid
-                container
-                direction="row"
-                key={this.state.allstudents[0]._id}
-              >
-                <Grid item container direction="column" sm>
-                  <div
-                    style={{
-                      width: '10em',
-                      height: '10em',
-                      marginTop: '1rem',
-                      display: 'block',
-                      marginLeft: 'auto',
-                      marginRight: 'auto',
-                      marginBottom: '1em',
-                    }}
-                  >
-                    <img
-                      src=""
-                      alt="student"
-                      style={{
-                        border: '1px solid black',
-                        width: '10em',
-                        height: '10em',
-                        objectFit: 'cover',
-                        display: 'block',
-                        marginLeft: 'auto',
-                        marginRight: 'auto',
-                      }}
-                    />
-                  </div>
-                  <div style={{ marginBottom: '1em' }}>
-                    <Typography
-                      style={{
-                        fontSize: 16,
-                        fontWeight: 600,
-                        textAlign: 'center',
-                      }}
-                    >
-                      School Name: {this.state.allstudents[0].studentSchool}
-                    </Typography>
-                  </div>
-                </Grid>
-                <Grid item container direction="column" sm>
-                  <div style={{ marginBottom: '1em' }}>
-                    <Typography style={{ fontSize: 16, fontWeight: 600 }}>
-                      Student's Name:
-                    </Typography>
-                    <Typography>
-                      {this.state.allstudents[0].studentFullName}
-                    </Typography>
-                  </div>
-                  <div style={{ marginBottom: '1em' }}>
-                    <Typography style={{ fontSize: 16, fontWeight: 600 }}>
-                      Father's Name:
-                    </Typography>
-                    <Typography>
-                      {this.state.allstudents[0].fatherName}
-                    </Typography>
-                  </div>
-                  <div style={{ marginBottom: '1em' }}>
-                    <Typography style={{ fontSize: 16, fontWeight: 600 }}>
-                      Mother's Name:
-                    </Typography>
-                    <Typography>
-                      {this.state.allstudents[0].motherName}
-                    </Typography>
-                  </div>
-                </Grid>
-                <Grid item container direction="column" sm>
-                  <div style={{ marginBottom: '1em' }}>
-                    <Typography style={{ fontSize: 16, fontWeight: 600 }}>
-                      Student's Phone Number:
-                    </Typography>
-                    <Typography>
-                      {this.state.allstudents[0].studentPhoneNumber}
-                    </Typography>
-                  </div>
-                  <div style={{ marginBottom: '1em' }}>
-                    <Typography style={{ fontSize: 16, fontWeight: 600 }}>
-                      Guardian's Phone Number:
-                    </Typography>
-                    <Typography>
-                      {this.state.allstudents[0].guardianPhoneNumber}
-                    </Typography>
-                  </div>
-                  <div style={{ marginBottom: '1em' }}>
-                    <Typography style={{ fontSize: 16, fontWeight: 600 }}>
-                      Email:
-                    </Typography>
-                    <Typography>{this.state.allstudents[0].email}</Typography>
-                  </div>
-                </Grid>
-              </Grid>
-            </CardContent>
-          </Card>
-          <hr
-            style={{
-              clear: 'both',
-              marginBottom: '1em',
-              marginTop: '1rem',
-              border: '3px solid #80cbc4',
-              background: '#80cbc4',
-              width: '100%',
-            }}
-          />
-          <Card elevation={0} style={{ margin: '1em', borderRadius: 0 }}>
-            <CardContent>
-              <Typography variant="h6">Payment</Typography>
-              <br />
-              <RadioGroup aria-label="gender" name="gender1">
-                <table
-                  className="table table-striped table-bordered"
-                  cellSpacing="0"
-                  width="100%"
-                >
-                  <thead>
-                    <tr>
-                      <th scope="col" style={{ width: '8em' }}>
-                        Batch Name
-                      </th>
-                      <th scope="col" style={{ width: '4em' }}>
-                        Payment form
-                      </th>
-                      <th scope="col" style={{ width: '3em' }}>
-                        Unit Price/=
-                      </th>
-                      <th scope="col" style={{ width: '4em' }}>
-                        no. of month
-                      </th>
-                      <th scope="col" style={{ width: '9em' }}>
-                        Total Price Per Course /=
-                      </th>
-                      <th scope="col" style={{ width: '3em' }}>
-                        Regular
-                      </th>
-                      <th scope="col" style={{ width: '3em' }}>
-                        Due
-                      </th>
-                      <th scope="col" style={{ width: '3em' }}>
-                        Discount
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {this.state.batch[0].map(function (thebatch) {
-                      return (
-                        <tr>
-                          <td key={thebatch} value={thebatch}>
-                            {thebatch}
-                          </td>
-                          <td></td>
-                          <td></td>
-                          <td>
-                            <select className="custom-select">
-                              <option value="0">0</option>
-                              <option value="1">1</option>
-
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                              <option value="4">4</option>
-                              <option value="5">5</option>
-                            </select>
-                          </td>
-                          <td></td>
-                          <td>
-                            <FormControlLabel
-                              style={{
-                                marginLeft: 0,
-                                marginRight: 0,
-                                '&$checked': {
-                                  color: '#4B8DF8',
-                                },
-                              }}
-                              value="reguler1"
-                              control={<Radio disableRipple />}
-                            />
-                          </td>
-                          <td>
-                            <div className="input-group">
-                              <FormControlLabel
-                                style={{
-                                  marginLeft: 0,
-                                  marginRight: 0,
-                                  '&$checked': {
-                                    color: '#4B8DF8',
-                                  },
-                                }}
-                                value="hello1"
-                                control={<Radio />}
-                              />
-                              <input
-                                type="text"
-                                className="form-control"
-                                aria-label="Text input with radio button"
-                              />
-                            </div>
-                          </td>
-                          <td>
-                            <div className="input-group">
-                              <FormControlLabel
-                                style={{
-                                  marginLeft: 0,
-                                  marginRight: 0,
-                                  '&$checked': {
-                                    color: '#4B8DF8',
-                                  },
-                                }}
-                                value="hi1"
-                                control={<Radio />}
-                              />
-                              <input
-                                type="text"
-                                className="form-control"
-                                aria-label="Text input with radio button"
-                              />
-                            </div>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </RadioGroup>
-            </CardContent>
-          </Card>
-        </React.Fragment>
-      ) : (
-        <div></div>
-      );
-
-    const popup2 =
-      this.state.students === 'Karina kapoor' ? (
-        <React.Fragment>
-          <Card elevation={0} style={{ margin: '1em', borderRadius: 0 }}>
-            <CardContent>
-              <Typography variant="h6">Student Information</Typography>
-              <hr />
-              <br />
-              <Grid
-                container
-                direction="row"
-                key={this.state.allstudents[1]._id}
-              >
-                <Grid item container direction="column" sm>
-                  <div
-                    style={{
-                      width: '10em',
-                      height: '10em',
-                      marginTop: '1rem',
-                      display: 'block',
-                      marginLeft: 'auto',
-                      marginRight: 'auto',
-                      marginBottom: '1em',
-                    }}
-                  >
-                    <img
-                      src=""
-                      alt="student"
-                      style={{
-                        border: '1px solid black',
-                        width: '10em',
-                        height: '10em',
-                        objectFit: 'cover',
-                        display: 'block',
-                        marginLeft: 'auto',
-                        marginRight: 'auto',
-                      }}
-                    />
-                  </div>
-                  <div style={{ marginBottom: '1em' }}>
-                    <Typography
-                      style={{
-                        fontSize: 16,
-                        fontWeight: 600,
-                        textAlign: 'center',
-                      }}
-                    >
-                      School Name: {this.state.allstudents[1].studentSchool}
-                    </Typography>
-                  </div>
-                </Grid>
-                <Grid item container direction="column" sm>
-                  <div style={{ marginBottom: '1em' }}>
-                    <Typography style={{ fontSize: 16, fontWeight: 600 }}>
-                      Student's Name:
-                    </Typography>
-                    <Typography>
-                      {this.state.allstudents[1].studentFullName}
-                    </Typography>
-                  </div>
-                  <div style={{ marginBottom: '1em' }}>
-                    <Typography style={{ fontSize: 16, fontWeight: 600 }}>
-                      Father's Name:
-                    </Typography>
-                    <Typography>
-                      {this.state.allstudents[1].fatherName}
-                    </Typography>
-                  </div>
-                  <div style={{ marginBottom: '1em' }}>
-                    <Typography style={{ fontSize: 16, fontWeight: 600 }}>
-                      Mother's Name:
-                    </Typography>
-                    <Typography>
-                      {this.state.allstudents[1].motherName}
-                    </Typography>
-                  </div>
-                </Grid>
-                <Grid item container direction="column" sm>
-                  <div style={{ marginBottom: '1em' }}>
-                    <Typography style={{ fontSize: 16, fontWeight: 600 }}>
-                      Student's Phone Number:
-                    </Typography>
-                    <Typography>
-                      {this.state.allstudents[1].studentPhoneNumber}
-                    </Typography>
-                  </div>
-                  <div style={{ marginBottom: '1em' }}>
-                    <Typography style={{ fontSize: 16, fontWeight: 600 }}>
-                      Guardian's Phone Number:
-                    </Typography>
-                    <Typography>
-                      {this.state.allstudents[1].guardianPhoneNumber}
-                    </Typography>
-                  </div>
-                  <div style={{ marginBottom: '1em' }}>
-                    <Typography style={{ fontSize: 16, fontWeight: 600 }}>
-                      Email:
-                    </Typography>
-                    <Typography>{this.state.allstudents[1].email}</Typography>
-                  </div>
-                </Grid>
-              </Grid>
-            </CardContent>
-          </Card>
-          <hr
-            style={{
-              clear: 'both',
-              marginBottom: '1em',
-              marginTop: '1rem',
-              border: '3px solid #80cbc4',
-              background: '#80cbc4',
-              width: '100%',
-            }}
-          />
-          <Card elevation={0} style={{ margin: '1em', borderRadius: 0 }}>
-            <CardContent>
-              <Typography variant="h6">Payment</Typography>
-              <br />
-              <RadioGroup aria-label="gender" name="gender1">
-                <table
-                  className="table table-striped table-bordered"
-                  cellSpacing="0"
-                  width="100%"
-                >
-                  <thead>
-                    <tr>
-                      <th scope="col" style={{ width: '8em' }}>
-                        Batch Name
-                      </th>
-                      <th scope="col" style={{ width: '4em' }}>
-                        Payment form
-                      </th>
-                      <th scope="col" style={{ width: '3em' }}>
-                        Unit Price/=
-                      </th>
-                      <th scope="col" style={{ width: '4em' }}>
-                        no. of month
-                      </th>
-                      <th scope="col" style={{ width: '9em' }}>
-                        Total Price Per Course /=
-                      </th>
-                      <th scope="col" style={{ width: '3em' }}>
-                        Regular
-                      </th>
-                      <th scope="col" style={{ width: '3em' }}>
-                        Due
-                      </th>
-                      <th scope="col" style={{ width: '3em' }}>
-                        Discount
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {this.state.batch[1].map(function (thebatch) {
-                      return (
-                        <tr>
-                          <td key={thebatch} value={thebatch}>
-                            {thebatch}
-                          </td>
-                          <td>{}</td>
-                          <td></td>
-                          <td>
-                            <select className="custom-select">
-                              <option value="0">0</option>
-                              <option value="1">1</option>
-
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                              <option value="4">4</option>
-                              <option value="5">5</option>
-                            </select>
-                          </td>
-                          <td></td>
-                          <td>
-                            <FormControlLabel
-                              style={{
-                                marginLeft: 0,
-                                marginRight: 0,
-                                '&$checked': {
-                                  color: '#4B8DF8',
-                                },
-                              }}
-                              value="reguler2"
-                              control={<Radio disableRipple />}
-                            />
-                          </td>
-                          <td>
-                            <div className="input-group">
-                              <FormControlLabel
-                                style={{
-                                  marginLeft: 0,
-                                  marginRight: 0,
-                                  '&$checked': {
-                                    color: '#4B8DF8',
-                                  },
-                                }}
-                                value="hello2"
-                                control={<Radio />}
-                              />
-                              <input
-                                type="text"
-                                className="form-control"
-                                aria-label="Text input with radio button"
-                              />
-                            </div>
-                          </td>
-                          <td>
-                            <div className="input-group">
-                              <FormControlLabel
-                                style={{
-                                  marginLeft: 0,
-                                  marginRight: 0,
-                                  '&$checked': {
-                                    color: '#4B8DF8',
-                                  },
-                                }}
-                                value="hi2"
-                                control={<Radio />}
-                              />
-                              <input
-                                type="text"
-                                className="form-control"
-                                aria-label="Text input with radio button"
-                              />
-                            </div>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </RadioGroup>
-            </CardContent>
-          </Card>
-        </React.Fragment>
-      ) : (
-        <div></div>
-      );
-
+    const { allStudent, selected } = this.state;
     return (
       <div style={{ marginTop: '5em' }}>
         <Typography
@@ -598,7 +139,7 @@ export class BatchPayments extends Component {
                 style={{ marginRight: '1em' }}
               >
                 <label htmlFor="exampleInputEmail1">Student</label>
-                <select
+                {/* <select
                   className="custom-select mr-sm-2"
                   value={this.state.students}
                   onChange={this.onChangestudent}
@@ -613,6 +154,17 @@ export class BatchPayments extends Component {
                         {students.studentFullName}
                       </option>
                     </React.Fragment>
+                  ))}
+                </select> */}
+                <select
+                  className="custom-select mr-sm-2"
+                  onChange={this.onChange}
+                >
+                  <option defaultChecked>Choose...</option>
+                  {Object.keys(allStudent).map((key) => (
+                    <option key={key} value={key}>
+                      {allStudent[key].studentFullName}
+                    </option>
                   ))}
                 </select>
                 {/* <span>Selected option: {this.state.students}</span> */}
@@ -760,10 +312,235 @@ export class BatchPayments extends Component {
           }}
         />
         <hr style={{ clear: 'both', marginBottom: '1rem' }} />
-        {this.state.students === 'shamila nuzrat khan' ? (
-          <div>{popup}</div>
-        ) : null}
-        {this.state.students === 'Karina kapoor' ? <div>{popup2}</div> : null}
+        {allStudent[selected] === undefined ? (
+          ''
+        ) : (
+          <React.Fragment>
+            <Card elevation={0} style={{ margin: '1em', borderRadius: 0 }}>
+              <CardContent>
+                <Typography variant="h6">Student Information</Typography>
+                <hr />
+                <br />
+                <Grid container direction="row" key={allStudent[selected]._id}>
+                  <Grid item container direction="column" sm>
+                    <div
+                      style={{
+                        width: '10em',
+                        height: '10em',
+                        marginTop: '1rem',
+                        display: 'block',
+                        marginLeft: 'auto',
+                        marginRight: 'auto',
+                        marginBottom: '1em',
+                      }}
+                    >
+                      <img
+                        src=""
+                        alt="student"
+                        style={{
+                          border: '1px solid black',
+                          width: '10em',
+                          height: '10em',
+                          objectFit: 'cover',
+                          display: 'block',
+                          marginLeft: 'auto',
+                          marginRight: 'auto',
+                        }}
+                      />
+                    </div>
+                    <div style={{ marginBottom: '1em' }}>
+                      <Typography
+                        style={{
+                          fontSize: 16,
+                          fontWeight: 600,
+                          textAlign: 'center',
+                        }}
+                      >
+                        School Name: {this.state.allstudents[0].studentSchool}
+                      </Typography>
+                    </div>
+                  </Grid>
+                  <Grid item container direction="column" sm>
+                    <div style={{ marginBottom: '1em' }}>
+                      <Typography style={{ fontSize: 16, fontWeight: 600 }}>
+                        Student's Name:
+                      </Typography>
+                      <Typography>
+                        {allStudent[selected].studentFullName}
+                      </Typography>
+                    </div>
+                    <div style={{ marginBottom: '1em' }}>
+                      <Typography style={{ fontSize: 16, fontWeight: 600 }}>
+                        Father's Name:
+                      </Typography>
+                      <Typography>{allStudent[selected].fatherName}</Typography>
+                    </div>
+                    <div style={{ marginBottom: '1em' }}>
+                      <Typography style={{ fontSize: 16, fontWeight: 600 }}>
+                        Mother's Name:
+                      </Typography>
+                      <Typography>{allStudent[selected].motherName}</Typography>
+                    </div>
+                  </Grid>
+                  <Grid item container direction="column" sm>
+                    <div style={{ marginBottom: '1em' }}>
+                      <Typography style={{ fontSize: 16, fontWeight: 600 }}>
+                        Student's Phone Number:
+                      </Typography>
+                      <Typography>
+                        {allStudent[selected].studentPhoneNumber}
+                      </Typography>
+                    </div>
+                    <div style={{ marginBottom: '1em' }}>
+                      <Typography style={{ fontSize: 16, fontWeight: 600 }}>
+                        Guardian's Phone Number:
+                      </Typography>
+                      <Typography>
+                        {allStudent[selected].guardianPhoneNumber}
+                      </Typography>
+                    </div>
+                    <div style={{ marginBottom: '1em' }}>
+                      <Typography style={{ fontSize: 16, fontWeight: 600 }}>
+                        Email:
+                      </Typography>
+                      <Typography>{allStudent[selected].email}</Typography>
+                    </div>
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Card>
+            <hr
+              style={{
+                clear: 'both',
+                marginBottom: '1em',
+                marginTop: '1rem',
+                border: '3px solid #80cbc4',
+                background: '#80cbc4',
+                width: '100%',
+              }}
+            />
+            <Card elevation={0} style={{ margin: '1em', borderRadius: 0 }}>
+              <CardContent>
+                <Typography variant="h6">Payment</Typography>
+                <br />
+                <RadioGroup aria-label="gender" name="gender1">
+                  <table
+                    className="table table-striped table-bordered"
+                    cellSpacing="0"
+                    width="100%"
+                  >
+                    <thead>
+                      <tr>
+                        <th scope="col" style={{ width: '8em' }}>
+                          Batch Name
+                        </th>
+                        <th scope="col" style={{ width: '4em' }}>
+                          Payment form
+                        </th>
+                        <th scope="col" style={{ width: '3em' }}>
+                          Unit Price/=
+                        </th>
+                        <th scope="col" style={{ width: '4em' }}>
+                          no. of month
+                        </th>
+                        <th scope="col" style={{ width: '9em' }}>
+                          Total Price Per Course /=
+                        </th>
+                        <th scope="col" style={{ width: '3em' }}>
+                          Regular
+                        </th>
+                        <th scope="col" style={{ width: '3em' }}>
+                          Due
+                        </th>
+                        <th scope="col" style={{ width: '3em' }}>
+                          Discount
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {allStudent[selected].Batch.map(function (thebatch) {
+                        return (
+                          <tr>
+                            <td key={thebatch} value={thebatch}>
+                              {thebatch}
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              <select className="custom-select">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                              </select>
+                            </td>
+                            <td></td>
+                            <td>
+                              <FormControlLabel
+                                style={{
+                                  marginLeft: 0,
+                                  marginRight: 0,
+                                  '&$checked': {
+                                    color: '#4B8DF8',
+                                  },
+                                }}
+                                value="reguler1"
+                                control={<Radio disableRipple />}
+                              />
+                            </td>
+                            <td>
+                              <div className="input-group">
+                                <FormControlLabel
+                                  style={{
+                                    marginLeft: 0,
+                                    marginRight: 0,
+                                    '&$checked': {
+                                      color: '#4B8DF8',
+                                    },
+                                  }}
+                                  value="hello1"
+                                  control={<Radio />}
+                                />
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  aria-label="Text input with radio button"
+                                />
+                              </div>
+                            </td>
+                            <td>
+                              <div className="input-group">
+                                <FormControlLabel
+                                  style={{
+                                    marginLeft: 0,
+                                    marginRight: 0,
+                                    '&$checked': {
+                                      color: '#4B8DF8',
+                                    },
+                                  }}
+                                  value="hi1"
+                                  control={<Radio />}
+                                />
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  aria-label="Text input with radio button"
+                                />
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </RadioGroup>
+              </CardContent>
+            </Card>
+          </React.Fragment>
+        )}
       </div>
     );
   }
