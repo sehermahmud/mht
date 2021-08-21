@@ -222,7 +222,7 @@ export class CreateTeacher extends Component {
       .post('https://mht-backend-1.herokuapp.com/teachers/add', newTeacher)
       .then((res) => console.log(res.data));
 
-    window.location.reload(true);
+    // window.location.reload(true);
   }
 
   componentDidMount() {

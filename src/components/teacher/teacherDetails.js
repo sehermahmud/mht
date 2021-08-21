@@ -294,6 +294,8 @@ class TeacherDetails extends Component {
       });
   }
 
+  // target="_blank"
+
   onSubmit(e, teacherId, id) {
     e.preventDefault();
 

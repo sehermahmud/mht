@@ -9,9 +9,9 @@ import { Grid } from '@material-ui/core';
 const Students = (props) => (
   <React.Fragment>
     {!props.student.Batch.length ? (
-      <div></div>
+      <div key={props.student._id}></div>
     ) : (
-      <tr>
+      <tr key={props.student._id}>
         <td>{props.student.studentFullName}</td>
         <td>{props.student.studentPhoneNumber}</td>
         <td>{props.student.guardianPhoneNumber}</td>
@@ -281,26 +281,6 @@ export class ActiveStudents extends Component {
 
   studentList() {
     return this.state.filteredData.map((currentstudents) => {
-      // if (
-      //   this.state.filteredData.map((currentstudents) => {
-      //     return (
-      //       <div>
-      //         {currentstudents.checked === ''} {currentstudents.checked2 === ''}
-      //       </div>
-      //     );
-      //   })
-      // ) {
-      //   return <div>{currentstudents === null}</div>;
-      // }
-      // if (
-      //   currentstudents.Batch.length ===
-      //   ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
-      // ) {
-      //   console.log('I am empty');
-      // } else {
-      //   // console.log('I am not empty');
-      //   return <div>hello</div>;
-      // }
       return (
         <Students
           student={currentstudents}
@@ -401,27 +381,29 @@ export class ActiveStudents extends Component {
               }}
             >
               <thead>
-                <th scope="col" style={{ width: '10em' }}>
-                  StudentName
-                </th>
-                <th scope="col" style={{ width: '8em' }}>
-                  Student Number
-                </th>
-                <th scope="col" style={{ width: '8em' }}>
-                  Guardian Number
-                </th>
-                <th scope="col" style={{ width: '10em' }}>
-                  Special Note
-                </th>
-                <th scope="col" style={{ width: '12em' }}>
-                  Batch
-                </th>
-                <th scope="col" style={{ width: '5em' }}>
-                  Total Payable amount/=
-                </th>
-                <th scope="col" style={{ width: '8em' }}>
-                  Action
-                </th>
+                <tr>
+                  <th scope="col" style={{ width: '10em' }}>
+                    StudentName
+                  </th>
+                  <th scope="col" style={{ width: '8em' }}>
+                    Student Number
+                  </th>
+                  <th scope="col" style={{ width: '8em' }}>
+                    Guardian Number
+                  </th>
+                  <th scope="col" style={{ width: '10em' }}>
+                    Special Note
+                  </th>
+                  <th scope="col" style={{ width: '12em' }}>
+                    Batch
+                  </th>
+                  <th scope="col" style={{ width: '5em' }}>
+                    Total Payable amount/=
+                  </th>
+                  <th scope="col" style={{ width: '8em' }}>
+                    Action
+                  </th>
+                </tr>
               </thead>
               <tbody>{this.studentList()}</tbody>
             </table>
