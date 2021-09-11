@@ -163,16 +163,17 @@ export default function Try() {
               item
               container
               direction="column"
-              smc
+              sm
               style={{ marginLeft: '1em', marginRight: '1em' }}
             >
               {' '}
               <div className="form-group">
-                <label htmlFor="phoneNumberInput">Phone Number</label>
+                <label htmlFor="exampleInputEmail1">Phone Number</label>
                 <input
-                  type="number"
+                  type="email"
                   className="form-control"
-                  id="phoneNumberInput"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
                   placeholder="Number"
                 />
               </div>{' '}
