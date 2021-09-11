@@ -175,7 +175,7 @@ export default function App() {
       <br />
       <div>
         <Card>
-          {results.map(({ items }) => {
+          {results.map((items) => {
             return (
               <Card
                 key={items.href}

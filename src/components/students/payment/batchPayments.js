@@ -3,21 +3,34 @@ import Typography from '@material-ui/core/Typography';
 import { Button, Card, CardContent, Grid } from '@material-ui/core';
 import { InputGroup } from 'react-bootstrap';
 import axios from 'axios';
+import MuiAlert from '@material-ui/lab/Alert';
+
+// prmovies
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 export default function Try() {
   const [allstudent, setAllStudent] = useState([]);
-  const [valueMonth, setValueMonth] = useState('1');
+  const [valueMonth, setValueMonth] = useState({});
   const [state, setState] = useState({});
   const [state1, setState1] = useState({});
   const [state2, setState2] = useState({});
+  const [payment1, setPayment1] = useState(false);
+  const [payment2, setPayment2] = useState(false);
   const [selected, setSelected] = useState(Object.keys(allstudent)[0]);
 
   const onChange = (event) => {
     setSelected(event.target.value);
   };
 
-  const onChangeValueMonth = (event) => {
-    setValueMonth(event.target.value);
+  const onChangeValueMonth = (e) => {
+    // setValueMonth(event.target.value);
+    const { value } = e.target;
+    setValueMonth({
+      value,
+    });
   };
 
   const onChangesetState = (e) => {
@@ -41,11 +54,13 @@ export default function Try() {
     });
   };
 
-  // useEffect(async () => {
-  //   const result = await axios('https://mht-backend-1.herokuapp.com/students');
+  const onChangePayment1 = (e) => {
+    setPayment1({ payment1: true, payment2: false });
+  };
 
-  //   setAllStudent(result.data);
-  // }, []);
+  const onChangePayment2 = (e) => {
+    setPayment2({ payment1: false, payment2: true });
+  };
 
   useEffect(() => {
     async function fetchMyAPI() {
@@ -60,6 +75,34 @@ export default function Try() {
   const options = ['regular', 'due', 'discount'];
 
   console.log(allstudent);
+
+  const hello1 = payment1 ? (
+    <div>
+      {allstudent[selected] === undefined ? (
+        ''
+      ) : (
+        <div>
+          <Alert severity="success">
+            Payment Complete for {`${allstudent[selected].studentFullName}`}
+          </Alert>
+        </div>
+      )}
+    </div>
+  ) : null;
+
+  const hello2 = payment2 ? (
+    <div>
+      {allstudent[selected] === undefined ? (
+        ''
+      ) : (
+        <div>
+          <Alert severity="success">
+            Payment Complete for {`${allstudent[selected].studentFullName}`}
+          </Alert>
+        </div>
+      )}
+    </div>
+  ) : null;
 
   return (
     <div style={{ marginTop: '5em' }}>
@@ -120,17 +163,16 @@ export default function Try() {
               item
               container
               direction="column"
-              sm
+              smc
               style={{ marginLeft: '1em', marginRight: '1em' }}
             >
               {' '}
               <div className="form-group">
-                <label htmlFor="exampleInputEmail1">Phone Number</label>
+                <label htmlFor="phoneNumberInput">Phone Number</label>
                 <input
-                  type="email"
+                  type="number"
                   className="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
+                  id="phoneNumberInput"
                   placeholder="Number"
                 />
               </div>{' '}
@@ -345,6 +387,12 @@ export default function Try() {
             <CardContent>
               <Typography variant="h6">Payment</Typography>
               <br />
+              {allstudent[selected].studentFullName === 'yoha'
+                ? hello1
+                : allstudent[selected].studentFullName === 'mina ashido'
+                ? hello2
+                : null}
+              <br />
               <table
                 className="table table-striped table-bordered"
                 cellSpacing="0"
@@ -381,7 +429,7 @@ export default function Try() {
                 <tbody>
                   {allstudent[selected].Batch09.map((thebatch) =>
                     thebatch.open1 === '' ? (
-                      <div key={thebatch._id}></div>
+                      <tr key={thebatch._id}></tr>
                     ) : (
                       <React.Fragment>
                         <tr key={thebatch._id}>
@@ -400,8 +448,12 @@ export default function Try() {
                             <select
                               className="custom-select"
                               id="length"
-                              value={valueMonth}
+                              value={valueMonth[thebatch.open1]}
                               onChange={onChangeValueMonth}
+                              // selected={
+                              //   Boolean(valueMonth[thebatch.open1]) &&
+                              //   valueMonth[thebatch.open1] === valueMonth
+                              // }
                             >
                               <option value="0">0</option>
                               <option value="1">1</option>
@@ -411,23 +463,40 @@ export default function Try() {
                               <option value="5">5</option>
                             </select>
                           </td>
+                          {console.log('month:' + valueMonth.value)}
                           <td>
                             <input
                               type="text"
                               className="form-control"
-                              name="input"
+                              // name="input"
                               readOnly
                               value={
-                                state1.value
-                                  ? parseInt(thebatch.open2) * valueMonth -
+                                valueMonth.value === undefined
+                                  ? 0
+                                  : state1.value
+                                  ? parseInt(thebatch.open2) *
+                                      valueMonth.value -
                                     state1.value
                                   : state2.value
-                                  ? parseInt(thebatch.open2) * valueMonth -
+                                  ? parseInt(thebatch.open2) *
+                                      valueMonth.value -
                                     state2.value
-                                  : parseInt(thebatch.open2) * valueMonth
+                                  : parseInt(thebatch.open2) * valueMonth.value
                               }
+
+                              // checked={
+                              //     ? parseInt(thebatch.open2) * valueMonth -
+                              //       state1.value
+                              //     : state2.value
+                              //     ? parseInt(thebatch.open2) * valueMonth -
+                              //       state2.value
+                              //     : parseInt(thebatch.open2) * valueMonth
+                              // }
                             />
                           </td>
+                          {console.log(
+                            valueMonth.value === undefined ? 0 : null
+                          )}
                           {options.map((option) => (
                             <td key={`${thebatch.open1}_${option}`}>
                               <Grid container direction="row">
@@ -451,7 +520,6 @@ export default function Try() {
                                       whiteSpace: 'nowrap',
                                       backgroundColor: '#e9ecef',
                                       border: 0,
-                                      borderRadius: '.25rem',
                                     }}
                                     type="radio"
                                     aria-label="radio 1"
@@ -478,12 +546,14 @@ export default function Try() {
                                       onChange={onChangesetState1}
                                     />
                                   ) : (
-                                    <input
-                                      type="number"
-                                      value={state2[thebatch.open1]}
-                                      name={thebatch.open1}
-                                      onChange={onChangesetState2}
-                                    />
+                                    <div>
+                                      <input
+                                        type="number"
+                                        value={state2[thebatch.open1]}
+                                        name={thebatch.open1}
+                                        onChange={onChangesetState2}
+                                      />
+                                    </div>
                                   )}
                                 </Grid>
                               </Grid>
@@ -515,7 +585,9 @@ export default function Try() {
                         name="input"
                         readOnly
                         value={
-                          state1.value
+                          valueMonth.value === undefined
+                            ? 0
+                            : state1.value
                             ? allstudent[selected].Batch09.reduce(
                                 (totalPrice, price) =>
                                   totalPrice +
@@ -527,7 +599,7 @@ export default function Try() {
                                   ),
                                 0
                               ) *
-                                valueMonth -
+                                valueMonth.value -
                               state1.value
                             : state2.value
                             ? allstudent[selected].Batch09.reduce(
@@ -541,7 +613,7 @@ export default function Try() {
                                   ),
                                 0
                               ) *
-                                valueMonth -
+                                valueMonth.value -
                               state2.value
                             : allstudent[selected].Batch09.reduce(
                                 (totalPrice, price) =>
@@ -553,7 +625,7 @@ export default function Try() {
                                     10
                                   ),
                                 0
-                              ) * valueMonth
+                              ) * valueMonth.value
                         }
                       />
                     </td>
@@ -563,7 +635,27 @@ export default function Try() {
                   </tr>
                 </tbody>
               </table>
-              <Button>Payment</Button>
+              {allstudent[selected].studentFullName === 'yoha' ? (
+                <Button
+                  onClick={onChangePayment1}
+                  style={{
+                    background: payment1 === true ? 'lightgreen' : '#00a65a',
+                    color: 'white',
+                  }}
+                >
+                  Payment
+                </Button>
+              ) : allstudent[selected].studentFullName === 'mina ashido' ? (
+                <Button
+                  onClick={onChangePayment2}
+                  style={{
+                    background: payment2 === true ? 'lightgreen' : '#00a65a',
+                    color: 'white',
+                  }}
+                >
+                  Payment
+                </Button>
+              ) : null}
             </CardContent>
           </Card>
         </React.Fragment>

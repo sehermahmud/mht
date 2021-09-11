@@ -935,7 +935,10 @@ class AddStudents extends Component {
     console.log(newStudent);
 
     axios
-      .post('http://localhost:4000/students/addStudent', newStudent)
+      .post(
+        'https://mht-backend-1.herokuapp.com/students/addStudent',
+        newStudent
+      )
       .then((res) => console.log(res.data));
   }
 

@@ -151,7 +151,7 @@ export class AllStudents extends Component {
   };
 
   getData = () => {
-    fetch('http://localhost:4000/students/')
+    fetch('https://mht-backend-1.herokuapp.com/students/')
       .then((response) => response.json())
       .then((students) => {
         const { query } = this.state;
@@ -180,7 +180,7 @@ export class AllStudents extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:4000/students/')
+      .get('https://mht-backend-1.herokuapp.com/students/')
       .then((response) => {
         this.setState({ students: response.data });
       })
