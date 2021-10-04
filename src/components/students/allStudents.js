@@ -188,7 +188,7 @@ export class AllStudents extends Component {
         console.log(error);
       });
 
-    console.log(this.state);
+    console.log(this.state.students);
   }
 
   deleteStudent(id) {
@@ -202,7 +202,7 @@ export class AllStudents extends Component {
         StudentName: el.studentFullName,
         StudentNumber: el.studentPhoneNumber,
         GuardianNumber: el.guardianPhoneNumber,
-        SpecialNote: el.specialNote,
+        Note: el.specialNote,
         emailAddress: el.email,
         Actions: (
           <React.Fragment>
@@ -420,8 +420,8 @@ export class AllStudents extends Component {
           width: '11em',
         },
         {
-          label: 'Special Note',
-          field: 'SpecialNote',
+          label: 'Note',
+          field: 'Note',
           sort: 'asc',
           width: '15em',
         },

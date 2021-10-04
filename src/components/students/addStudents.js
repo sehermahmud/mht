@@ -13,9 +13,11 @@ import {
 import StudentPhoto from '../../image/student/StudentPhoto';
 
 const Arraychecked0 = [];
+const Arraychecked1 = [];
 const Arraychecked2 = [];
 const Arraychecked3 = [];
 const Arraychecked4 = [];
+const Arraychecked9 = [];
 
 class AddStudents extends Component {
   constructor(props) {
@@ -100,7 +102,7 @@ class AddStudents extends Component {
       sllabys: '',
       subject: '',
       Arraychecked0,
-      Arraychecked1: [],
+      Arraychecked1,
       Arraychecked2,
       Arraychecked3,
       Arraychecked4,
@@ -108,7 +110,7 @@ class AddStudents extends Component {
       Arraychecked6: [],
       Arraychecked7: [],
       Arraychecked8: [],
-      Arraychecked9: [],
+      Arraychecked9,
       Arraychecked10: [],
       Arraychecked11: [],
       Arraychecked12: [],
@@ -137,7 +139,7 @@ class AddStudents extends Component {
       batchs: [],
       Batch: [],
       Batch0: Object.keys(Arraychecked0)[0],
-      Batch1: '',
+      Batch1: Object.keys(Arraychecked1)[0],
       Batch2: Object.keys(Arraychecked2)[0],
       Batch3: Object.keys(Arraychecked3)[0],
       Batch4: Object.keys(Arraychecked4)[0],
@@ -145,7 +147,7 @@ class AddStudents extends Component {
       Batch6: '',
       Batch7: '',
       Batch8: '',
-      Batch9: '',
+      Batch9: Object.keys(Arraychecked9)[0],
       Batch10: '',
       Batch11: '',
       Batch12: '',
@@ -562,6 +564,20 @@ class AddStudents extends Component {
 
         console.log(this.state.Arraychecked0);
       });
+    // Batch Bengali
+    axios
+      .get(
+        `https://mht-backend-1.herokuapp.com/teachersBatch/61406e7290f7eb0023439043/allTeacherBatch`
+      )
+      .then((response) => {
+        this.setState({
+          Arraychecked1: response.data.teacher.teacherBatch.map(
+            (batch) => batch
+          ),
+        });
+
+        console.log(this.state.Arraychecked1);
+      });
     // Batch Physics
     axios
       .get(
@@ -702,11 +718,75 @@ class AddStudents extends Component {
       this.setState({ clicks: this.state.clicks + 1 });
     }
 
-    // this.setState({ clicks: this.state.clicks + 1 });
-
     const id = components.join('');
 
     console.log(id + this.state.clicks);
+
+    let LastDate0 = new Date(this.state.StartDate0.getTime());
+    let LastDate1 = new Date(this.state.StartDate1.getTime());
+    let LastDate2 = new Date(this.state.StartDate2.getTime());
+    let LastDate3 = new Date(this.state.StartDate3.getTime());
+    let LastDate4 = new Date(this.state.StartDate4.getTime());
+    let LastDate5 = new Date(this.state.StartDate5.getTime());
+    let LastDate6 = new Date(this.state.StartDate6.getTime());
+    let LastDate7 = new Date(this.state.StartDate7.getTime());
+    let LastDate8 = new Date(this.state.StartDate8.getTime());
+    let LastDate9 = new Date(this.state.StartDate9.getTime());
+    let LastDate10 = new Date(this.state.StartDate10.getTime());
+    let LastDate11 = new Date(this.state.StartDate11.getTime());
+    let LastDate12 = new Date(this.state.StartDate12.getTime());
+    let LastDate13 = new Date(this.state.StartDate13.getTime());
+    let LastDate14 = new Date(this.state.StartDate14.getTime());
+
+    LastDate0.setDate(1);
+    LastDate0.setMonth(LastDate0.getMonth() - 1);
+    console.log(LastDate0);
+
+    LastDate1.setDate(1);
+    LastDate1.setMonth(LastDate1.getMonth() - 1);
+    // console.log(LastDate1);
+
+    LastDate2.setDate(1);
+    LastDate2.setMonth(LastDate2.getMonth() - 1);
+    // console.log(LastDate2);
+
+    LastDate3.setDate(1);
+    LastDate3.setMonth(LastDate3.getMonth() - 1);
+    // console.log(LastDate3);
+
+    LastDate4.setDate(1);
+    LastDate4.setMonth(LastDate4.getMonth() - 1);
+    // console.log(LastDate4);
+
+    LastDate5.setDate(1);
+    LastDate5.setMonth(LastDate5.getMonth() - 1);
+
+    LastDate6.setDate(1);
+    LastDate6.setMonth(LastDate6.getMonth() - 1);
+
+    LastDate7.setDate(1);
+    LastDate7.setMonth(LastDate7.getMonth() - 1);
+
+    LastDate8.setDate(1);
+    LastDate8.setMonth(LastDate8.getMonth() - 1);
+
+    LastDate9.setDate(1);
+    LastDate9.setMonth(LastDate9.getMonth() - 1);
+
+    LastDate10.setDate(1);
+    LastDate10.setMonth(LastDate10.getMonth() - 1);
+
+    LastDate11.setDate(1);
+    LastDate11.setMonth(LastDate11.getMonth() - 1);
+
+    LastDate12.setDate(1);
+    LastDate12.setMonth(LastDate12.getMonth() - 1);
+
+    LastDate13.setDate(1);
+    LastDate13.setMonth(LastDate13.getMonth() - 1);
+
+    LastDate14.setDate(1);
+    LastDate14.setMonth(LastDate14.getMonth() - 1);
 
     const newStudentMid = {
       checked0: this.state.checked0 ? 'Physics' : '',
@@ -728,7 +808,10 @@ class AddStudents extends Component {
         this.state.Arraychecked0[this.state.Batch0] === undefined
           ? ''
           : this.state.Arraychecked0[this.state.Batch0].batches2,
-      Batch1: this.state.Batch1,
+      Batch1:
+        this.state.Arraychecked1[this.state.Batch1] === undefined
+          ? ''
+          : this.state.Arraychecked1[this.state.Batch1].batches2,
       Batch2:
         this.state.Arraychecked2[this.state.Batch2] === undefined
           ? ''
@@ -766,6 +849,21 @@ class AddStudents extends Component {
       StartDate12: this.state.StartDate12,
       StartDate13: this.state.StartDate13,
       StartDate14: this.state.StartDate14,
+      LastDate0: LastDate0,
+      LastDate1: LastDate1,
+      LastDate2: LastDate2,
+      LastDate3: LastDate3,
+      LastDate4: LastDate4,
+      LastDate5: LastDate5,
+      LastDate6: LastDate6,
+      LastDate7: LastDate7,
+      LastDate8: LastDate8,
+      LastDate9: LastDate9,
+      LastDate10: LastDate10,
+      LastDate11: LastDate11,
+      LastDate12: LastDate12,
+      LastDate13: LastDate13,
+      LastDate14: LastDate14,
     };
 
     const newStudent = {
@@ -799,7 +897,10 @@ class AddStudents extends Component {
         this.state.Arraychecked0[this.state.Batch0] === undefined
           ? ''
           : this.state.Arraychecked0[this.state.Batch0].batches2,
-      Batch1: this.state.Batch1,
+      Batch1:
+        this.state.Arraychecked1[this.state.Batch1] === undefined
+          ? ''
+          : this.state.Arraychecked1[this.state.Batch1].batches2,
       Batch2:
         this.state.Arraychecked2[this.state.Batch2] === undefined
           ? ''
@@ -837,6 +938,21 @@ class AddStudents extends Component {
       StartDate12: this.state.StartDate12,
       StartDate13: this.state.StartDate13,
       StartDate14: this.state.StartDate14,
+      LastDate0: LastDate0,
+      LastDate1: LastDate1,
+      LastDate2: LastDate2,
+      LastDate3: LastDate3,
+      LastDate4: LastDate4,
+      LastDate5: LastDate5,
+      LastDate6: LastDate6,
+      LastDate7: LastDate7,
+      LastDate8: LastDate8,
+      LastDate9: LastDate9,
+      LastDate10: LastDate10,
+      LastDate11: LastDate11,
+      LastDate12: LastDate12,
+      LastDate13: LastDate13,
+      LastDate14: LastDate14,
       subject: [
         newStudentMid.checked0,
         newStudentMid.checked1,
@@ -888,6 +1004,23 @@ class AddStudents extends Component {
         newStudentMid.StartDate13,
         newStudentMid.StartDate14,
       ],
+      LastDate: [
+        newStudentMid.LastDate0,
+        newStudentMid.LastDate1,
+        newStudentMid.LastDate2,
+        newStudentMid.LastDate3,
+        newStudentMid.LastDate4,
+        newStudentMid.LastDate5,
+        newStudentMid.LastDate6,
+        newStudentMid.LastDate7,
+        newStudentMid.LastDate8,
+        newStudentMid.LastDate9,
+        newStudentMid.LastDate10,
+        newStudentMid.LastDate11,
+        newStudentMid.LastDate12,
+        newStudentMid.LastDate13,
+        newStudentMid.LastDate14,
+      ],
       Batch09: [
         {
           open1:
@@ -898,6 +1031,20 @@ class AddStudents extends Component {
             this.state.Arraychecked0[this.state.Batch0] === undefined
               ? ''
               : this.state.Arraychecked0[this.state.Batch0].batchPrice,
+          open3: this.state.StartDate0,
+          open4: LastDate0,
+        },
+        {
+          open1:
+            this.state.Arraychecked1[this.state.Batch1] === undefined
+              ? ''
+              : this.state.Arraychecked1[this.state.Batch1].batches2,
+          open2:
+            this.state.Arraychecked1[this.state.Batch1] === undefined
+              ? ''
+              : this.state.Arraychecked1[this.state.Batch1].batchPrice,
+          open3: this.state.StartDate1,
+          open4: LastDate1,
         },
         {
           open1:
@@ -908,6 +1055,8 @@ class AddStudents extends Component {
             this.state.Arraychecked2[this.state.Batch2] === undefined
               ? ''
               : this.state.Arraychecked2[this.state.Batch2].batchPrice,
+          open3: this.state.StartDate2,
+          open4: LastDate2,
         },
         {
           open1:
@@ -918,6 +1067,8 @@ class AddStudents extends Component {
             this.state.Arraychecked3[this.state.Batch3] === undefined
               ? ''
               : this.state.Arraychecked3[this.state.Batch3].batchPrice,
+          open3: this.state.StartDate3,
+          open4: LastDate3,
         },
         {
           open1:
@@ -928,6 +1079,8 @@ class AddStudents extends Component {
             this.state.Arraychecked4[this.state.Batch4] === undefined
               ? ''
               : this.state.Arraychecked4[this.state.Batch4].batchPrice,
+          open3: this.state.StartDate4,
+          open4: LastDate4,
         },
       ],
     };
@@ -935,22 +1088,18 @@ class AddStudents extends Component {
     console.log(newStudent);
 
     axios
-      .post(
-        'https://mht-backend-1.herokuapp.com/students/addStudent',
-        newStudent
-      )
+      .post('https://mht-backend-1.herokuapp.com/students/addStudent', newStudent)
       .then((res) => console.log(res.data));
   }
 
   render() {
     const {
       Arraychecked0,
+      Arraychecked1,
       Arraychecked2,
       Arraychecked3,
       Arraychecked4,
-      Batch0,
-      Batch2,
-      Batch3,
+      Arraychecked9,
       Batch4,
     } = this.state;
 
@@ -986,25 +1135,6 @@ class AddStudents extends Component {
             ))}
           </select>
         </div>
-        <div>
-          {Arraychecked0[Batch0] === undefined
-            ? console.log('nothing')
-            : console.log(
-                Arraychecked0[Batch0].batchPrice,
-                Arraychecked0[Batch0].batches2
-              )}
-        </div>
-        <div></div>
-        <div>
-          {Arraychecked0[Batch0] === undefined ? (
-            console.log('nothing')
-          ) : (
-            <div value={this.state.batchprice}>
-              {Arraychecked0[Batch0].batchPrice}
-            </div>
-          )}
-        </div>
-        <div>{this.state.batchprice}</div>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
             disableToolbar
@@ -1035,17 +1165,24 @@ class AddStudents extends Component {
           <select
             className="custom-select mr-sm-2"
             id="inlineFormCustomSelect"
-            // value={this.state.subject}
-            // onChange={this.onChangeStudentSubject}
+            value={this.state.Batch1}
+            onChange={this.onChangeBatch1}
           >
-            {/* {this.state.batchs.map((batch) => {
+            <option value="">Choose...</option>
+            {/* {this.state.Arraychecked1.map((batch) => {
               return (
-                <option key={batch} value={batch}>
-                  {batch}
+                <option key={batch._id} value={batch.batches2}>
+                  {batch.batches2}
+                  {(this.state.batchprice = batch.batchPrice)}
+                  {console.log(this.state.batchprice)}
                 </option>
               );
             })} */}
-            <option value="">Choose...</option>
+            {Object.keys(Arraychecked1).map((key) => (
+              <option key={key} value={key}>
+                {Arraychecked1[key].batches2}
+              </option>
+            ))}
           </select>
         </div>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -1098,25 +1235,6 @@ class AddStudents extends Component {
             ))}
           </select>
         </div>
-        <div>
-          {Arraychecked2[Batch2] === undefined
-            ? console.log('nothing')
-            : console.log(
-                Arraychecked2[Batch2].batchPrice,
-                Arraychecked2[Batch2].batches2
-              )}
-        </div>
-        <div></div>
-        <div>
-          {Arraychecked2[Batch2] === undefined ? (
-            console.log('nothing')
-          ) : (
-            <div value={this.state.batchprice}>
-              {Arraychecked2[Batch2].batchPrice}
-            </div>
-          )}
-        </div>
-        <div>{this.state.batchprice}</div>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
             disableToolbar
@@ -1151,31 +1269,13 @@ class AddStudents extends Component {
             onChange={this.onChangeBatch3}
           >
             <option value="">Choose...</option>
-            {/* {this.state.Arraychecked0.map((batch) => {
-              return (
-                <option key={batch._id} value={batch.batches2}>
-                  {batch.batches2}
-                  {(this.state.batchprice = batch.batchPrice)}
-                  {console.log(this.state.batchprice)}
-                </option>
-              );
-            })} */}
             {Object.keys(Arraychecked3).map((key) => (
               <option key={key} value={key}>
-                {Arraychecked3[key].batches2 === ''}
+                {Arraychecked3[key].batches2}
               </option>
             ))}
           </select>
         </div>
-        <div>
-          {Arraychecked3[Batch3] === undefined
-            ? console.log('nothing')
-            : console.log(
-                Arraychecked3[Batch3].batchPrice,
-                Arraychecked3[Batch3].batches2
-              )}
-        </div>
-        <div></div>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
             disableToolbar
@@ -1242,8 +1342,8 @@ class AddStudents extends Component {
             margin="normal"
             format="dd/MM/yyyy"
             label="Start Date"
-            value={this.state.StartDate3}
-            onChange={this.onChangeStartDate3}
+            value={this.state.StartDate4}
+            onChange={this.onChangeStartDate4}
             InputAdornmentProps={{ position: 'start' }}
             KeyboardButtonProps={{
               'aria-label': 'change date',
@@ -1437,8 +1537,8 @@ class AddStudents extends Component {
           <select
             className="custom-select mr-sm-2"
             id="inlineFormCustomSelect"
-            // value={this.state.subject}
-            // onChange={this.onChangeStudentSubject}
+            value={this.state.Batch9}
+            onChange={this.onChangeBatch9}
           >
             <option value="">Choose...</option>
             {/* {this.state.batchs.map((batch) => {
@@ -1448,6 +1548,21 @@ class AddStudents extends Component {
                 </option>
               );
             })} */}
+            {/* {Object.keys(Arraychecked9).map((key) => (
+              <option key={key} value={key}>
+              </option>
+            ))} */}
+            {Object.keys(Arraychecked9).map((key) => (
+              <option key={key} value={key}>
+                {/* {Arraychecked9[key].batches2} */}
+                {Arraychecked9[key].batches2.substring(0, 3) === 'Gen'}
+                {console.log('Array9checked: ' + Arraychecked9[key].batches2)}
+              </option>
+            ))}
+
+            {/* {Object.keys(Arraychecked9).filter(
+              (ele) => ele.batches2.substring(0, 3).toLowerCase() == 'gen'
+            )} */}
           </select>
         </div>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>

@@ -312,18 +312,13 @@ export default class BatchPaymentReporting extends Component {
   constructor(props) {
     super(props);
     this.onChangeRefundMonthDate = this.onChangeRefundMonthDate.bind(this);
-    this.onChangeFromDateRangeCollectionDate = this.onChangeFromDateRangeCollectionDate.bind(
-      this
-    );
-    this.onChangeToDateRangeCollectionDate = this.onChangeToDateRangeCollectionDate.bind(
-      this
-    );
-    this.onChangePaymentMonthDate = this.onChangePaymentMonthDate.bind(
-      this
-    );
-    this.onChangeMonthlyDueStatement = this.onChangeMonthlyDueStatement.bind(
-      this
-    );
+    this.onChangeFromDateRangeCollectionDate =
+      this.onChangeFromDateRangeCollectionDate.bind(this);
+    this.onChangeToDateRangeCollectionDate =
+      this.onChangeToDateRangeCollectionDate.bind(this);
+    this.onChangePaymentMonthDate = this.onChangePaymentMonthDate.bind(this);
+    this.onChangeMonthlyDueStatement =
+      this.onChangeMonthlyDueStatement.bind(this);
 
     this.state = {
       showDailyCollection: false,
@@ -340,7 +335,7 @@ export default class BatchPaymentReporting extends Component {
       paymentMonthDate: new Date(),
       showMonthlyPayment: false,
       monthlyDueStatement: new Date(),
-      showMonthlyDue: false
+      showMonthlyDue: false,
     };
   }
 
@@ -355,7 +350,7 @@ export default class BatchPaymentReporting extends Component {
       showMonthlyRefundStatement: false,
       showDateRangeCollectionStatement: false,
       showMonthlyPayment: false,
-      showMonthlyDue: false
+      showMonthlyDue: false,
     });
   };
 
@@ -370,7 +365,7 @@ export default class BatchPaymentReporting extends Component {
       showMonthlyRefundStatement: false,
       showDateRangeCollectionStatement: false,
       showMonthlyPayment: false,
-      showMonthlyDue: false
+      showMonthlyDue: false,
     });
   };
 
@@ -385,7 +380,7 @@ export default class BatchPaymentReporting extends Component {
       showMonthlyRefundStatement: false,
       showDateRangeCollectionStatement: false,
       showMonthlyPayment: false,
-      showMonthlyDue: false
+      showMonthlyDue: false,
     });
   };
 
@@ -400,7 +395,7 @@ export default class BatchPaymentReporting extends Component {
       showMonthlyRefundStatement: false,
       showDateRangeCollectionStatement: false,
       showMonthlyPayment: false,
-      showMonthlyDue: false
+      showMonthlyDue: false,
     });
   };
 
@@ -415,7 +410,7 @@ export default class BatchPaymentReporting extends Component {
       showMonthlyRefundStatement: false,
       showDateRangeCollectionStatement: false,
       showMonthlyPayment: false,
-      showMonthlyDue: false
+      showMonthlyDue: false,
     });
   };
 
@@ -430,7 +425,7 @@ export default class BatchPaymentReporting extends Component {
       showMonthlyRefundStatement: false,
       showDateRangeCollectionStatement: false,
       showMonthlyPayment: false,
-      showMonthlyDue: false
+      showMonthlyDue: false,
     });
   };
 
@@ -457,7 +452,7 @@ export default class BatchPaymentReporting extends Component {
       showMonthlyRefundStatement: true,
       showDateRangeCollectionStatement: false,
       showMonthlyPayment: false,
-      showMonthlyDue: false
+      showMonthlyDue: false,
     });
   };
 
@@ -466,7 +461,7 @@ export default class BatchPaymentReporting extends Component {
       showMonthlyRefundStatement: false,
       showDateRangeCollectionStatement: true,
       showMonthlyPayment: false,
-      showMonthlyDue: false
+      showMonthlyDue: false,
     });
   };
 
@@ -475,7 +470,7 @@ export default class BatchPaymentReporting extends Component {
       showMonthlyRefundStatement: false,
       showDateRangeCollectionStatement: false,
       showMonthlyPayment: true,
-      showMonthlyDue: false
+      showMonthlyDue: false,
     });
   };
 
@@ -490,7 +485,7 @@ export default class BatchPaymentReporting extends Component {
       showMonthlyRefundStatement: false,
       showDateRangeCollectionStatement: false,
       showMonthlyPayment: false,
-      showMonthlyDue: true
+      showMonthlyDue: true,
     });
   };
 
@@ -553,7 +548,7 @@ export default class BatchPaymentReporting extends Component {
         BatchName: '',
         Discount: '',
         Pending: '',
-        PaidAmount: ''
+        PaidAmount: '',
       },
     ];
 
@@ -564,7 +559,7 @@ export default class BatchPaymentReporting extends Component {
         StudentPhoneNumber: '',
         GuardiansPhoneNumber: '',
         BatchesNamePriceLastpaidDate: '',
-        TotalDue: ''
+        TotalDue: '',
       },
     ];
 
@@ -694,7 +689,7 @@ export default class BatchPaymentReporting extends Component {
             'Student Phone no.',
             'Guardians Phone no.',
             'Batches(name, price, Last Paid Date)',
-            'Total Due /-'
+            'Total Due /-',
           ],
         ],
         body: [
@@ -885,8 +880,7 @@ export default class BatchPaymentReporting extends Component {
       </div>
     ) : null;
 
-    const ContentPaymentMonthDate = this.state
-      .showMonthlyPayment ? (
+    const ContentPaymentMonthDate = this.state.showMonthlyPayment ? (
       <div style={{ margin: 0 }}>
         <Button
           elevation={1}
@@ -925,7 +919,7 @@ export default class BatchPaymentReporting extends Component {
           <ExcelColumn label="Invoice ID" value="id" />
           <ExcelColumn label="Student Name" value="StudentName" />
           <ExcelColumn label="Payment for" value="PaymentFor" />
-          <ExcelColumn label= "Batche name" value="BatchName"/>
+          <ExcelColumn label="Batche name" value="BatchName" />
           <ExcelColumn label="Discount" value="Discount" />
           <ExcelColumn label="Pending" value="Pending" />
           <ExcelColumn label="Paid Amount /-" value="PaidAmount" />
@@ -973,8 +967,7 @@ export default class BatchPaymentReporting extends Component {
       </div>
     ) : null;
 
-    const ContentMonthlyDueStatement = this.state
-      .showMonthlyDue ? (
+    const ContentMonthlyDueStatement = this.state.showMonthlyDue ? (
       <div style={{ margin: 0 }}>
         <Button
           elevation={1}
@@ -1013,8 +1006,14 @@ export default class BatchPaymentReporting extends Component {
           <ExcelColumn label="Invoice ID" value="id" />
           <ExcelColumn label="Student Name" value="StudentName" />
           <ExcelColumn label="Student Phone no." value="StudentPhoneNumber" />
-          <ExcelColumn label= "Guardians Phone no." value="Guardians Phone Number"/>
-          <ExcelColumn label="Batches(name, price, Last Paid Date)" value="BatchesNamePriceLastpaidDate)" />
+          <ExcelColumn
+            label="Guardians Phone no."
+            value="Guardians Phone Number"
+          />
+          <ExcelColumn
+            label="Batches(name, price, Last Paid Date)"
+            value="BatchesNamePriceLastpaidDate)"
+          />
           <ExcelColumn label="Total Due /-" value="TotalDue" />
         </ExcelFile>
         <Button

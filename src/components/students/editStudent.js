@@ -11,7 +11,7 @@ import {
 } from '@material-ui/pickers';
 import StudentPhoto from '../../image/student/StudentPhoto';
 
-class EditStudent extends Component {
+class EditStudent extends Component { 
   constructor(props) {
     super(props);
 
@@ -83,7 +83,7 @@ class EditStudent extends Component {
       email: '',
       fatherName: '',
       motherName: '',
-      studentPhoneNumber: '',
+      studentPhoneNumber: '', 
       guardianPhoneNumber: '',
       specialNote: '',
       studentPhoto: null,
@@ -768,7 +768,7 @@ class EditStudent extends Component {
         console.log(this.state.Arraychecked12);
       });
   }
-
+ 
   onSubmit(e) {
     e.preventDefault();
 

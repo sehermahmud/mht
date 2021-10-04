@@ -11,6 +11,7 @@ export class StudentDetails extends Component {
     this.state = {
       students: [],
       batch: [],
+      batch09: [],
       teachers: [],
       hello: 'hello',
       we: '',
@@ -49,6 +50,23 @@ export class StudentDetails extends Component {
           });
         }
         console.log('studentBatch: ', this.state.batch);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    axios
+      .get(
+        'https://mht-backend-1.herokuapp.com/students/' +
+          this.props.match.params.id
+      )
+      .then((response) => {
+        if (response.data.Batch09.length > 0) {
+          this.setState({
+            batch09: response.data.Batch09.map((batch) => batch),
+          });
+        }
+        console.log('studentBatch09: ', this.state.batch09);
       })
       .catch((error) => {
         console.log(error);
@@ -340,29 +358,24 @@ export class StudentDetails extends Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.batch.map(function (thebatch) {
-                  return (
-                    <tr>
-                      <td key={thebatch} value={thebatch}>
-                        {thebatch}
+                {/* {console.log(this.state.batch09)} */}
+                {this.state.batch09.map((thebatch) =>
+                  thebatch.open1 === '' ? (
+                    <tr key={thebatch._id}></tr>
+                  ) : (
+                    <tr key={thebatch._id}>
+                      <td value={thebatch.open1}>{thebatch.open1}</td>
+                      <td value={thebatch.open2}>{thebatch.open2}</td>
+                      <td value={thebatch.open4}>
+                        {thebatch.open4 && thebatch.open4.substring(0, 10)}
                       </td>
-                      <td></td>
-                      <td></td>
                     </tr>
-                  );
-                })}
+                  )
+                )}
               </tbody>
             </table>
           </CardContent>
         </Card>
-        <hr
-          style={{
-            clear: 'both',
-            marginBottom: '1em',
-            marginTop: '0.1rem',
-            border: '3px solid',
-          }}
-        />
         <hr
           style={{
             clear: 'both',

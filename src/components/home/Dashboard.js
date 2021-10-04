@@ -186,9 +186,9 @@ export class Dashboard extends Component {
                 </div>
                 <div className="col-md-8">
                   <div className="card-body">
-                    <p style={{ marginBottom: '0em' }}>ACTIVE STUDENTS:</p>
+                    <p style={{ marginBottom: '0em' }}>ACTIVE STUDENTS</p>
                     <p style={{ marginBottom: '0em' }}>0</p>
-                    <p style={{ marginBottom: '0em' }}>ENGAGED STUDENTS:</p>
+                    <p style={{ marginBottom: '0em' }}>ENGAGED STUDENTS</p>
                     <p style={{ marginBottom: '0em' }}>0</p>
                   </div>
                 </div>
@@ -221,7 +221,9 @@ export class Dashboard extends Component {
                 </div>
                 <div className="col-md-8">
                   <div className="card-body">
-                    <p style={{ marginBottom: '0em' }}>EXPECTED AMOUNT:</p>
+                    <p style={{ marginBottom: '0em' }}>PAID AMOUNT</p>
+                    <p style={{ marginBottom: '0em' }}>0</p>
+                    <p style={{ marginBottom: '0em' }}>DISCOUNT AMOUNT</p>
                     <p style={{ marginBottom: '0em' }}>0</p>
                   </div>
                 </div>
@@ -254,9 +256,9 @@ export class Dashboard extends Component {
                 </div>
                 <div className="col-md-8">
                   <div className="card-body">
-                    <p style={{ marginBottom: '0em' }}>PAID AMOUNT:</p>
+                    <p style={{ marginBottom: '0em' }}>DUE AMOUNT</p>
                     <p style={{ marginBottom: '0em' }}>0</p>
-                    <p style={{ marginBottom: '0em' }}>DISCOUNT AMOUNT:</p>
+                    <p style={{ marginBottom: '0em' }}>PENDING AMOUNT</p>
                     <p style={{ marginBottom: '0em' }}>0</p>
                   </div>
                 </div>
@@ -289,7 +291,7 @@ export class Dashboard extends Component {
                 </div>
                 <div className="col-md-8">
                   <div className="card-body">
-                    <p style={{ marginBottom: '0em' }}>DUE AMOUNT:</p>
+                    <p style={{ marginBottom: '0em' }}>EXPECTED AMOUNT</p>
                     <p style={{ marginBottom: '0em' }}>0</p>
                   </div>
                 </div>

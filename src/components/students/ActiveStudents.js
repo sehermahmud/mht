@@ -1,10 +1,70 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import { Button, Card, CardContent, InputBase, Paper } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
+import { CSVLink } from 'react-csv';
+import ReactToPrint from 'react-to-print';
+import ReactExport from 'react-export-excel';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+
+const ExcelFile = ReactExport.ExcelFile;
+const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
+const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
+
+const dataSet1 = [];
 
 // 609610125b11e4002229cd56
+
+export class ActiveStudentprint extends Component {
+  render() {
+    return (
+      <table
+        id="dtBasicExample"
+        className="table table-striped table-bordered"
+        width="100%"
+        style={{
+          marginTop: '0.5em',
+          marginBottom: '0.5em',
+        }}
+      >
+        <thead>
+          <tr>
+            <th scope="col" style={{ width: '10em' }}>
+              StudentName
+            </th>
+            <th scope="col" style={{ width: '10em' }}>
+              Student Number
+            </th>
+            <th scope="col" style={{ width: '20em' }}>
+              Guardian Number
+            </th>
+            <th scope="col" style={{ width: '10em' }}>
+              Note
+            </th>
+            <th scope="col" style={{ width: '8em' }}>
+              Batch
+            </th>
+            <th scope="col" style={{ width: '8em' }}>
+              Total Payable amount/=
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    );
+  }
+}
 
 const Students = (props) => (
   <React.Fragment>
@@ -17,58 +77,52 @@ const Students = (props) => (
         <td>{props.student.guardianPhoneNumber}</td>
         <td>{props.student.specialNote}</td>
         <td>
-          {props.student.Batch.map((item) => (
-            <div>{item}</div>
-          ))}
+          {props.student.Batch09.map((thebatch) =>
+            thebatch.open1 === '' ? (
+              <div key={thebatch._id}></div>
+            ) : (
+              <div value={thebatch.open1}>{thebatch.open1}</div>
+            )
+          )}
         </td>
-        {/* <td>{props.student.Batch}</td> */}
-        <td></td>
         <td>
-          <Button
-            style={{
-              color: 'white',
-              background: 'linear-gradient(45deg, #311b92 30%, #673ab7 90%)',
-              marginLeft: '0.5em',
-              marginRight: '0.5em',
-              marginTop: '0.3em',
-              marginBottom: '0.3em',
-              textTransform: 'none',
-              fontSize: '0.9em',
-            }}
-          >
-            <Link
-              style={{
-                color: 'white',
-              }}
-              className="text-decoration-none"
-              to={'/students/StudentDetails/' + props.student._id}
-            >
-              Details
-            </Link>
-          </Button>
-          <Button
-            style={{
-              color: 'white',
-              marginLeft: '0.5em',
-              marginRight: '0.5em',
-              marginTop: '0.3em',
-              marginBottom: '0.3em',
-              background: 'linear-gradient(45deg, #e65100 30%, #ff9800 90%)',
-              textTransform: 'none',
-              fontSize: '0.9em',
-            }}
-          >
-            <Link
-              style={{
-                color: 'white',
-              }}
-              className="text-decoration-none"
-              to={'/editStudent/' + props.student._id}
-            >
-              Edit
-            </Link>
-          </Button>
+          {props.student.Batch09.reduce(
+            (totalPrice, price) =>
+              totalPrice +
+              parseInt(
+                price.open2 === '' ? (price.open2 = 0) : price.open2,
+                10
+              ),
+            0
+          )}
         </td>
+      </tr>
+    )}
+  </React.Fragment>
+);
+
+const Studentsheader = (props) => (
+  <React.Fragment>
+    {!props.student.Batch.length ? (
+      <div key={props.student._id}></div>
+    ) : (
+      <tr>
+        <th>Total: </th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>Total:</th>
+        <th>
+          {props.student.Batch09.reduce(
+            (totalPrice, price) =>
+              totalPrice +
+              parseInt(
+                price.open2 === '' ? (price.open2 = 0) : price.open2,
+                10
+              ),
+            0
+          )}
+        </th>
       </tr>
     )}
   </React.Fragment>
@@ -291,7 +345,152 @@ export class ActiveStudents extends Component {
     });
   }
 
+  studentListheader() {
+    return this.state.filteredData.map((currentstudents) => {
+      return (
+        <Studentsheader
+          student={currentstudents}
+          key={currentstudents._id}
+          show={this.state.show}
+        />
+      );
+    });
+  }
+
   render() {
+    const csvData = [
+      {
+        StudentName: '',
+        StudentNumber: '',
+        GuardianNumber: '',
+        Note: '',
+        Batch: '',
+        TotalPayableamount: '',
+      },
+    ];
+
+    const generatePDF = () => {
+      const pdf = new jsPDF();
+
+      pdf.autoTable({
+        theme: 'plain',
+        head: [
+          [
+            'Student Name',
+            'Student Number',
+            'Guardian Number',
+            'Note',
+            'Batch',
+            'Total Payable amount/=',
+          ],
+        ],
+        body: [
+          ['', '', '', '', '', ''],
+          // ...
+        ],
+      });
+      pdf.save('dailyCollectionPaymentReporting');
+    };
+
+    const options = (
+      <div style={{ margin: 0 }}>
+        <Button
+          elevation={1}
+          variant="contained"
+          style={{
+            marginLeft: '0.3em',
+            marginRight: '0.3em',
+            marginTop: '0.3em',
+            marginBotton: '0.3em',
+          }}
+        >
+          COPY
+        </Button>
+        <Button
+          elevation={1}
+          variant="contained"
+          style={{
+            marginLeft: '0.3em',
+            marginRight: '0.3em',
+            marginTop: '0.3em',
+            marginBotton: '0.3em',
+          }}
+        >
+          <CSVLink
+            data={csvData}
+            style={{ color: 'black', textDecoration: 'none' }}
+          >
+            CSV
+          </CSVLink>
+        </Button>
+        <ExcelFile
+          element={
+            <Button
+              elevation={1}
+              variant="contained"
+              style={{
+                marginLeft: '0.3em',
+                marginRight: '0.3em',
+                marginTop: '0.3em',
+                marginBotton: '0.3em',
+                textTransform: 'none',
+              }}
+            >
+              Excel
+            </Button>
+          }
+        >
+          <ExcelSheet data={dataSet1} name="Employees">
+            <ExcelColumn label="Student Name" value="StudentName" />
+            <ExcelColumn label="Student Number" value="Student Number" />
+            <ExcelColumn label="Guardian Number" value="GuardianNumber" />
+            <ExcelColumn label="Note" value="Note" />
+            <ExcelColumn label="Batch" value="Batch" />
+            <ExcelColumn
+              label="Total Payable amount/="
+              value="TotalPayableamount"
+            />
+          </ExcelSheet>
+        </ExcelFile>
+        <Button
+          elevation={1}
+          style={{
+            marginLeft: '0.3em',
+            marginRight: '0.3em',
+            marginTop: '0.3em',
+            marginBotton: '0.3em',
+          }}
+          variant="contained"
+          onClick={generatePDF}
+        >
+          PDF
+        </Button>
+        <ReactToPrint
+          trigger={() => (
+            <Button
+              elevation={1}
+              style={{
+                marginLeft: '0.3em',
+                marginRight: '0.3em',
+                marginTop: '0.3em',
+                marginBotton: '0.3em',
+                textTransform: 'none',
+              }}
+              variant="contained"
+            >
+              <Typography
+                style={{ color: 'black', textDecoration: 'none' }}
+                href="#"
+              >
+                Print
+              </Typography>
+            </Button>
+          )}
+          content={() => this.ActiveStudentprint1}
+        />
+      </div>
+    );
+
     return (
       <div style={{ marginTop: '5em' }}>
         <Typography
@@ -370,9 +569,11 @@ export class ActiveStudents extends Component {
                 />
               </Paper>
             </Grid>
+            {options}
             <br />
             {/* <MDBDataTable bordered striped data={data} /> */}
             <table
+              ref={(el) => (this.ActiveStudentprint = el)}
               className="table table-striped table-bordered"
               width="100%"
               style={{
@@ -381,6 +582,15 @@ export class ActiveStudents extends Component {
               }}
             >
               <thead>
+                {/* {this.studentListheader()} */}
+                <tr>
+                  <th>Total: </th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th>Total:</th>
+                  <th>0/-</th>
+                </tr>
                 <tr>
                   <th scope="col" style={{ width: '10em' }}>
                     StudentName
@@ -399,9 +609,6 @@ export class ActiveStudents extends Component {
                   </th>
                   <th scope="col" style={{ width: '5em' }}>
                     Total Payable amount/=
-                  </th>
-                  <th scope="col" style={{ width: '8em' }}>
-                    Action
                   </th>
                 </tr>
               </thead>
